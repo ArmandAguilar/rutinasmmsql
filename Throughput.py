@@ -39,6 +39,6 @@ def upadteTroughtPut(sql):
     conn.close()
 
 print('###################################### Begin Calculando Throughput ######################################')
-
+print('@')
 
 print('###################################### End Calculando Throughput ######################################')
