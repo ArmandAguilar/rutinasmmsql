@@ -1,5 +1,5 @@
 #!user/bin/python
-from libs.tokens import *
+from tokens import *
 import unicodedata
 import pypyodbc as pyodbc
 import pymssql
