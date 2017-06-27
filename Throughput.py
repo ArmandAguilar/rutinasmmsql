@@ -9,7 +9,7 @@ sys.setdefaultencoding("utf-8")
 # 1 .- Step get a list of proyect of  to insert
 # 2 .- Search the if proyect exit in the table
 #   2.1 if Proyecto exist update data
-#   2.2 if proyect don´t exist insert data
+#   2.2 if proyect dont exist insert data
 
 def fieldExist(NumProyect,NumMaster):
     Accion = 'No'
