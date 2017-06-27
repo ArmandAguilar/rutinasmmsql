@@ -3,8 +3,7 @@ from tokens import *
 import unicodedata
 import pypyodbc as pyodbc
 import pymssql
-reload(sys)
-sys.setdefaultencoding("utf-8")
+
 
 # 1 .- Step get a list of proyect of  to insert
 # 2 .- Search the if proyect exit in the table
