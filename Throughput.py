@@ -50,10 +50,10 @@ for value in cur:
           #update
           Sql = 'update'
           print (Sql)
-     else
+     else:
         #Insetr
         Sql = 'Update'
-        print ()
+        print (Sql)
 conn.commit()
 conn.close()
 
