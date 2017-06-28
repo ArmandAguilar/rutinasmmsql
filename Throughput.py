@@ -56,4 +56,4 @@ for value in cur:
 conn.commit()
 conn.close()
 
-print('####################################### End Calculando Throughput #######################################')
+print('######################################## End Calculando Throughput #######################################')
