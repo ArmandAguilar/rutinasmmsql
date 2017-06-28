@@ -38,6 +38,23 @@ def upadteTroughtPut(sql):
     conn.close()
 
 print('###################################### Begin Calculando Throughput ######################################')
-print('@')
 
-print('###################################### End Calculando Throughput ######################################')
+sql = "SELECT [NumProyecto],[NomProyecto],[NumMaestro],[Dias de produccion],[Trabajo por programar],[Margen Actual] ,[PeriodoComparativo] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] order by NumMaestro desc";
+conn = pymssql.connect(host=hostMSSQL,user=userMSSQL,password=passMSSQL,database=dbMSSQL)
+cur = conn.cursor()
+cur.execute(sql)
+for value in cur:
+
+      mAction = fieldExist(value[0],value[2])
+      if mAction == 'Si':
+          #update
+          Sql = 'update'
+          print (Sql)
+     else
+        #Insetr
+        Sql = 'Update'
+        print ()
+conn.commit()
+conn.close()
+
+print('####################################### End Calculando Throughput #######################################')
