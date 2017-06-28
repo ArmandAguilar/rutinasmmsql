@@ -45,14 +45,21 @@ cur = conn.cursor()
 cur.execute(sql)
 for value in cur:
     #
-    mAction = fieldExist(value[0],value[2])
-    if mAction == 'Si':
+    NumProyecto = value[0]
+    NomProyecto = value[1]
+    NumMaestro = value[2]
+    Diasdeproduccion = value[3]
+    Trabajoporprogramar = value[4]
+    MargenActual = value[5]
+    PeriodoComparativo = value[6]
+    #mAction = fieldExist(value[0],value[2])
+    #if mAction == 'Si':
         #update
-        Sql = 'update'
-        print (Sql)
-    else:
-        Sql = 'insert'
-        print(Sql)
+    #    Sql = 'update'
+    #    print (Sql)
+    #else:
+    #    Sql = 'insert'
+#        print(Sql)
 conn.commit()
 conn.close()
 
