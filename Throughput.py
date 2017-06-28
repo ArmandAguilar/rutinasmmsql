@@ -39,7 +39,7 @@ def upadteTroughtPut(sql):
 
 print('###################################### Begin Calculando Throughput ######################################')
 
-sql = "SELECT [NumProyecto],[NomProyecto],[NumMaestro],[Dias de produccion],[Trabajo por programar],[Margen Actual] ,[PeriodoComparativo] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] order by NumMaestro desc";
+sql = 'SELECT [NumProyecto],[NomProyecto],[NumMaestro],[Dias de produccion],[Trabajo por programar],[Margen Actual] ,[PeriodoComparativo] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] order by NumMaestro desc'
 conn = pymssql.connect(host=hostMSSQL,user=userMSSQL,password=passMSSQL,database=dbMSSQL)
 cur = conn.cursor()
 cur.execute(sql)
@@ -52,14 +52,14 @@ for value in cur:
     Trabajoporprogramar = value[4]
     MargenActual = value[5]
     PeriodoComparativo = value[6]
-    #mAction = fieldExist(value[0],value[2])
-    #if mAction == 'Si':
+    mAction = fieldExist(value[0],value[2])
+    if mAction == 'Si':
         #update
-    #    Sql = 'update'
-    #    print (Sql)
-    #else:
-    #    Sql = 'insert'
-#        print(Sql)
+        Sql = 'update'
+        print (Sql)
+    else:
+        Sql = 'insert'
+        print(Sql)
 conn.commit()
 conn.close()
 
