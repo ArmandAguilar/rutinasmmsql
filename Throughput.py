@@ -44,16 +44,15 @@ conn = pymssql.connect(host=hostMSSQL,user=userMSSQL,password=passMSSQL,database
 cur = conn.cursor()
 cur.execute(sql)
 for value in cur:
-
-      mAction = fieldExist(value[0],value[2])
-      if mAction == 'Si':
-          #update
-          Sql = 'update'
-          print (Sql)
-     else:
-        #Insetr
-        Sql = 'Update'
+    #
+    mAction = fieldExist(value[0],value[2])
+    if mAction == 'Si':
+        #update
+        Sql = 'update'
         print (Sql)
+    else:
+        Sql = 'insert'
+        print(Sql)
 conn.commit()
 conn.close()
 
