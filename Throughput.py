@@ -51,7 +51,7 @@ for value in cur:
     #Trabajoporprogramar = value[4]
     #MargenActual = value[5]
     #PeriodoComparativo = value[6]
-    #mAction = fieldExist(value[0],value[2])
+    mAction = fieldExist(value[0],value[2])
     if mAction == 'Si':
         #update
         Sql = 'update'
