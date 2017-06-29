@@ -51,14 +51,18 @@ for value in cur:
     #Trabajoporprogramar = value[4]
     #MargenActual = value[5]
     #PeriodoComparativo = value[6]
-    mAction = fieldExist(NumProyecto,NumMaestro)
-    if mAction == 'Si':
-        #update
-        Sql = 'update'
-        print (Sql)
+    if NumMaestro > 0:
+        pass
+        mAction = fieldExist(NumProyecto,NumMaestro)
+        if mAction == 'Si':
+            #update
+            Sql = 'update'
+            print (Sql)
+        else:
+            Sql = 'insert'
+            print(Sql)
     else:
-        Sql = 'insert'
-        print(Sql)
+        print('Proyecto Sin Maestro : ' +  str(NumProyecto))
 conn.commit()
 conn.close()
 
