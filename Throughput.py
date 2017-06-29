@@ -44,6 +44,7 @@ conn = pymssql.connect(host=hostMSSQL,user=userMSSQL,password=passMSSQL,database
 cur = conn.cursor()
 cur.execute(sql)
 for value in cur:
+    print ('Go ....')
     #
     #NumProyecto = value[0]
     #NomProyecto = value[1]
