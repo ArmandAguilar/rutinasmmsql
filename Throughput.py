@@ -38,31 +38,31 @@ def upadteTroughtPut(sql):
 
 print('####################################### Begin Calculando Throughput ######################################')
 
-sql = 'SELECT [NumProyecto],[NomProyecto],ISNULL([NumMaestro],0),ISNULL([Dias de produccion],0),ISNULL([Trabajo por programar],0),ISNULL([Margen Actual],0),ISNULL([PeriodoComparativo],0) FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] order by NumMaestro desc'
+#sql = 'SELECT [NumProyecto],[NomProyecto],ISNULL([NumMaestro],0),ISNULL([Dias de produccion],0),ISNULL([Trabajo por programar],0),ISNULL([Margen Actual],0),ISNULL([PeriodoComparativo],0) FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] order by NumMaestro desc'
+sql = 'SELECT [NumProyecto],[NomProyecto],ISNULL([NumMaestro],0),ISNULL([Trabajo por programar],0),ISNULL([Margen Actual],0),ISNULL([PeriodoComparativo],0) FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] order by NumMaestro desc'
 conn = pymssql.connect(host=hostMSSQL,user=userMSSQL,password=passMSSQL,database=dbMSSQL)
 cur = conn.cursor()
 cur.execute(sql)
 for value in cur:
     #
-    NumProyecto = value[0]
-    NomProyecto = value[1]
-    NumMaestro = value[2]
-    Diasdeproduccion = value[3]
-    Trabajoporprogramar = value[4]
-    MargenActual = value[5]
-    PeriodoComparativo = value[6]
-    if NumMaestro > 0:
-        pass
-        mAction = fieldExist(NumProyecto,NumMaestro)
-        if mAction == 'Si':
+    #NumProyecto = value[0]
+    #NomProyecto = value[1]
+    #NumMaestro = value[2]
+    #Diasdeproduccion = value[3]
+    #Trabajoporprogramar = value[4]
+    #MargenActual = value[5]
+    #PeriodoComparativo = value[6]
+    #if NumMaestro > 0:
+        #mAction = fieldExist(NumProyecto,NumMaestro)
+        #if mAction == 'Si':
             #update
-            Sql = 'update'
-            print (Sql)
-        else:
-            Sql = 'insert'
-            print(Sql)
-    else:
-        print('Proyecto Sin Maestro : ' +  str(NumProyecto))
+        #    Sql = 'update'
+        #    print (Sql)
+        #else:
+        #    Sql = 'insert'
+        #    print(Sql)
+    #else:
+    #    print('Proyecto Sin Maestro : ' +  str(NumProyecto))
 conn.commit()
 conn.close()
 
