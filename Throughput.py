@@ -12,14 +12,13 @@ import pymssql
 def fieldExist(NumProyect,NumMaster):
     Accion = 'No'
     sql_buscar = 'SELECT [Id] FROM [SAP].[dbo].[AAAThroughput] Where [NumProyecto] = \'' + str(NumProyect) + '\' and [NumMatestro] = \'' + str(NumMaster) + '\''
-    print (sql_buscar)
-    #conn = pymssql.connect(host=hostMSSQL,user=userMSSQL,password=passMSSQL,database=dbMSSQL)
-    #cur = conn.cursor()
-    #cur.execute(sql_buscar)
-    #for value in cur:
-    #     Accion = 'Si'
-    #conn.commit()
-    #conn.close()
+    conn = pymssql.connect(host=hostMSSQL,user=userMSSQL,password=passMSSQL,database=dbMSSQL)
+    cur = conn.cursor()
+    cur.execute(sql_buscar)
+    for value in cur:
+         Accion = 'Si'
+    conn.commit()
+    conn.close()
 
     return Accion
 
@@ -39,7 +38,7 @@ def upadteTroughtPut(sql):
 
 print('###################################### Begin Calculando Throughput ######################################')
 
-sql = 'SELECT [NumProyecto],[NomProyecto] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] order by NumMaestro desc'
+sql = 'SELECT [NumProyecto],[NomProyecto],[NumMaestro] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] order by NumMaestro desc'
 conn = pymssql.connect(host=hostMSSQL,user=userMSSQL,password=passMSSQL,database=dbMSSQL)
 cur = conn.cursor()
 cur.execute(sql)
@@ -47,12 +46,12 @@ for value in cur:
     #
     NumProyecto = value[0]
     NomProyecto = value[1]
-    #NumMaestro = value[2]
+    NumMaestro = value[2]
     #Diasdeproduccion = value[3]
     #Trabajoporprogramar = value[4]
     #MargenActual = value[5]
     #PeriodoComparativo = value[6]
-    mAction = fieldExist(NumProyecto,NomProyecto)
+    mAction = fieldExist(NumProyecto,NumMaestro)
     if mAction == 'Si':
         #update
         Sql = 'update'
