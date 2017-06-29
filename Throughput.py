@@ -12,13 +12,14 @@ import pymssql
 def fieldExist(NumProyect,NumMaster):
     Accion = 'No'
     sql_buscar = 'SELECT [Id] FROM [SAP].[dbo].[AAAThroughput] Where [NumProyecto] = \'' + str(NumProyect) + '\' and [NumMatestro] = \'' + str(NumMaster) + '\''
-    conn = pymssql.connect(host=hostMSSQL,user=userMSSQL,password=passMSSQL,database=dbMSSQL)
-    cur = conn.cursor()
-    cur.execute(sql_buscar)
-    for value in cur:
-         Accion = 'Si'
-    conn.commit()
-    conn.close()
+    print (sql_buscar)
+    #conn = pymssql.connect(host=hostMSSQL,user=userMSSQL,password=passMSSQL,database=dbMSSQL)
+    #cur = conn.cursor()
+    #cur.execute(sql_buscar)
+    #for value in cur:
+    #     Accion = 'Si'
+    #conn.commit()
+    #conn.close()
 
     return Accion
 
