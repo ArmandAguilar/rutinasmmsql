@@ -46,12 +46,11 @@ cur.execute(sql)
 for value in cur:
     print ('Gos ....')
     NumProyecto = value[0]
-    NomProyecto = value[1]
-    NumMaestro = value[2]
-    Diasdeproduccion = value[3]
-    Trabajoporprogramar = value[4]
-    MargenActual = value[5]
-    PeriodoComparativo = value[6]
+    NumMaestro = value[1]
+    Diasdeproduccion = value[2]
+    Trabajoporprogramar = value[3]
+    MargenActual = value[4]
+    PeriodoComparativo = value[5]
     if NumMaestro > 0:
         mAction = fieldExist(NumProyecto,NumMaestro)
         if mAction == 'Si':
@@ -59,7 +58,7 @@ for value in cur:
             Sql = 'update'
             print (Sql)
         else:
-            Sql = 'INSERT INTO [SAP].[dbo].[AAAThroughput] ([NumProyecto],[NumMatestro],[ThroughputMaestro],[ThroughputCliente]) VALUES(\'' + NumProyecto + '\',\'' + NumMatestro + '\',<ThroughputMaestro, float,>,<ThroughputCliente, float,>)'
+            Sql = 'INSERT INTO [SAP].[dbo].[AAAThroughput] ([NumProyecto],[NumMatestro],[ThroughputMaestro],[ThroughputCliente]) VALUES(\'' + str(NumProyecto) + '\',\'' + str(NumMatestro) + '\',<ThroughputMaestro, float,>,<ThroughputCliente, float,>)'
             print(Sql)
     else:
         print('Proyecto Sin Maestro : ' +  str(NumProyecto))
