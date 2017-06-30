@@ -39,7 +39,6 @@ def upadteTroughtPut(sql):
 print('######################################## Begin Calculando Throughput #######################################')
 
 sql = 'SELECT [NumProyecto],[NomProyecto],[NumMaestro],[Dias de produccion],[Trabajo por programar],[Margen Actual],[PeriodoComparativo] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput]'
-constr = 'DRIVER={SQL Server};SERVER=INGENIERIA\MSSQLINGENIERIA;DATABASE=SAP;UID=Sistemas;PWD=masterMX9456'
 con = pyodbc.connect(constr)
 cur = con.cursor()
 cur.execute(sql)
