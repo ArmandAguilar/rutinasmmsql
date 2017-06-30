@@ -38,7 +38,7 @@ def upadteTroughtPut(sql):
 
 print('######################################## Begin Calculando Throughput #######################################')
 
-sql = 'SELECT [NumProyecto],[NomProyecto],ISNULL([NumMaestro],0) As NumMaestro,ISNULL([Dias de produccion],0) As Diasdeproduccion,ISNULL([Trabajo por programar],0) As Trabajoporprogramar,ISNULL([Margen Actual],0) as MargenActual,CONVERT(NVARCHAR(10),[PeriodoComparativo]) as PeriodoComparativo FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] order by NumMaestro desc'
+sql = 'SELECT [NumProyecto],[NomProyecto],ISNULL([NumMaestro],0) As NumMaestro,ISNULL([Dias de produccion],0) As Diasdeproduccion,ISNULL([Trabajo por programar],0) As Trabajoporprogramar,ISNULL([Margen Actual],0) as MargenActual FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] order by NumMaestro desc'
 conn = pymssql.connect(host=hostMSSQL,user=userMSSQL,password=passMSSQL,database=dbMSSQL)
 cur = conn.cursor()
 cur.execute(sql)
