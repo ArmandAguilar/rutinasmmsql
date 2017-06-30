@@ -2,6 +2,7 @@
 from tokens import *
 import unicodedata
 import pymssql
+import pypyodbc as pyodbc
 
 
 # 1 .- Step get a list of proyect of  to insert
