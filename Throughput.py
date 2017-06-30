@@ -38,32 +38,32 @@ def upadteTroughtPut(sql):
 
 print('######################################## Begin Calculando Throughput #######################################')
 
-sql = 'SELECT [NumProyecto],[NomProyecto],[NumMatestro],[Diasdeproduccion],[Trabajoporprograma],[PeriodoComparativo],[EstadoCompra],[MontoCobrado],[CostoTotales],[ImporteFinal] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput]'
-conn = pymssql.connect(host=hostMSSQL,user=userMSSQL,password=passMSSQL,database=dbMSSQL)
-cur = conn.cursor()
+sql = 'SELECT [NumProyecto],[NomProyecto],[NumMaestro],[Dias de produccion],[Trabajo por programar],[Margen Actual],[PeriodoComparativo] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput]'
+constr = 'DRIVER={SQL Server};SERVER=INGENIERIA\MSSQLINGENIERIA;DATABASE=SAP;UID=Sistemas;PWD=masterMX9456'
+con = pyodbc.connect(constr)
+cur = con.cursor()
 cur.execute(sql)
 for value in cur:
     print ('Gos ....')
-    #
-    #NumProyecto = value[0]
-    #NomProyecto = value[1]
-    #NumMaestro = value[2]
-    #Diasdeproduccion = value[3]
-    #Trabajoporprogramar = value[4]
-    #MargenActual = value[5]
-    #PeriodoComparativo = value[6]
-    #if NumMaestro > 0:
-        #mAction = fieldExist(NumProyecto,NumMaestro)
-        #if mAction == 'Si':
+    NumProyecto = value[0]
+    NomProyecto = value[1]
+    NumMaestro = value[2]
+    Diasdeproduccion = value[3]
+    Trabajoporprogramar = value[4]
+    MargenActual = value[5]
+    PeriodoComparativo = value[6]
+    if NumMaestro > 0:
+        mAction = fieldExist(NumProyecto,NumMaestro)
+        if mAction == 'Si':
             #update
-        #    Sql = 'update'
-        #    print (Sql)
-        #else:
-        #    Sql = 'insert'
-        #    print(Sql)
+            Sql = 'update'
+            print (Sql)
+        else:
+            Sql = 'insert'
+            print(Sql)
     #else:
     #    print('Proyecto Sin Maestro : ' +  str(NumProyecto))
-conn.commit()
-conn.close()
+con.commit()
+con.close()
 
 print('##################################### End Calculando Throughput #######################################')
