@@ -36,6 +36,32 @@ def upadteTroughtPut(sql):
     cur.execute(sql)
     conn.commit()
     conn.close()
+# 1 .- We create a two list NumMaestro and Peridos
+
+# 1.1 .- get NumMeatros
+sql = 'SELECT DISTINCT([NumMaestro]) FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput]'
+con = pyodbc.connect(constr)
+cur = con.cursor()
+cur.execute(sql)
+for value in cur:
+
+    listMaestros.insert(k,value[0])
+con.commit()
+con.close()
+print listMaestros 
+
+#1.2 .-  get years
+sql = 'SELECT DISTINCT([PeriodoComparativo]) FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput]'
+con = pyodbc.connect(constr)
+cur = con.cursor()
+cur.execute(sql)
+for value in cur:
+    #
+    listYears.insert(k,value[0])
+
+con.commit()
+con.close()
+print listYears
 
 print('######################################## Begin Calculando Throughput #######################################')
 
@@ -58,7 +84,7 @@ for value in cur:
             Sql = 'update'
             print (Sql)
         else:
-            Sql = 'INSERT INTO [SAP].[dbo].[AAAThroughput] ([NumProyecto],[NumMatestro],[ThroughputMaestro],[ThroughputCliente]) VALUES(\'' + str(NumProyecto) + '\',\'' + str(NumMatestro) + '\',<ThroughputMaestro, float,>,<ThroughputCliente, float,>)'
+            Sql = 'INSERT INTO [SAP].[dbo].[AAAThroughput] ([NumProyecto],[NumMatestro],[ThroughputMaestro],[ThroughputCliente]) VALUES(\'' + str(NumProyecto) + '\',\'' + str(NumMaestro) + '\',<ThroughputMaestro, float,>,<ThroughputCliente, float,>)'
             print(Sql)
     else:
         print('Proyecto Sin Maestro : ' +  str(NumProyecto))
