@@ -40,6 +40,7 @@ def upadteTroughtPut(sql):
 
 # 1.1 .- get NumMeatros
 listMaestros = []
+k = 0
 sql = 'SELECT DISTINCT([NumMaestro]) FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput]'
 con = pyodbc.connect(constr)
 cur = con.cursor()
@@ -52,13 +53,14 @@ print listMaestros
 
 #1.2 .-  get years
 listYears = []
+i = 0
 sql = 'SELECT DISTINCT([PeriodoComparativo]) FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput]'
 con = pyodbc.connect(constr)
 cur = con.cursor()
 cur.execute(sql)
 for value in cur:
     #
-    listYears.insert(k,value[0])
+    listYears.insert(i,value[0])
 
 con.commit()
 con.close()
