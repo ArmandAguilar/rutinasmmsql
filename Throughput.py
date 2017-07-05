@@ -59,39 +59,42 @@ con = pyodbc.connect(constr)
 cur = con.cursor()
 cur.execute(sql)
 for value in cur:
-    #
     listYears.insert(i,value[0])
-
 con.commit()
 con.close()
 print listYears
-
+ListDataJson = ''
 print('######################################## Begin Calculando Throughput #######################################')
+#2 .- We read the list and create the sql for calulate te thoriughput
+# 2 .- Read the list for years
+for valueYear in variable:
+    sql = 'SELECT [NumProyecto],[NumMaestro],[Dias de produccion],[Trabajo por programar],[Margen Actual],[PeriodoComparativo] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] where [PeriodoComparativo] =\'' + str(valueYear) + '\''
+    print (sql)
 
-sql = 'SELECT [NumProyecto],[NumMaestro],[Dias de produccion],[Trabajo por programar],[Margen Actual],[PeriodoComparativo] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput]'
-con = pyodbc.connect(constr)
-cur = con.cursor()
-cur.execute(sql)
-for value in cur:
-    print ('Gos ....')
-    NumProyecto = value[0]
-    NumMaestro = value[1]
-    Diasdeproduccion = value[2]
-    Trabajoporprogramar = value[3]
-    MargenActual = value[4]
-    PeriodoComparativo = value[5]
-    if NumMaestro > 0:
-        mAction = fieldExist(NumProyecto,NumMaestro)
-        if mAction == 'Si':
-            #update
-            Sql = 'update'
-            print (Sql)
-        else:
-            Sql = 'INSERT INTO [SAP].[dbo].[AAAThroughput] ([NumProyecto],[NumMatestro],[ThroughputMaestro],[ThroughputCliente]) VALUES(\'' + str(NumProyecto) + '\',\'' + str(NumMaestro) + '\',<ThroughputMaestro, float,>,<ThroughputCliente, float,>)'
-            print(Sql)
-    else:
-        print('Proyecto Sin Maestro : ' +  str(NumProyecto))
-con.commit()
-con.close()
 
+#sql = 'SELECT [NumProyecto],[NumMaestro],[Dias de produccion],[Trabajo por programar],[Margen Actual],[PeriodoComparativo] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput]'
+#con = pyodbc.connect(constr)
+#cur = con.cursor()
+#cur.execute(sql)
+#for value in cur:
+#    print ('Gos ....')
+#    NumProyecto = value[0]
+#    NumMaestro = value[1]
+#    Diasdeproduccion = value[2]
+#    Trabajoporprogramar = value[3]
+#    MargenActual = value[4]
+#    PeriodoComparativo = value[5]
+#    if NumMaestro > 0:
+#        mAction = fieldExist(NumProyecto,NumMaestro)
+#        if mAction == 'Si':
+#            #update
+#            Sql = 'update'
+#            print (Sql)
+#        else:
+#            Sql = 'INSERT INTO [SAP].[dbo].[AAAThroughput] ([NumProyecto],[NumMatestro],[ThroughputMaestro],[ThroughputCliente]) VALUES(\'' + str(NumProyecto) + '\',\'' + str(NumMaestro) + '\',<ThroughputMaestro, float,>,<ThroughputCliente, float,>)'
+#            print(Sql)
+#    else:
+#        print('Proyecto Sin Maestro : ' +  str(NumProyecto))
+#con.commit()
+#con.close()
 print('##################################### End Calculando Throughput #######################################')
