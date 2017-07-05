@@ -69,7 +69,7 @@ print('######################################## Begin Calculando Throughput ####
 # 2 .- Read the list for years
 for valueYear in listYears:
     if valueYear == 'None':
-        pass
+        values = 0
     else :
         sql = 'SELECT [NumProyecto],[NumMaestro],[Dias de produccion],[Trabajo por programar],[Margen Actual],[PeriodoComparativo] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] where [PeriodoComparativo] =\'' + str(valueYear) + '\''
         print (sql)
