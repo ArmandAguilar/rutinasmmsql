@@ -54,7 +54,7 @@ print listMaestros
 #1.2 .-  get years
 listYears = []
 i = 0
-sql = 'SELECT DISTINCT([PeriodoComparativo]) FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput]'
+sql = 'SELECT DISTINCT(ISNULL([PeriodoComparativo],1999)) FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput]'
 con = pyodbc.connect(constr)
 cur = con.cursor()
 cur.execute(sql)
@@ -68,12 +68,8 @@ print('######################################## Begin Calculando Throughput ####
 #2 .- We read the list and create the sql for calulate te thoriughput
 # 2 .- Read the list for years
 for valueYear in listYears:
-    if valueYear == 'None':
-        values = 0
-    else :
-        sql = 'SELECT [NumProyecto],[NumMaestro],[Dias de produccion],[Trabajo por programar],[Margen Actual],[PeriodoComparativo] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] where [PeriodoComparativo] =\'' + str(valueYear) + '\''
-        print (sql)
-
+    sql = 'SELECT [NumProyecto],[NumMaestro],[Dias de produccion],[Trabajo por programar],[Margen Actual],[PeriodoComparativo] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] where [PeriodoComparativo] =\'' + str(valueYear) + '\''
+    print (sql)
 
 #sql = 'SELECT [NumProyecto],[NumMaestro],[Dias de produccion],[Trabajo por programar],[Margen Actual],[PeriodoComparativo] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput]'
 #con = pyodbc.connect(constr)
