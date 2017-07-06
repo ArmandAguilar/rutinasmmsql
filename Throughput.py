@@ -104,4 +104,4 @@ for valueYear in listYears:
 #        print('Proyecto Sin Maestro : ' +  str(NumProyecto))
 #con.commit()
 #con.close()
-print('##################################### End Calculando Throughput #######################################')
+print('####################################### End Calculando Throughput #######################################')
