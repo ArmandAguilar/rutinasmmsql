@@ -64,7 +64,7 @@ con.commit()
 con.close()
 print listYears
 ListDataJson = ''
-DNI = 0
+DNI = 1
 print('######################################### Begin Calculando Throughput ########################################')
 #2 .- We read the list and create the sql for calulate te thoriughput
 # 2 .- Read the list for years
@@ -76,8 +76,8 @@ for valueYear in listYears:
     cur.execute(sql)
     for value in cur:
         #passMSSQL
-        ListDataJson += '{"Id" : "' + str(DNI) + '","NumProyecto" : "' + str(value[0]) + '","NumMaestro" : "\'' + str(value[1])+ '\'","DiasDeProduccion" : "' + str(value[2]) + '","TrabajoPorProgramar" : "' + str(value[3]) + '","MargenActual" : "' + str(value[4]) + '","PeriodoComparativo" : "' + str(value[5]) + '"},'
-        print ('{"Id" : "' + str(DNI) + '","NumProyecto" : "' + str(value[0]) + '","NumMaestro" : "\'' + str(value[1])+ '\'","DiasDeProduccion" : "' + str(value[2]) + '","TrabajoPorProgramar" : "' + str(value[3]) + '","MargenActual" : "' + str(value[4]) + '","PeriodoComparativo" : "' + str(value[5]) + '"},')
+        ListDataJson += '{"Id" : "' + str(DNI) + '","NumProyecto" : "' + str(value[0]) + '","NumMaestro" : " + str(value[1])+ '","DiasDeProduccion" : "' + str(value[2]) + '","TrabajoPorProgramar" : "' + str(value[3]) + '","MargenActual" : "' + str(value[4]) + '","PeriodoComparativo" : "' + str(value[5]) + '"},'
+        print ('{"Id" : "' + str(DNI) + '","NumProyecto" : "' + str(value[0]) + '","NumMaestro" : "\'' + str(value[1])+ '\'","DiasDeProduccion" : "' + str(value[2]) + '","TrabajoPorProgramar" : "' + str(value[3]) + '","MargenActual" : "' + str(value[4]) + '","PeriodoComparativo" : "' + str(PeriodoComparativo) + '"},')
         DNI += 1
 #sql = 'SELECT [NumProyecto],[NumMaestro],[Dias de produccion],[Trabajo por programar],[Margen Actual],[PeriodoComparativo] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput]'
 #con = pyodbc.connect(constr)
