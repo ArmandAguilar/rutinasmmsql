@@ -77,8 +77,8 @@ for valueYear in listYears:
     for value in cur:
         #passMSSQL
         ListDataJson += '{"Id" : "' + str(DNI) + '","NumProyecto" : "' + str(value[0]) + '"},'
+        print '{"Id" : "' + str(DNI) + '","NumProyecto" : "' + str(value[0]) + '"},'
         DNI += 1
-print (str(ListDataJson))
 #sql = 'SELECT [NumProyecto],[NumMaestro],[Dias de produccion],[Trabajo por programar],[Margen Actual],[PeriodoComparativo] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput]'
 #con = pyodbc.connect(constr)
 #cur = con.cursor()
