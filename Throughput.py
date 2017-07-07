@@ -83,7 +83,7 @@ ListDataJson += ']}'
 data = json.dumps(ListDataJson)
 dataJson = json.loads(data)
 #print(str(ListDataJson[0]['Id']))
-for value in dataJson["masters"]:
+for value in dataJson[0]:
     print (str(value['Id']))
 #sql = 'SELECT [NumProyecto],[NumMaestro],[Dias de produccion],[Trabajo por programar],[Margen Actual],[PeriodoComparativo] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput]'
 #con = pyodbc.connect(constr)
