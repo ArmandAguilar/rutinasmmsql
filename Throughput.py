@@ -76,8 +76,11 @@ for valueNumMatestro in listMaestros:
                 DiasDeProduccion = valueData[0]
                 TrabajoPorProgramar = valueData[1]
                 MargenActual = valueData[2]
-                TrabajoPorProgramar = (MargenActual/DiasDeProduccion) + TrabajoPorProgramar
-                print  'Maestro : ' + str(valueNumMatestro) + ' Periodo :' + str(valueYears) + ' Trhoughput Maestro : ' + str(TrabajoPorProgramar)
+                if MargenActual > 0:
+                    TrhoughputR = (MargenActual/DiasDeProduccion) + TrabajoPorProgramar
+                else:
+                    TrhoughputR = TrabajoPorProgramar;
+                print  'Maestro : ' + str(valueNumMatestro) + ' Periodo :' + str(valueYears) + ' Trhoughput Maestro : ' + str(TrhoughputR)
             con.commit()
             con.close()
 
