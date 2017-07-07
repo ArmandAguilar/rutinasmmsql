@@ -80,9 +80,11 @@ for valueYear in listYears:
         DNI += 1
 ListDataJson += ']}'
 
-data = json.dumps(ListDataJson)
-dataJson = json.loads(data)
-print(str(dataJson[0]))
+#data = json.dumps(ListDataJson)
+dataJson = json.loads(ListDataJson)
+print(str(dataJson["masters"]))
+
+
 #for value in dataJson[0]:
 #    print (str(value['Id']))
 #sql = 'SELECT [NumProyecto],[NumMaestro],[Dias de produccion],[Trabajo por programar],[Margen Actual],[PeriodoComparativo] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput]'
