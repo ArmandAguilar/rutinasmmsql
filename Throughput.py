@@ -3,7 +3,7 @@ from tokens import *
 import unicodedata
 import pymssql
 import pypyodbc as pyodbc
-import json
+import simplejson as json
 
 # 1 .- Step get a list of proyect of  to insert
 # 2 .- Search the if proyect exit in the table
