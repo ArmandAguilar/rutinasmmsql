@@ -81,7 +81,8 @@ for valueYear in listYears:
 ListDataJson += ']}'
 
 data = json.dumps(ListDataJson)
-print(data)
+dataJson = json.loads(data)
+print(dataJson)
 
 #sql = 'SELECT [NumProyecto],[NumMaestro],[Dias de produccion],[Trabajo por programar],[Margen Actual],[PeriodoComparativo] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput]'
 #con = pyodbc.connect(constr)
