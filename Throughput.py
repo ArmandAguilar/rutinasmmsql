@@ -3,7 +3,7 @@ from tokens import *
 import unicodedata
 import pymssql
 import pypyodbc as pyodbc
-
+import json
 
 # 1 .- Step get a list of proyect of  to insert
 # 2 .- Search the if proyect exit in the table
@@ -63,7 +63,7 @@ for value in cur:
 con.commit()
 con.close()
 print listYears
-ListDataJson = ''
+ListDataJson = '{"data":['
 DNI = 1
 print('######################################### Begin Calculando Throughput ########################################')
 #2 .- We read the list and create the sql for calulate te thoriughput
@@ -77,8 +77,13 @@ for valueYear in listYears:
     for value in cur:
         #passMSSQL
         ListDataJson += '{"Id" : "' + str(DNI) + '","NumProyecto" : "' + str(value[0]) + '","NumMaestro" : " + str(value[1])+ '","DiasDeProduccion" : "' + str(value[2]) + '","TrabajoPorProgramar" : "' + str(value[3]) + '","MargenActual" : "' + str(value[4]) + '","PeriodoComparativo" : "' + str(value[5]) + '"},'
-        print ('{"Id" : "' + str(DNI) + '","NumProyecto" : "' + str(value[0]) + '","NumMaestro" : "\'' + str(value[1])+ '\'","DiasDeProduccion" : "' + str(value[2]) + '","TrabajoPorProgramar" : "' + str(value[3]) + '","MargenActual" : "' + str(value[4]) + '","PeriodoComparativo" : "' + str(PeriodoComparativo) + '"},')
+        #print ('{"Id" : "' + str(DNI) + '","NumProyecto" : "' + str(value[0]) + '","NumMaestro" : "\'' + str(value[1])+ '\'","DiasDeProduccion" : "' + str(value[2]) + '","TrabajoPorProgramar" : "' + str(value[3]) + '","MargenActual" : "' + str(value[4]) + '","PeriodoComparativo" : "' + str(PeriodoComparativo) + '"},')
         DNI += 1
+ListDataJson += ']}'
+
+data = json.loads(ListDataJson)
+print(data)
+
 #sql = 'SELECT [NumProyecto],[NumMaestro],[Dias de produccion],[Trabajo por programar],[Margen Actual],[PeriodoComparativo] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput]'
 #con = pyodbc.connect(constr)
 #cur = con.cursor()
