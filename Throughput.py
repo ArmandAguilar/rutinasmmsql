@@ -67,7 +67,7 @@ print('######################################### Begin Calculando Throughput ###
 # 2.- Run the Masters
 for valueNumMatestro in listMaestros:
     #2.2 .- read master in the list
-        for valueYears in variable:
+        for valueYears in listYears:
             sqlT = 'SELECT Sum([Dias de produccion]) As DiasDeProduccion,Sum([Trabajo por programar]) As TrabajoPorProgramar , sum([Margen Actual]) As MargenActual FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] Where [NumMaestro]=\'' + str(valueNumMatestro) + '\' and [PeriodoComparativo] = \'' + str(valueYears)  + '\''
             con = pyodbc.connect(constr)
             cur = con.cursor()
