@@ -68,10 +68,10 @@ print('######################################### Begin Calculando Throughput ###
 for valueNumMatestro in listMaestros:
     #2.2 .- read master in the list
         for valueYears in listYears:
-            sqlT = 'SELECT Sum([Dias de produccion]) As DiasDeProduccion,Sum([Trabajo por programar]) As TrabajoPorProgramar , sum([Margen Actual]) As MargenActual FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] Where [NumMaestro]=\'' + str(valueNumMatestro) + '\' and [PeriodoComparativo] = \'' + str(valueYears)  + '\''
+            sqlT = 'SELECT ISNULL(Sum([Dias de produccion]),0) As DiasDeProduccion,ISNULL(Sum([Trabajo por programar]),0) As TrabajoPorProgramar , ISNULL(Sum([Margen Actual]),0) As MargenActual FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] Where [NumMaestro]=\'' + str(valueNumMatestro) + '\' and [PeriodoComparativo] = \'' + str(valueYears)  + '\''
             con = pyodbc.connect(constr)
             cur = con.cursor()
-            cur.execute(sql)
+            cur.execute(sqlT)
             for valueData in cur:
                 DiasDeProduccion = valueData[0]
                 TrabajoPorProgramar = valueData[1]
@@ -80,12 +80,6 @@ for valueNumMatestro in listMaestros:
                 print  'Maestro : ' + str(valueNumMatestro) + ' Periodo :' + str(valueYears) + ' Trhoughput Maestro : ' + str(TrabajoPorProgramar)
             con.commit()
             con.close()
-
-
-
-
-
-
 
 #2 .- We read the list and create the sql for calulate te thoriughput
 # 2 .- Read the list for years
