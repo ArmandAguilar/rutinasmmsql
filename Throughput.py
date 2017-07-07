@@ -110,4 +110,4 @@ for value in dataJson['fields']:
 #        print('Proyecto Sin Maestro : ' +  str(NumProyecto))
 #con.commit()
 #con.close()
-print('####################################### End Calculando Throughput #######################################')
+print('##################################### End Calculando Throughput ####################################')
