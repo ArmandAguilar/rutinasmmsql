@@ -63,7 +63,7 @@ for value in cur:
 con.commit()
 con.close()
 print listYears
-ListDataJson = '{"masters":['
+ListDataJson = '{"fields":['
 DNI = 1
 print('######################################### Begin Calculando Throughput ########################################')
 #2 .- We read the list and create the sql for calulate te thoriughput
@@ -82,11 +82,9 @@ ListDataJson += ']}'
 
 #data = json.dumps(ListDataJson)
 dataJson = json.loads(ListDataJson)
-print(str(dataJson["masters"]))
+for value in dataJson['fields']:
+    print value['Id']
 
-
-#for value in dataJson[0]:
-#    print (str(value['Id']))
 #sql = 'SELECT [NumProyecto],[NumMaestro],[Dias de produccion],[Trabajo por programar],[Margen Actual],[PeriodoComparativo] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput]'
 #con = pyodbc.connect(constr)
 #cur = con.cursor()
