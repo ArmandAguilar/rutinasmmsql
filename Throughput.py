@@ -77,7 +77,7 @@ for valueNumMatestro in listMaestros:
                 TrabajoPorProgramar = valueData[1]
                 MargenActual = valueData[2]
                 if MargenActual > 0:
-                    TrhoughputR = (MargenActual/DiasDeProduccion) + TrabajoPorProgramar
+                    TrhoughputR = MargenActual/(DiasDeProduccion + TrabajoPorProgramar)
                 else:
                     TrhoughputR = TrabajoPorProgramar;
                 print  'Maestro : ' + str(valueNumMatestro) + ' Periodo :' + str(valueYears) + ' Trhoughput Maestro : ' + str(TrhoughputR)
