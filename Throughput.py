@@ -100,7 +100,8 @@ for valueYear in listYears:
             #pass
             ListDataJson += '{"Id":"' + str(DNI) + '","NumProyecto":"' + str(value[0]) + '","NumMaestro":"' + str(value[1]) + '","DiasDeProduccion":"' + str(value[2]) + '","TrabajoPorProgramar":"' + str(value[3]) + '","MargenActual" : "' + str(value[4]) + '","PeriodoComparativo":"' + str(value[5]) + '"},' + '\n'
             DNI += 1
-ListDataJson = [:ListDataJson - 1]
+temp = len(ListDataJson)
+ListDataJson = [:temp - 1]
 ListDataJson += ']}'
 print ListDataJson
 
