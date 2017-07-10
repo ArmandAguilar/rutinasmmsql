@@ -96,9 +96,9 @@ for valueYear in listYears:
     cur.execute(sql)
     for value in cur:
         #passMSSQL
-        if valueYear == 2016:
+        if valueYear == 2017:
             #pass
-            ListDataJson += '{"Id" : "' + str(DNI) + '","NumProyecto" : "' + str(value[0]) + '","NumMaestro" : "' + str(value[1]) + '","DiasDeProduccion" : "' + str(value[2]) + '","TrabajoPorProgramar" : "' + str(value[3]) + '","MargenActual" : "' + str(value[4]) + '","PeriodoComparativo" : "' + str(value[5]) + '"},'
+            ListDataJson += '{"Id":"' + str(DNI) + '","NumProyecto":"' + str(value[0]) + '","NumMaestro":"' + str(value[1]) + '","DiasDeProduccion":"' + str(value[2]) + '","TrabajoPorProgramar":"' + str(value[3]) + '","MargenActual" : "' + str(value[4]) + '","PeriodoComparativo":"' + str(value[5]) + '"},' + '\n'
             DNI += 1
 ListDataJson += ']}'
 print ListDataJson
