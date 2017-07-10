@@ -98,8 +98,8 @@ for valueYear in listYears:
         #passMSSQL
         ListDataJson += '{"Id" : "' + str(DNI) + '","NumProyecto" : "' + str(value[0]) + '","NumMaestro" : "' + str(value[1]) + '","DiasDeProduccion" : "' + str(value[2]) + '","TrabajoPorProgramar" : "' + str(value[3]) + '","MargenActual" : "' + str(value[4]) + '","PeriodoComparativo" : "' + str(value[5]) + '"}'
         DNI += 1
-        print ListDataJson
 ListDataJson += ']}'
+print ListDataJson
 
 dataJson = json.loads(ListDataJson)
 
