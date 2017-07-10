@@ -63,6 +63,13 @@ for value in cur:
 con.commit()
 con.close()
 
+def tDataJason(ListDataJson,periodo):
+    print ('####################' +  str(periodo))
+    temp = len(ListDataJson)
+    ListDataJson = ListDataJson[:temp - 2]
+    ListDataJson += ']}'
+    print ListDataJson
+
 print('######################################### Begin Calculando Throughput ########################################')
 # 2.- Run the Masters
 #for valueNumMatestro in listMaestros:
@@ -87,13 +94,16 @@ print('######################################### Begin Calculando Throughput ###
 
 #2 .- We read the list and create the sql for calulate te thoriughput
 # 2 .- Read the list for years
-DNI = 0
-ListDataJson = '{"fields":['
+
+
 for valueYear in listYears:
     sql = 'SELECT [NumProyecto],[NumMaestro],[Dias de produccion] As DiasDeProduccion ,[Trabajo por programar] As TrabajoPorProgramar,[Margen Actual] As MargenActual,[PeriodoComparativo] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] where [PeriodoComparativo] =\'' + str(valueYear) + '\' order by NumMaestro'
     con = pyodbc.connect(constr)
     cur = con.cursor()
     cur.execute(sql)
+    ListDataJson = ''
+    ListDataJson = '{"fields":['
+    DNI = 0
     for value in cur:
         #passMSSQL
         ListDataJson += '{"Id":"' + str(DNI) + '","NumProyecto":"' + str(value[0]) + '","NumMaestro":"' + str(value[1]) + '","DiasDeProduccion":"' + str(value[2]) + '","TrabajoPorProgramar":"' + str(value[3]) + '","MargenActual" : "' + str(value[4]) + '","PeriodoComparativo":"' + str(value[5]) + '"},' + '\n'
@@ -102,12 +112,12 @@ for valueYear in listYears:
             #pass
         #    ListDataJson += '{"Id":"' + str(DNI) + '","NumProyecto":"' + str(value[0]) + '","NumMaestro":"' + str(value[1]) + '","DiasDeProduccion":"' + str(value[2]) + '","TrabajoPorProgramar":"' + str(value[3]) + '","MargenActual" : "' + str(value[4]) + '","PeriodoComparativo":"' + str(value[5]) + '"},' + '\n'
         #    DNI += 1
-temp = len(ListDataJson)
-ListDataJson = ListDataJson[:temp - 2]
-ListDataJson += ']}'
-print ListDataJson
+    #here procesing lotes
+    tDataJason(ListDataJson,valueYear)
 
-dataJson = json.loads(ListDataJson)
+#print ListDataJson
+
+#dataJson = json.loads(ListDataJson)
 
 #print dataJson
 #for value in dataJson['fields']:
