@@ -65,44 +65,45 @@ con.close()
 
 print('######################################### Begin Calculando Throughput ########################################')
 # 2.- Run the Masters
-for valueNumMatestro in listMaestros:
+#for valueNumMatestro in listMaestros:
     #2.2 .- read master in the list
-        for valueYears in listYears:
-            sqlT = 'SELECT ISNULL(Sum([Dias de produccion]),0) As DiasDeProduccion,ISNULL(Sum([Trabajo por programar]),0) As TrabajoPorProgramar , ISNULL(Sum([Margen Actual]),0) As MargenActual FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] Where [NumMaestro]=\'' + str(valueNumMatestro) + '\' and [PeriodoComparativo] = \'' + str(valueYears)  + '\''
-            con = pyodbc.connect(constr)
-            cur = con.cursor()
-            cur.execute(sqlT)
-            for valueData in cur:
-                DiasDeProduccion = valueData[0]
-                TrabajoPorProgramar = valueData[1]
-                MargenActual = valueData[2]
-                if MargenActual > 0:
-                    x = DiasDeProduccion + TrabajoPorProgramar
-                    TrhoughputR = MargenActual/x
-                else:
-                    TrhoughputR = TrabajoPorProgramar;
-                print  'Maestro : ' + str(valueNumMatestro) + ' Periodo :' + str(valueYears) + ' Trhoughput Maestro : ' + str(TrhoughputR)
-            con.commit()
-            con.close()
+#        for valueYears in listYears:
+#            sqlT = 'SELECT ISNULL(Sum([Dias de produccion]),0) As DiasDeProduccion,ISNULL(Sum([Trabajo por programar]),0) As TrabajoPorProgramar , ISNULL(Sum([Margen Actual]),0) As MargenActual FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] Where [NumMaestro]=\'' + str(valueNumMatestro) + '\' and [PeriodoComparativo] = \'' + str(valueYears)  + '\''
+#            con = pyodbc.connect(constr)
+#            cur = con.cursor()
+#            cur.execute(sqlT)
+#            for valueData in cur:
+#                DiasDeProduccion = valueData[0]
+#                TrabajoPorProgramar = valueData[1]
+#                MargenActual = valueData[2]
+#                if MargenActual > 0:
+#                    x = DiasDeProduccion + TrabajoPorProgramar
+#                    TrhoughputR = MargenActual/x
+#                else:
+#                    TrhoughputR = TrabajoPorProgramar;
+#                print  'Maestro : ' + str(valueNumMatestro) + ' Periodo :' + str(valueYears) + ' Trhoughput Maestro : ' + str(TrhoughputR)
+#            con.commit()
+#            con.close()
 
 #2 .- We read the list and create the sql for calulate te thoriughput
 # 2 .- Read the list for years
-#for valueYear in listYears:
-#    sql = 'SELECT [NumProyecto],[NumMaestro],[Dias de produccion] As DiasDeProduccion ,[Trabajo por programar] As TrabajoPorProgramar,[Margen Actual] As MargenActual,[PeriodoComparativo] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] where [PeriodoComparativo] =\'' + str(valueYear) + '\' order by NumMaestro'
-#    print (sql)
-#    con = pyodbc.connect(constr)
-#    cur = con.cursor()
-#    cur.execute(sql)
-#    for value in cur:
+for valueYear in listYears:
+    sql = 'SELECT [NumProyecto],[NumMaestro],[Dias de produccion] As DiasDeProduccion ,[Trabajo por programar] As TrabajoPorProgramar,[Margen Actual] As MargenActual,[PeriodoComparativo] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] where [PeriodoComparativo] =\'' + str(valueYear) + '\' order by NumMaestro'
+    print (sql)
+    con = pyodbc.connect(constr)
+    cur = con.cursor()
+    cur.execute(sql)
+    for value in cur:
         #passMSSQL
-#        ListDataJson += '{"Id" : "' + str(DNI) + '","NumProyecto" : "' + str(value[0]) + '","NumMaestro" : "' + str(value[1]) + '","DiasDeProduccion" : "' + str(value[2]) + '","TrabajoPorProgramar" : "' + str(value[3]) + '","MargenActual" : "' + str(value[4]) + '","PeriodoComparativo" : "' + str(value[5]) + '"},'
-#        DNI += 1
-#ListDataJson += ']}'
+        ListDataJson += '{"Id" : "' + str(DNI) + '","NumProyecto" : "' + str(value[0]) + '","NumMaestro" : "' + str(value[1]) + '","DiasDeProduccion" : "' + str(value[2]) + '","TrabajoPorProgramar" : "' + str(value[3]) + '","MargenActual" : "' + str(value[4]) + '","PeriodoComparativo" : "' + str(value[5]) + '"},'
+        DNI += 1
+ListDataJson += ']}'
 
-#data = json.dumps(ListDataJson)
-#dataJson = json.loads(ListDataJson)
+dataJson = json.loads(ListDataJson)
+
+print dataJson 
 #for value in dataJson['fields']:
-#    print value['Id']
+#      print value['Id']
 
 #sql = 'SELECT [NumProyecto],[NumMaestro],[Dias de produccion],[Trabajo por programar],[Margen Actual],[PeriodoComparativo] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput]'
 #con = pyodbc.connect(constr)
