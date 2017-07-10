@@ -101,9 +101,9 @@ for valueYear in listYears:
 ListDataJson += ']}'
 print ListDataJson
 
-dataJson = json.loads(ListDataJson)
+#dataJson = json.loads(ListDataJson)
 
-print dataJson
+#print dataJson
 #for value in dataJson['fields']:
 #      print value['Id']
 
