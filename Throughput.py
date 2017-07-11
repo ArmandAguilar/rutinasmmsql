@@ -69,13 +69,19 @@ def tDataJason(ListDataJson,periodo,listMaestrosA):
     ListDataJson = ListDataJson[:temp - 2]
     ListDataJson += ']}'
     data = json.loads(ListDataJson)
-    for value in data['fields']:
-        #pass
-        print str(value["Id"])
     #Here slide the array
-    #for value in listMaestrosA:
+    for valueListMaestros in listMaestrosA:
         #pass
-        #print  'Maestro : ' + str(valueNumMatestro) + ' Periodo :' + str(valueYears) + ' Trhoughput Maestro : ' + str(TrhoughputR)
+        DiasDeProduccion = 0
+        TrabajoPorProgramar = 0
+        MargenActual = 0
+        for valueJson in data['fields']:
+            if valueListMaestros == valueJson['NumMaestro']:
+                #pass
+                DiasDeProduccion += valueJson['DiasDeProduccion']
+                TrabajoPorProgramar += valueJson['TrabajoPorProgramar']
+                MargenActual += valueJson['MargenActual']
+        print ('DiasDeProduccion :' +  str(DiasDeProduccion) + ' TrabajoPorProgramar : ' + str(TrabajoPorProgramar) + ' MargenActual :' + MargenActual)
 
     #print ListDataJson
     #print listMaestrosA
