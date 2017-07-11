@@ -68,9 +68,16 @@ def tDataJason(ListDataJson,periodo,listMaestrosA):
     temp = len(ListDataJson)
     ListDataJson = ListDataJson[:temp - 2]
     ListDataJson += ']}'
+    for value in ListDataJson['fields']:
+        #pass
+        print value['Id']
+    #Here slide the array
+    #for value in listMaestrosA:
+        #pass
+        #print  'Maestro : ' + str(valueNumMatestro) + ' Periodo :' + str(valueYears) + ' Trhoughput Maestro : ' + str(TrhoughputR)
 
-    print ListDataJson
-    print listMaestrosA
+    #print ListDataJson
+    #print listMaestrosA
 
 print('######################################### Begin Calculando Throughput ########################################')
 # 2.- Run the Masters
@@ -116,13 +123,6 @@ for valueYear in listYears:
     listMaestrosA = list(set(listMaestrosActivos))
     tDataJason(ListDataJson,valueYear,listMaestrosA)
 
-#print ListDataJson
-
-#dataJson = json.loads(ListDataJson)
-
-#print dataJson
-#for value in dataJson['fields']:
-#      print value['Id']
 
 #sql = 'SELECT [NumProyecto],[NumMaestro],[Dias de produccion],[Trabajo por programar],[Margen Actual],[PeriodoComparativo] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput]'
 #con = pyodbc.connect(constr)
