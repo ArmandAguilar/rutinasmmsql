@@ -80,7 +80,7 @@ def tDataJason(ListDataJson,periodo,listMaestrosA):
         MargenActual = 0
         for valueJson in data['fields']:
             print str(valueListMaestros) + '==' + str(valueJson['NumMaestro'])
-            if valueListMaestros == valueJson['NumMaestro']:
+            if str(valueListMaestros) == (valueJson['NumMaestro']):
                 #pass
                 DiasDeProduccion += valueJson['DiasDeProduccion']
                 TrabajoPorProgramar += valueJson['TrabajoPorProgramar']
@@ -126,12 +126,9 @@ for valueYear in listYears:
     ListDataJson = '{"fields":['
     DNI = 0
     for value in cur:
-        #passMSSQL
-        if '2017' == str(value[5]):
-            #pass
-            listMaestrosActivos.insert(i,value[1])
-            ListDataJson += '{"Id":"' + str(DNI) + '","NumProyecto":"' + str(value[0]) + '","NumMaestro":"' + str(value[1]) + '","DiasDeProduccion":"' + str(value[2]) + '","TrabajoPorProgramar":"' + str(value[3]) + '","MargenActual" : "' + str(value[4]) + '","PeriodoComparativo":"' + str(value[5]) + '"},' + '\n'
-            DNI += 1
+        listMaestrosActivos.insert(i,value[1])
+        ListDataJson += '{"Id":"' + str(DNI) + '","NumProyecto":"' + str(value[0]) + '","NumMaestro":"' + str(value[1]) + '","DiasDeProduccion":"' + str(value[2]) + '","TrabajoPorProgramar":"' + str(value[3]) + '","MargenActual" : "' + str(value[4]) + '","PeriodoComparativo":"' + str(value[5]) + '"},' + '\n'
+        DNI += 1
     #here procesing lotes
     listMaestrosA = list(set(listMaestrosActivos))
     tDataJason(ListDataJson,valueYear,listMaestrosA)
