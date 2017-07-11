@@ -82,9 +82,9 @@ def tDataJason(ListDataJson,periodo,listMaestrosA):
             print str(valueListMaestros) + '==' + str(valueJson['NumMaestro'])
             if str(valueListMaestros) == (valueJson['NumMaestro']):
                 #pass
-                DiasDeProduccion += valueJson['DiasDeProduccion']
-                TrabajoPorProgramar += valueJson['TrabajoPorProgramar']
-                MargenActual += valueJson['MargenActual']
+                DiasDeProduccion = valueJson['DiasDeProduccion']
+                TrabajoPorProgramar = valueJson['TrabajoPorProgramar']
+                MargenActual = valueJson['MargenActual']
                 print ('DiasDeProduccion :' +  str(DiasDeProduccion) + ' TrabajoPorProgramar : ' + str(TrabajoPorProgramar) + ' MargenActual :' + str(MargenActual))
 
     #print ListDataJson
