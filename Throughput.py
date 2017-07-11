@@ -59,7 +59,10 @@ con = pyodbc.connect(constr)
 cur = con.cursor()
 cur.execute(sql)
 for value in cur:
-    listYears.insert(i,value[0])
+    if value == '1999':
+        valuesyears = 0
+    else:
+        listYears.insert(i,value[0])
 con.commit()
 con.close()
 
@@ -76,6 +79,7 @@ def tDataJason(ListDataJson,periodo,listMaestrosA):
         TrabajoPorProgramar = 0
         MargenActual = 0
         for valueJson in data['fields']:
+            print valueListMaestros + ' == ' + valueJson['NumMaestro']
             if valueListMaestros == valueJson['NumMaestro']:
                 #pass
                 DiasDeProduccion += valueJson['DiasDeProduccion']
