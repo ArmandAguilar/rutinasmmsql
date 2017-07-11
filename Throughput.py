@@ -81,7 +81,7 @@ def tDataJason(ListDataJson,periodo,listMaestrosA):
                 DiasDeProduccion += valueJson['DiasDeProduccion']
                 TrabajoPorProgramar += valueJson['TrabajoPorProgramar']
                 MargenActual += valueJson['MargenActual']
-        print ('DiasDeProduccion :' +  str(DiasDeProduccion) + ' TrabajoPorProgramar : ' + str(TrabajoPorProgramar) + ' MargenActual :' + MargenActual)
+        print ('DiasDeProduccion :' +  str(DiasDeProduccion) + ' TrabajoPorProgramar : ' + str(TrabajoPorProgramar) + ' MargenActual :' + str(MargenActual))
 
     #print ListDataJson
     #print listMaestrosA
