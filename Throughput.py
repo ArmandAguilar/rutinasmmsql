@@ -79,7 +79,6 @@ def tDataJason(ListDataJson,periodo,listMaestrosA):
         TrabajoPorProgramar = 0
         MargenActual = 0
         for valueJson in data['fields']:
-            print str(valueListMaestros) + '==' + str(valueJson['NumMaestro'])
             if str(valueListMaestros) == (valueJson['NumMaestro']):
                 #pass
                 DiasDeProduccion = valueJson['DiasDeProduccion'] + DiasDeProduccion
@@ -133,30 +132,4 @@ for valueYear in listYears:
     listMaestrosA = list(set(listMaestrosActivos))
     tDataJason(ListDataJson,valueYear,listMaestrosA)
 
-
-#sql = 'SELECT [NumProyecto],[NumMaestro],[Dias de produccion],[Trabajo por programar],[Margen Actual],[PeriodoComparativo] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput]'
-#con = pyodbc.connect(constr)
-#cur = con.cursor()
-#cur.execute(sql)
-#for value in cur:
-#    print ('Gos ....')
-#    NumProyecto = value[0]
-#    NumMaestro = value[1]
-#    Diasdeproduccion = value[2]
-#    Trabajoporprogramar = value[3]
-#    MargenActual = value[4]
-#    PeriodoComparativo = value[5]
-#    if NumMaestro > 0:
-#        mAction = fieldExist(NumProyecto,NumMaestro)
-#        if mAction == 'Si':
-#            #update
-#            Sql = 'update'
-#            print (Sql)
-#        else:
-#            Sql = 'INSERT INTO [SAP].[dbo].[AAAThroughput] ([NumProyecto],[NumMatestro],[ThroughputMaestro],[ThroughputCliente]) VALUES(\'' + str(NumProyecto) + '\',\'' + str(NumMaestro) + '\',<ThroughputMaestro, float,>,<ThroughputCliente, float,>)'
-#            print(Sql)
-#    else:
-#        print('Proyecto Sin Maestro : ' +  str(NumProyecto))
-#con.commit()
-#con.close()
 print('##################################### End Calculando Throughput ####################################')
