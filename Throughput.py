@@ -68,6 +68,7 @@ def tDataJason(ListDataJson,periodo,listMaestrosA):
     temp = len(ListDataJson)
     ListDataJson = ListDataJson[:temp - 2]
     ListDataJson += ']}'
+    data = json.loads(ListDataJson)
     for value in ListDataJson:
         #pass
         print str(value[0])
