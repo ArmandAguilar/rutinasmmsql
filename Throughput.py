@@ -127,7 +127,7 @@ for valueYear in listYears:
     DNI = 0
     for value in cur:
         #passMSSQL
-        if value[5]== '2017':
+        if value[5] == '2017':
             #pass
             listMaestrosActivos.insert(i,value[1])
             ListDataJson += '{"Id":"' + str(DNI) + '","NumProyecto":"' + str(value[0]) + '","NumMaestro":"' + str(value[1]) + '","DiasDeProduccion":"' + str(value[2]) + '","TrabajoPorProgramar":"' + str(value[3]) + '","MargenActual" : "' + str(value[4]) + '","PeriodoComparativo":"' + str(value[5]) + '"},' + '\n'
