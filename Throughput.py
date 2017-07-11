@@ -63,12 +63,14 @@ for value in cur:
 con.commit()
 con.close()
 
-def tDataJason(ListDataJson,periodo):
+def tDataJason(ListDataJson,periodo,listMaestrosA):
     print ('####################' +  str(periodo))
     temp = len(ListDataJson)
     ListDataJson = ListDataJson[:temp - 2]
     ListDataJson += ']}'
+
     print ListDataJson
+    print listMaestrosA
 
 print('######################################### Begin Calculando Throughput ########################################')
 # 2.- Run the Masters
@@ -101,19 +103,18 @@ for valueYear in listYears:
     con = pyodbc.connect(constr)
     cur = con.cursor()
     cur.execute(sql)
+    listMaestrosActivos = []
     ListDataJson = ''
     ListDataJson = '{"fields":['
     DNI = 0
     for value in cur:
         #passMSSQL
+        listMaestrosActivos.insert(i,value[1])
         ListDataJson += '{"Id":"' + str(DNI) + '","NumProyecto":"' + str(value[0]) + '","NumMaestro":"' + str(value[1]) + '","DiasDeProduccion":"' + str(value[2]) + '","TrabajoPorProgramar":"' + str(value[3]) + '","MargenActual" : "' + str(value[4]) + '","PeriodoComparativo":"' + str(value[5]) + '"},' + '\n'
         DNI += 1
-        #if valueYear == 2017:
-            #pass
-        #    ListDataJson += '{"Id":"' + str(DNI) + '","NumProyecto":"' + str(value[0]) + '","NumMaestro":"' + str(value[1]) + '","DiasDeProduccion":"' + str(value[2]) + '","TrabajoPorProgramar":"' + str(value[3]) + '","MargenActual" : "' + str(value[4]) + '","PeriodoComparativo":"' + str(value[5]) + '"},' + '\n'
-        #    DNI += 1
     #here procesing lotes
-    tDataJason(ListDataJson,valueYear)
+    listMaestrosA = list(set(listMaestrosActivos))
+    tDataJason(ListDataJson,valueYear,listMaestrosA)
 
 #print ListDataJson
 
