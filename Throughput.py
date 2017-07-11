@@ -69,9 +69,9 @@ def tDataJason(ListDataJson,periodo,listMaestrosA):
     ListDataJson = ListDataJson[:temp - 2]
     ListDataJson += ']}'
     data = json.loads(ListDataJson)
-    for value in ListDataJson:
+    for value in data['fields']:
         #pass
-        print str(value[0])
+        print str(value["Id"])
     #Here slide the array
     #for value in listMaestrosA:
         #pass
