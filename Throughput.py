@@ -85,7 +85,7 @@ def tDataJason(ListDataJson,periodo,listMaestrosA):
                 #pass
                 DiasDeProduccion += valueJson['DiasDeProduccion']
                 TrabajoPorProgramar += valueJson['TrabajoPorProgramar']
-                MargenActual += valueJson['MargenActual']
+                MargenActual = valueJson['MargenActual']
                 MargenXMaestro += MargenActual
         if MargenActual > 0:
             #
