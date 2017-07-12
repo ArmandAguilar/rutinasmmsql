@@ -66,6 +66,21 @@ for value in cur:
 con.commit()
 con.close()
 
+def MargenXMaestros(NoMaestros):
+    #
+    Marge = 0
+    sql = 'SELECT ISNULL(SUM([Margen Actual]),0) As Margen FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] WHERE [NumMaestro] = \'' + str(NoMaestros) + '\''
+    con = pyodbc.connect(constr)
+    cur = con.cursor()
+    cur.execute(sql)
+    for value in cur:
+        Marge = value[0]
+    con.commit()
+    con.close()
+
+    return Margen
+
+
 def tDataJason(ListDataJson,periodo,listMaestrosA):
     print ('####################' +  str(periodo))
     temp = len(ListDataJson)
@@ -85,9 +100,9 @@ def tDataJason(ListDataJson,periodo,listMaestrosA):
                 #pass
                 DiasDeProduccion += valueJson['DiasDeProduccion']
                 TrabajoPorProgramar += valueJson['TrabajoPorProgramar']
-                MargenActual = valueJson['MargenActual']
-                MargenXMaestro += MargenActual
-        if MargenActual > 0:
+                MargenActual += valueJson['MargenActual']
+        MargenXMaestro = MargenXMaestros(str(valueListMaestros))
+        if MargenXMaestro > 0:
             #
             x = DiasDeProduccion + TrabajoPorProgramar
             TrhoughputR = MargenXMaestro/x
