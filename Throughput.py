@@ -103,7 +103,6 @@ def tDataJason(ListDataJson,periodo,listMaestrosA):
                 MargenActual += valueJson['MargenActual']
         MargenXMaestro = MargenXMaestros(str(valueListMaestros))
         if MargenXMaestro > 0:
-            #
             x = DiasDeProduccion + TrabajoPorProgramar
             TrhoughputR = MargenXMaestro/x
         else:
@@ -132,6 +131,6 @@ for valueYear in listYears:
     #here procesing lotes
     listMaestrosA = list(set(listMaestrosActivos))
     print str(ListDataJson)
-    #tDataJason(ListDataJson,valueYear,listMaestrosA)
+    tDataJason(ListDataJson,valueYear,listMaestrosA)
 
 print('##################################### End Calculando Throughput ####################################')
