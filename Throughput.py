@@ -91,7 +91,7 @@ def tDataJason(ListDataJson,periodo,listMaestrosA):
             TrhoughputR = MargenActual/x
         else:
             TrhoughputR = 0
-        print ('DiasDeProduccion :' +  str(DiasDeProduccion) + ' TrabajoPorProgramar : ' + str(TrabajoPorProgramar) + ' MargenActual :' + str(MargenActual) + ' NoMaestro :' + valueListMaestros + ' Thoriughput Maestro : $' + str(TrhoughputR))
+        print ('DiasDeProduccion :' +  str(DiasDeProduccion) + ' TrabajoPorProgramar : ' + str(TrabajoPorProgramar) + ' MargenActual :' + str(MargenActual) + ' NoMaestro :' + str(valueListMaestros) + ' Thoriughput Maestro : $' + str(TrhoughputR))
 
     #print ListDataJson
     #print listMaestrosA
