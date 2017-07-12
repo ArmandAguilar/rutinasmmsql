@@ -78,13 +78,20 @@ def tDataJason(ListDataJson,periodo,listMaestrosA):
         DiasDeProduccion = 0
         TrabajoPorProgramar = 0
         MargenActual = 0
+        TrhoughputR = 0
         for valueJson in data['fields']:
             if str(valueListMaestros) == (valueJson['NumMaestro']):
                 #pass
                 DiasDeProduccion += valueJson['DiasDeProduccion']
                 TrabajoPorProgramar += valueJson['TrabajoPorProgramar']
                 MargenActual += valueJson['MargenActual']
-                print ('DiasDeProduccion :' +  str(DiasDeProduccion) + ' TrabajoPorProgramar : ' + str(TrabajoPorProgramar) + ' MargenActual :' + str(MargenActual))
+     if MargenActual > 0:
+         #
+         x = DiasDeProduccion + TrabajoPorProgramar
+         TrhoughputR = MargenActual/x
+     else:
+         TrhoughputR = 0
+    print ('DiasDeProduccion :' +  str(DiasDeProduccion) + ' TrabajoPorProgramar : ' + str(TrabajoPorProgramar) + ' MargenActual :' + str(MargenActual) + ' NoMaestro :' + valueListMaestros + ' Thoriughput Maestro : $' + str(TrhoughputR))
 
     #print ListDataJson
     #print listMaestrosA
