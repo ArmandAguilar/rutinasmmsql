@@ -68,7 +68,7 @@ con.close()
 
 def MargenXMaestros(NoMaestros):
     #
-    Marge = 0
+    Margen = 0
     sql = 'SELECT ISNULL(SUM([Margen Actual]),0) As Margen FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] WHERE [NumMaestro] = \'' + str(NoMaestros) + '\''
     con = pyodbc.connect(constr)
     cur = con.cursor()
