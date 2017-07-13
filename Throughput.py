@@ -109,13 +109,13 @@ def tDataJason(ListDataJson,periodo,listMaestrosA,ListMargenJson):
                 MargenXMaestro += valuemargen['MargenActual']
             else:
                 MargenXMaestro = 0
-
-        if MargenXMaestro > 0:
-            x = DiasDeProduccion + TrabajoPorProgramar
-            TrhoughputR = MargenXMaestro/x
-        else:
-            TrhoughputR = 0
-        print ('DiasDeProduccion :' +  str(DiasDeProduccion) + ' TrabajoPorProgramar : ' + str(TrabajoPorProgramar) + ' MargenActual :' + str(MargenActual) + ' NoMaestro :' + str(valueListMaestros) + ' Thoriughput Maestro : $' + str(TrhoughputR) + ' MargenXMaestro : $' + str(MargenXMaestro))
+            print MargenXMaestro 
+        #if MargenXMaestro > 0:
+        #    x = DiasDeProduccion + TrabajoPorProgramar
+        #    TrhoughputR = MargenXMaestro/x
+        #else:
+        #    TrhoughputR = 0
+        #print ('DiasDeProduccion :' +  str(DiasDeProduccion) + ' TrabajoPorProgramar : ' + str(TrabajoPorProgramar) + ' MargenActual :' + str(MargenActual) + ' NoMaestro :' + str(valueListMaestros) + ' Thoriughput Maestro : $' + str(TrhoughputR) + ' MargenXMaestro : $' + str(MargenXMaestro))
 
     #print ListDataJson
     #print listMaestrosA
