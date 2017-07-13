@@ -114,23 +114,40 @@ def tDataJason(ListDataJson,periodo,listMaestrosA):
 
 print('######################################### Begin Calculando Throughput ########################################')
 
-for valueYear in listYears:
-    sql = 'SELECT [NumProyecto],[NumMaestro],[Dias de produccion] As DiasDeProduccion ,[Trabajo por programar] As TrabajoPorProgramar,[Margen Actual] As MargenActual,[PeriodoComparativo] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] where [PeriodoComparativo] =\'' + str(valueYear) + '\' order by NumMaestro'
+#here make a JSON for the Margen
+#Print Calculando Margen
+for valuelistMaster in listMaestros:
+    Margen = 0
+    sql = 'SELECT SUM([Margen Actual]) As Margen FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] WHERE [NumMaestro] = \'' + str(valuelistMaster) + '\''
     con = pyodbc.connect(constr)
     cur = con.cursor()
     cur.execute(sql)
-    listMaestrosActivos = []
-    ListDataJson = ''
-    ListDataJson = '{"fields":['
-    DNI = 0
     for value in cur:
-        if value[1] > 0:
-            listMaestrosActivos.insert(i,value[1])
-            ListDataJson += '{"Id":"' + str(DNI) + '","NumProyecto":"' + str(value[0]) + '","NumMaestro":"' + str(value[1]) + '","DiasDeProduccion": ' + str(value[2]) + ',"TrabajoPorProgramar":' + str(value[3]) + ',"MargenActual" : ' + str(value[4]) + ',"PeriodoComparativo":' + str(value[5]) + '},' + '\n'
-            DNI += 1
+        Margen = value[0]
+    con.commit()
+    con.close()
+    print ('NumMaestro : '  + valuelistMaster + 'Margen:' + Margen)
+
+
+
+
+#for valueYear in listYears:
+#    sql = 'SELECT [NumProyecto],[NumMaestro],[Dias de produccion] As DiasDeProduccion ,[Trabajo por programar] As TrabajoPorProgramar,[Margen Actual] As MargenActual,[PeriodoComparativo] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] where [PeriodoComparativo] =\'' + str(valueYear) + '\' order by NumMaestro'
+#    con = pyodbc.connect(constr)
+#    cur = con.cursor()
+#    cur.execute(sql)
+#    listMaestrosActivos = []
+#    ListDataJson = ''
+#    ListDataJson = '{"fields":['
+#    DNI = 0
+#    for value in cur:
+#        if value[1] > 0:
+#            listMaestrosActivos.insert(i,value[1])
+#            ListDataJson += '{"Id":"' + str(DNI) + '","NumProyecto":"' + str(value[0]) + '","NumMaestro":"' + str(value[1]) + '","DiasDeProduccion": ' + str(value[2]) + ',"TrabajoPorProgramar":' + str(value[3]) + ',"MargenActual" : ' + str(value[4]) + ',"PeriodoComparativo":' + str(value[5]) + '},' + '\n'
+#            DNI += 1
     #here procesing lotes
-    listMaestrosA = list(set(listMaestrosActivos))
+#    listMaestrosA = list(set(listMaestrosActivos))
     #print str(ListDataJson)
-    tDataJason(ListDataJson,valueYear,listMaestrosA)
+#    tDataJason(ListDataJson,valueYear,listMaestrosA)
 
 print('##################################### End Calculando Throughput ####################################')
