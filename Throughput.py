@@ -139,7 +139,7 @@ ListDataMargenJson = '{"fields":['
 DNIM = 0
 for value in cur:
     if value[0] > 0:
-        ListDataMargenJson += '{"Id":"' + str(DNI) + '","NumMaestro" : "' + str(value[1]) + ',"MargenActual" : ' + str(value[4]) + '},' + '\n'
+        ListDataMargenJson += '{"Id":"' + str(DNIM) + '","NumMaestro" : "' + str(value[1]) + ',"MargenActual" : ' + str(value[4]) + '},' + '\n'
         DNIM += 1
         print str(ListDataMargenJson)
 
