@@ -81,13 +81,13 @@ def MargenXMaestros(NoMaestros):
     return Margen
 
 
-def tDataJason(ListDataJson,periodo,listMaestrosA,ListMagenJson):
+def tDataJason(ListDataJson,periodo,listMaestrosA,ListMargenJson):
     print ('####################' +  str(periodo))
     temp = len(ListDataJson)
     ListDataJson = ListDataJson[:temp - 2]
     ListDataJson += ']}'
     data = json.loads(ListDataJson)
-    datamargen = json.loads(ListMagenJson)
+    datamargen = json.loads(ListMargenJson)
     #Here slide the array
     for valueListMaestros in listMaestrosA:
         #pass
@@ -150,7 +150,7 @@ for value in cur:
     if value[0] > 0:
         ListDataMargenJson += '{"Id":"' + str(DNIM) + '","NumMaestro" : "' + str(value[0]) + ',"MargenActual" : ' + str(value[1]) + '},' + '\n'
         DNIM += 1
-        print str(ListDataMargenJson)
+        #print str(ListDataMargenJson)
 
 temp = len(ListDataMargenJson)
 ListDataMargenJson = ListDataMargenJson[:temp - 2]
