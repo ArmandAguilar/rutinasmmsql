@@ -128,7 +128,7 @@ print('######################################### Begin Calculando Throughput ###
 #    con.close()
 #    print ('NumMaestro : '  + str(valuelistMaster) + 'Margen:' + str(Margen))
 
-
+print ('Prosesing [Margen]')
 sql = 'SELECT [NumMaestro],[Margen Actual] As MargenActual FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput]  order by NumMaestro desc'
 con = pyodbc.connect(constr)
 cur = con.cursor()
@@ -138,13 +138,16 @@ ListDataMargenJson = ''
 ListDataMargenJson = '{"fields":['
 DNIM = 0
 for value in cur:
+
     if value[0] > 0:
         ListDataMargenJson += '{"Id":"' + str(DNIM) + '","NumMaestro" : "' + str(value[0]) + ',"MargenActual" : ' + str(value[1]) + '},' + '\n'
         DNIM += 1
         print str(ListDataMargenJson)
 
-
-
+temp = len(ListDataMargenJson)
+ListDataMargenJson = ListDataMargenJson[:temp - 2]
+ListDataMargenJson += ']}'
+dataM = json.loads(ListDataJson)
 
 
 
