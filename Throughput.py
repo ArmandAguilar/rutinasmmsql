@@ -108,8 +108,7 @@ def tDataJason(ListDataJson,periodo,listMaestrosA,ListMargenJson):
             if  valueListMaestros == valuemargen['NumMaestro']:
                 print('Sume estos: ' + str(valuemargen['MargenActual']))
                 MargenXMaestro = valuemargen['MargenActual'] + MargenXMaestro
-            else:
-                MargenXMaestro = 0
+            
         print ('NumProyecto:' + str(valueListMaestros) + 'Margen :$' + str(MargenXMaestro))
         #if MargenXMaestro > 0:
         #    x = DiasDeProduccion + TrabajoPorProgramar
