@@ -109,7 +109,7 @@ def tDataJason(ListDataJson,periodo,listMaestrosA,ListMargenJson):
                 MargenXMaestro += valuemargen['MargenActual']
             else:
                 MargenXMaestro = 0
-        print ('NumProyecto:' + valueListMaestros + 'Margen :$' + str(MargenXMaestro)) 
+        print ('NumProyecto:' + str(valueListMaestros) + 'Margen :$' + str(MargenXMaestro)) 
         #if MargenXMaestro > 0:
         #    x = DiasDeProduccion + TrabajoPorProgramar
         #    TrhoughputR = MargenXMaestro/x
