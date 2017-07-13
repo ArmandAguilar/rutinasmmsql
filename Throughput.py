@@ -126,7 +126,7 @@ for valuelistMaster in listMaestros:
         Margen = value[0]
     con.commit()
     con.close()
-    print ('NumMaestro : '  + valuelistMaster + 'Margen:' + Margen)
+    print ('NumMaestro : '  + str(valuelistMaster) + 'Margen:' + str(Margen))
 
 
 
