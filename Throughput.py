@@ -130,7 +130,7 @@ for valueYear in listYears:
             DNI += 1
     #here procesing lotes
     listMaestrosA = list(set(listMaestrosActivos))
-    print str(ListDataJson)
+    #print str(ListDataJson)
     tDataJason(ListDataJson,valueYear,listMaestrosA)
 
 print('##################################### End Calculando Throughput ####################################')
