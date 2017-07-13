@@ -106,8 +106,8 @@ def tDataJason(ListDataJson,periodo,listMaestrosA,ListMargenJson):
         for valuemargen in datamargen['fields']:
 
             if  valueListMaestros == valuemargen['NumMaestro']:
-                print('Sume Algo')
-                MargenXMaestro += valuemargen['MargenActual']
+                print('Sume estos: ' + str(valuemargen['MargenActual']))
+                MargenXMaestro = valuemargen['MargenActual'] + MargenXMaestro
             else:
                 MargenXMaestro = 0
         print ('NumProyecto:' + str(valueListMaestros) + 'Margen :$' + str(MargenXMaestro))
