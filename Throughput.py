@@ -129,7 +129,7 @@ print('######################################### Begin Calculando Throughput ###
 #    print ('NumMaestro : '  + str(valuelistMaster) + 'Margen:' + str(Margen))
 
 
-sql = 'SELECT [NumMaestro],[Margen Actual] As MargenActual FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] where order by NumMaestro desc'
+sql = 'SELECT [NumMaestro],[Margen Actual] As MargenActual FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput]  order by NumMaestro desc'
 con = pyodbc.connect(constr)
 cur = con.cursor()
 cur.execute(sql)
