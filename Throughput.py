@@ -81,12 +81,13 @@ def MargenXMaestros(NoMaestros):
     return Margen
 
 
-def tDataJason(ListDataJson,periodo,listMaestrosA):
+def tDataJason(ListDataJson,periodo,listMaestrosA,ListMagenJson):
     print ('####################' +  str(periodo))
     temp = len(ListDataJson)
     ListDataJson = ListDataJson[:temp - 2]
     ListDataJson += ']}'
     data = json.loads(ListDataJson)
+    datamargen = json.loads(ListMagenJson)
     #Here slide the array
     for valueListMaestros in listMaestrosA:
         #pass
@@ -101,7 +102,14 @@ def tDataJason(ListDataJson,periodo,listMaestrosA):
                 DiasDeProduccion += valueJson['DiasDeProduccion']
                 TrabajoPorProgramar += valueJson['TrabajoPorProgramar']
                 MargenActual += valueJson['MargenActual']
-        MargenXMaestro = MargenXMaestros(str(valueListMaestros))
+        #MargenXMaestro = MargenXMaestros(str(valueListMaestros))
+        for valuemargen in datamargen['fields']:
+
+            if  valueListMaestros == valuemargen['NumMaestro']:
+                MargenXMaestro += valuemargen['MargenActual']
+            else:
+                MargenXMaestro = 0
+
         if MargenXMaestro > 0:
             x = DiasDeProduccion + TrabajoPorProgramar
             TrhoughputR = MargenXMaestro/x
@@ -128,7 +136,7 @@ print('######################################### Begin Calculando Throughput ###
 #    con.close()
 #    print ('NumMaestro : '  + str(valuelistMaster) + 'Margen:' + str(Margen))
 
-print ('Prosesing [Margen]')
+print ('#Meking..... Json for Margen')
 sql = 'SELECT [NumMaestro],[Margen Actual] As MargenActual FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput]  order by NumMaestro desc'
 con = pyodbc.connect(constr)
 cur = con.cursor()
@@ -147,27 +155,25 @@ for value in cur:
 temp = len(ListDataMargenJson)
 ListDataMargenJson = ListDataMargenJson[:temp - 2]
 ListDataMargenJson += ']}'
-dataM = json.loads(ListDataJson)
 
 
-
-#for valueYear in listYears:
-#    sql = 'SELECT [NumProyecto],[NumMaestro],[Dias de produccion] As DiasDeProduccion ,[Trabajo por programar] As TrabajoPorProgramar,[Margen Actual] As MargenActual,[PeriodoComparativo] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] where [PeriodoComparativo] =\'' + str(valueYear) + '\' order by NumMaestro'
-#    con = pyodbc.connect(constr)
-#    cur = con.cursor()
-#    cur.execute(sql)
-#    listMaestrosActivos = []
-#    ListDataJson = ''
-#    ListDataJson = '{"fields":['
-#    DNI = 0
-#    for value in cur:
-#        if value[1] > 0:
-#            listMaestrosActivos.insert(i,value[1])
-#            ListDataJson += '{"Id":"' + str(DNI) + '","NumProyecto":"' + str(value[0]) + '","NumMaestro":"' + str(value[1]) + '","DiasDeProduccion": ' + str(value[2]) + ',"TrabajoPorProgramar":' + str(value[3]) + ',"MargenActual" : ' + str(value[4]) + ',"PeriodoComparativo":' + str(value[5]) + '},' + '\n'
-#            DNI += 1
+print('#Send Data for calculate Thoriughput')
+for valueYear in listYears:
+    sql = 'SELECT [NumProyecto],[NumMaestro],[Dias de produccion] As DiasDeProduccion ,[Trabajo por programar] As TrabajoPorProgramar,[Margen Actual] As MargenActual,[PeriodoComparativo] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] where [PeriodoComparativo] =\'' + str(valueYear) + '\' order by NumMaestro'
+    con = pyodbc.connect(constr)
+    cur = con.cursor()
+    cur.execute(sql)
+    listMaestrosActivos = []
+    ListDataJson = ''
+    ListDataJson = '{"fields":['
+    DNI = 0
+    for value in cur:
+        if value[1] > 0:
+            listMaestrosActivos.insert(i,value[1])
+            ListDataJson += '{"Id":"' + str(DNI) + '","NumProyecto":"' + str(value[0]) + '","NumMaestro":"' + str(value[1]) + '","DiasDeProduccion": ' + str(value[2]) + ',"TrabajoPorProgramar":' + str(value[3]) + ',"MargenActual" : ' + str(value[4]) + ',"PeriodoComparativo":' + str(value[5]) + '},' + '\n'
+            DNI += 1
     #here procesing lotes
-#    listMaestrosA = list(set(listMaestrosActivos))
-    #print str(ListDataJson)
-#    tDataJason(ListDataJson,valueYear,listMaestrosA)
+    listMaestrosA = list(set(listMaestrosActivos))
+    tDataJason(ListDataJson,valueYear,listMaestrosA,ListDataMargenJson)
 
 print('##################################### End Calculando Throughput ####################################')
