@@ -116,17 +116,34 @@ print('######################################### Begin Calculando Throughput ###
 
 #here make a JSON for the Margen
 #Print Calculando Margen
-for valuelistMaster in listMaestros:
-    Margen = 0
-    sql = 'SELECT SUM([Margen Actual]) As Margen FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] WHERE [NumMaestro] = \'' + str(valuelistMaster) + '\''
-    con = pyodbc.connect(constr)
-    cur = con.cursor()
-    cur.execute(sql)
-    for value in cur:
-        Margen = value[0]
-    con.commit()
-    con.close()
-    print ('NumMaestro : '  + str(valuelistMaster) + 'Margen:' + str(Margen))
+#for valuelistMaster in listMaestros:
+#    Margen = 0
+#    sql = 'SELECT SUM([Margen Actual]) As Margen FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] WHERE [NumMaestro] = \'' + str(valuelistMaster) + '\''
+#    con = pyodbc.connect(constr)
+#    cur = con.cursor()
+#    cur.execute(sql)
+#    for value in cur:
+#        Margen = value[0]
+#    con.commit()
+#    con.close()
+#    print ('NumMaestro : '  + str(valuelistMaster) + 'Margen:' + str(Margen))
+
+
+sql = 'SELECT [NumMaestro],[Margen Actual] As MargenActual FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] where order by NumMaestro desc'
+con = pyodbc.connect(constr)
+cur = con.cursor()
+cur.execute(sql)
+listMaestrosActivos = []
+ListDataMargenJson = ''
+ListDataMargenJson = '{"fields":['
+DNIM = 0
+for value in cur:
+    if value[0] > 0:
+        ListDataMargenJson += '{"Id":"' + str(DNI) + '","NumMaestro" : "' + str(value[1]) + ',"MargenActual" : ' + str(value[4]) + '},' + '\n'
+        DNIM += 1
+        print str(ListDataMargenJson)
+
+
 
 
 
