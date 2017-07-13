@@ -149,7 +149,7 @@ DNIM = 0
 for value in cur:
 
     if value[0] > 0:
-        ListDataMargenJson += '{"Id":"' + str(DNIM) + '","NumMaestro" : "' + str(value[0]) + ',"MargenActual" : ' + str(value[1]) + '},' + '\n'
+        ListDataMargenJson += '{"Id":"' + str(DNIM) + '","NumMaestro" : ' + str(value[0]) + ',"MargenActual" : ' + str(value[1]) + '},' + '\n'
         DNIM += 1
         #print str(ListDataMargenJson)
 
