@@ -145,8 +145,10 @@ for value in cur:
     listCompanys.insert(i,value[0])
 con.commit()
 con.close()
-
-print (listCompanys)
+#Here delete duplicate elements
+listCompanysA = list(set(listCompanys))
+for value in listCompanysA:
+    print value
 
 #Here we create the json of table RV-ESTADOPROYECTOS-AA-Throughput this json we use for read all the projects
 print('')
