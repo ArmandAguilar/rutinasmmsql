@@ -36,6 +36,45 @@ def upadteTroughtPut(sql):
     cur.execute(sql)
     conn.commit()
     conn.close()
+
+def tDataJason(ListDataJson,periodo,listMaestrosA,ListMargenJson):
+    print ('####################' +  str(periodo))
+    temp = len(ListDataJson)
+    ListDataJson = ListDataJson[:temp - 2]
+    ListDataJson += ']}'
+    data = json.loads(ListDataJson)
+    datamargen = json.loads(ListMargenJson)
+    #Here slide the array
+    for valueListMaestros in listMaestrosA:
+        #pass
+        DiasDeProduccion = 0
+        TrabajoPorProgramar = 0
+        MargenActual = 0
+        TrhoughputR = 0
+        MargenXMaestro = 0
+        for valueJson in data['fields']:
+            if str(valueListMaestros) == (valueJson['NumMaestro']):
+                #pass
+                DiasDeProduccion += valueJson['DiasDeProduccion']
+                TrabajoPorProgramar += valueJson['TrabajoPorProgramar']
+                MargenActual += valueJson['MargenActual']
+        for valuemargen in datamargen['fields']:
+            if  valueListMaestros == valuemargen['NumMaestro']:
+                #print('Sume estos: ' + str(valuemargen['MargenActual']))
+                MargenXMaestro = valuemargen['MargenActual'] + MargenXMaestro
+
+        #print ('NumProyecto:' + str(valueListMaestros) + 'Margen :$' + str(MargenXMaestro))
+        if MargenXMaestro > 0:
+            x = DiasDeProduccion + TrabajoPorProgramar
+            TrhoughputR = MargenXMaestro/x
+        else:
+            TrhoughputR = 0
+        #print ('DiasDeProduccion :' +  str(DiasDeProduccion) + ' TrabajoPorProgramar : ' + str(TrabajoPorProgramar) + ' MargenActual :' + str(MargenActual) + ' NoMaestro :' + str(valueListMaestros) + ' Thoriughput Maestro : $' + str(TrhoughputR) + ' MargenXMaestro : $' + str(MargenXMaestro))
+        print ('NoMaestro :' + str(valueListMaestros) + ' MargenXMaestro : $' + str(MargenXMaestro) + ' Thoriughput Maestro : $' + str(TrhoughputR))
+    #print ListDataJson
+    #print listMaestrosA
+
+
 # 1 .- We create a two list NumMaestro and Peridos
 
 # 1.1 .- get NumMeatros
@@ -66,76 +105,13 @@ for value in cur:
 con.commit()
 con.close()
 
-def MargenXMaestros(NoMaestros):
-    #
-    Margen = 0
-    sql = 'SELECT SUM([Margen Actual]) As Margen FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] WHERE [NumMaestro] = \'' + str(NoMaestros) + '\''
-    con = pyodbc.connect(constr)
-    cur = con.cursor()
-    cur.execute(sql)
-    for value in cur:
-        Marge = value[0]
-    con.commit()
-    con.close()
 
-    return Margen
-
-
-def tDataJason(ListDataJson,periodo,listMaestrosA,ListMargenJson):
-    print ('####################' +  str(periodo))
-    temp = len(ListDataJson)
-    ListDataJson = ListDataJson[:temp - 2]
-    ListDataJson += ']}'
-    data = json.loads(ListDataJson)
-    datamargen = json.loads(ListMargenJson)
-    #Here slide the array
-    for valueListMaestros in listMaestrosA:
-        #pass
-        DiasDeProduccion = 0
-        TrabajoPorProgramar = 0
-        MargenActual = 0
-        TrhoughputR = 0
-        MargenXMaestro = 0
-        for valueJson in data['fields']:
-            if str(valueListMaestros) == (valueJson['NumMaestro']):
-                #pass
-                DiasDeProduccion += valueJson['DiasDeProduccion']
-                TrabajoPorProgramar += valueJson['TrabajoPorProgramar']
-                MargenActual += valueJson['MargenActual']
-        #MargenXMaestro = MargenXMaestros(str(valueListMaestros))
-        for valuemargen in datamargen['fields']:
-            if  valueListMaestros == valuemargen['NumMaestro']:
-                #print('Sume estos: ' + str(valuemargen['MargenActual']))
-                MargenXMaestro = valuemargen['MargenActual'] + MargenXMaestro
-
-        #print ('NumProyecto:' + str(valueListMaestros) + 'Margen :$' + str(MargenXMaestro))
-        if MargenXMaestro > 0:
-            x = DiasDeProduccion + TrabajoPorProgramar
-            TrhoughputR = MargenXMaestro/x
-        else:
-            TrhoughputR = 0
-        print ('DiasDeProduccion :' +  str(DiasDeProduccion) + ' TrabajoPorProgramar : ' + str(TrabajoPorProgramar) + ' MargenActual :' + str(MargenActual) + ' NoMaestro :' + str(valueListMaestros) + ' Thoriughput Maestro : $' + str(TrhoughputR) + ' MargenXMaestro : $' + str(MargenXMaestro))
-
-    #print ListDataJson
-    #print listMaestrosA
 
 print('######################################### Begin Calculando Throughput ########################################')
-
-#here make a JSON for the Margen
-#Print Calculando Margen
-#for valuelistMaster in listMaestros:
-#    Margen = 0
-#    sql = 'SELECT SUM([Margen Actual]) As Margen FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] WHERE [NumMaestro] = \'' + str(valuelistMaster) + '\''
-#    con = pyodbc.connect(constr)
-#    cur = con.cursor()
-#    cur.execute(sql)
-#    for value in cur:
-#        Margen = value[0]
-#    con.commit()
-#    con.close()
-#    print ('NumMaestro : '  + str(valuelistMaster) + 'Margen:' + str(Margen))
-
-print ('#Meking..... Json for Margen')
+# 2 .- We create the data for the json files
+# 2.1 .- Here we create the json for sum the (MargeActual) od mssql of  vista RV-ESTADOPROYECTOS-AA-Throughput
+print('')
+print ('#Meking Json for Margen')
 sql = 'SELECT [NumMaestro],[Margen Actual] As MargenActual FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput]  order by NumMaestro desc'
 con = pyodbc.connect(constr)
 cur = con.cursor()
@@ -149,14 +125,13 @@ for value in cur:
     if value[0] > 0:
         ListDataMargenJson += '{"Id":"' + str(DNIM) + '","NumMaestro" : ' + str(value[0]) + ',"MargenActual" : ' + str(value[1]) + '},' + '\n'
         DNIM += 1
-        #print str(ListDataMargenJson)
 
 temp = len(ListDataMargenJson)
 ListDataMargenJson = ListDataMargenJson[:temp - 2]
 ListDataMargenJson += ']}'
-
-
-print('#Send Data for calculate Thoriughput')
+#Here we create the json of table RV-ESTADOPROYECTOS-AA-Throughput this json we use for read all the projects
+print('')
+print('####Send Data for calculate Throughtput')
 for valueYear in listYears:
     sql = 'SELECT [NumProyecto],[NumMaestro],[Dias de produccion] As DiasDeProduccion ,[Trabajo por programar] As TrabajoPorProgramar,[Margen Actual] As MargenActual,[PeriodoComparativo] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] where [PeriodoComparativo] =\'' + str(valueYear) + '\' order by NumMaestro'
     con = pyodbc.connect(constr)
@@ -171,7 +146,7 @@ for valueYear in listYears:
             listMaestrosActivos.insert(i,value[1])
             ListDataJson += '{"Id":"' + str(DNI) + '","NumProyecto":"' + str(value[0]) + '","NumMaestro":"' + str(value[1]) + '","DiasDeProduccion": ' + str(value[2]) + ',"TrabajoPorProgramar":' + str(value[3]) + ',"MargenActual" : ' + str(value[4]) + ',"PeriodoComparativo":' + str(value[5]) + '},' + '\n'
             DNI += 1
-    #here procesing lotes
+    #here procesing all json in the function tDatJson()
     listMaestrosA = list(set(listMaestrosActivos))
     tDataJason(ListDataJson,valueYear,listMaestrosA,ListDataMargenJson)
 
