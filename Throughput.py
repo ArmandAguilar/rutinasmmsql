@@ -111,8 +111,8 @@ print('######################################### Begin Calculando Throughput ###
 # 2 .- We create the data for the json files
 # 2.1 .- Here we create the json for sum the (MargeActual) od mssql of  vista RV-ESTADOPROYECTOS-AA-Throughput
 print('')
-print ('#Meking Json for Margen')
-sql = 'SELECT [NumMaestro],[Margen Actual],[Empresa] As MargenActual FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput]  order by NumMaestro desc'
+print ('#Meking Json for Margen Projects')
+sql = 'SELECT [NumMaestro],[Margen Actual] As MargenActual ,[Empresa],[NumProyecto] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput]  order by NumMaestro desc'
 con = pyodbc.connect(constr)
 cur = con.cursor()
 cur.execute(sql)
@@ -123,12 +123,31 @@ DNIM = 0
 for value in cur:
 
     if value[0] > 0:
-        ListDataMargenJson += '{"Id":"' + str(DNIM) + '","NumMaestro" : ' + str(value[0]) + ',"MargenActual" : ' + str(value[1]) + ',"Empresa" : "' + str(value[2]) + '"},' + '\n'
+        ListDataMargenJson += '{"NoProyecto":"' + str(value[3]) + '","NumMaestro" : ' + str(value[0]) + ',"MargenActual" : ' + str(value[1]) + ',"Empresa" : "' + str(value[2]) + '"},' + '\n'
         DNIM += 1
-
+con.commit()
+con.close()
 temp = len(ListDataMargenJson)
 ListDataMargenJson = ListDataMargenJson[:temp - 2]
 ListDataMargenJson += ']}'
+
+#2.3 Here calculate the Though put for companny
+print('')
+print ('#Meking Json for Margen Clients')
+#2.3.1.- We create a  list of only compannys
+listCompanys = []
+i = 0
+sql = 'SELECT [Empresa] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] order by Empresa'
+con = pyodbc.connect(constr)
+cur = con.cursor()
+cur.execute(sql)
+for value in cur:
+listCompanys.insert(i,value[0])
+con.commit()
+con.close()
+
+print (listCompanys)
+
 #Here we create the json of table RV-ESTADOPROYECTOS-AA-Throughput this json we use for read all the projects
 print('')
 print('####Send Data for calculate Throughtput')
@@ -148,6 +167,6 @@ for valueYear in listYears:
             DNI += 1
     #here procesing all json in the function tDatJson()
     listMaestrosA = list(set(listMaestrosActivos))
-    tDataJason(ListDataJson,valueYear,listMaestrosA,ListDataMargenJson)
+    #tDataJason(ListDataJson,valueYear,listMaestrosA,ListDataMargenJson)
 
 print('##################################### End Calculando Throughput ####################################')
