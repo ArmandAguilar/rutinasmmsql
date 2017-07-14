@@ -112,7 +112,7 @@ print('######################################### Begin Calculando Throughput ###
 # 2.1 .- Here we create the json for sum the (MargeActual) od mssql of  vista RV-ESTADOPROYECTOS-AA-Throughput
 print('')
 print ('#Meking Json for Margen')
-sql = 'SELECT [NumMaestro],[Margen Actual] As MargenActual FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput]  order by NumMaestro desc'
+sql = 'SELECT [NumMaestro],[Margen Actual],[Empresa] As MargenActual FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput]  order by NumMaestro desc'
 con = pyodbc.connect(constr)
 cur = con.cursor()
 cur.execute(sql)
@@ -123,7 +123,7 @@ DNIM = 0
 for value in cur:
 
     if value[0] > 0:
-        ListDataMargenJson += '{"Id":"' + str(DNIM) + '","NumMaestro" : ' + str(value[0]) + ',"MargenActual" : ' + str(value[1]) + '},' + '\n'
+        ListDataMargenJson += '{"Id":"' + str(DNIM) + '","NumMaestro" : ' + str(value[0]) + ',"MargenActual" : ' + str(value[1]) + ',"Empresa" : "' + str(value[2]) + '"},' + '\n'
         DNIM += 1
 
 temp = len(ListDataMargenJson)
