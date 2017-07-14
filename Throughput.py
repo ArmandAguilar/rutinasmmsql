@@ -137,7 +137,7 @@ print ('#Meking Json for Margen Clients')
 #2.3.1.- We create a  list of only compannys
 listCompanys = []
 i = 0
-sql = 'SELECT [Empresa] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] order by Empresa'
+sql = 'SELECT [Empresa] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] order by [Empresa] asc'
 con = pyodbc.connect(constr)
 cur = con.cursor()
 cur.execute(sql)
