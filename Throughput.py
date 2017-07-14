@@ -148,7 +148,7 @@ con.close()
 #Here delete duplicate elements
 listCompanysA = list(set(listCompanys))
 for value in listCompanysA:
-    print value
+    print str(value)
 
 #Here we create the json of table RV-ESTADOPROYECTOS-AA-Throughput this json we use for read all the projects
 print('')
