@@ -142,7 +142,7 @@ con = pyodbc.connect(constr)
 cur = con.cursor()
 cur.execute(sql)
 for value in cur:
-listCompanys.insert(i,value[0])
+    listCompanys.insert(i,value[0])
 con.commit()
 con.close()
 
