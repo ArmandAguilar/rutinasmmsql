@@ -147,9 +147,38 @@ con.commit()
 con.close()
 #Here delete duplicate elements
 listCompanysA = list(set(listCompanys))
-for value in listCompanysA:
-    print str(value)
 
+
+#Here we create us a new Json with all data of  (RV-ESTADOPROYECTOS-AA-Throughput)  with this data we go a new json for slice and comparte companys
+sql = 'SELECT [NumMaestro],[Dias de produccion] As DiasDeProduccion ,[Trabajo por programar] As TrabajoPorProgramar,[Margen Actual] As MargenActual,[PeriodoComparativo] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] order by NumMaestro'
+con = pyodbc.connect(constr)
+cur = con.cursor()
+cur.execute(sql)
+ListDataJsonClient = ''
+ListDataJsonClient = '{"Companys":['
+DNI = 0
+for value in cur:
+    if value[0] > 0:
+        ListDataJsonCompanys += '{NumMaestro":"' + str(value[0]) + '","DiasDeProduccion": ' + str(value[1]) + ',"TrabajoPorProgramar":' + str(value[2]) + ',"MargenActual" : ' + str(value[3]) + ',"PeriodoComparativo":' + str(value[4]) + '},' + '\n'
+con.commit()
+con.close()
+temp = len(ListDataJsonCompanys)
+ListDataJsonCompanys = ListDataJsonCompanys[:temp - 2]
+ListDataJsonCompanys += ']}'
+
+dataCompanys = json.loads(ListDataJsonCompanys)
+datamargen = json.loads(ListDataMargenJson)
+MargenXMaestroEmpresa = 0
+for value in data['Companys']:
+    if value == 'Quaker State':
+        #
+        for valuemargen in datamargen['fields']:
+            if  'Quaker State' == valuemargen['Empresa']:
+                MargenXMaestroEmpresa += valuemargen['MargenActual']
+        print('Margen Clientes: ' + str(MargenXMaestroEmpresa))
+
+
+#### Don`t touch this code
 #Here we create the json of table RV-ESTADOPROYECTOS-AA-Throughput this json we use for read all the projects
 print('')
 print('####Send Data for calculate Throughtput')
@@ -167,6 +196,8 @@ for valueYear in listYears:
             listMaestrosActivos.insert(i,value[1])
             ListDataJson += '{"Id":"' + str(DNI) + '","NumProyecto":"' + str(value[0]) + '","NumMaestro":"' + str(value[1]) + '","DiasDeProduccion": ' + str(value[2]) + ',"TrabajoPorProgramar":' + str(value[3]) + ',"MargenActual" : ' + str(value[4]) + ',"PeriodoComparativo":' + str(value[5]) + '},' + '\n'
             DNI += 1
+    con.commit()
+    con.close()
     #here procesing all json in the function tDatJson()
     listMaestrosA = list(set(listMaestrosActivos))
     #tDataJason(ListDataJson,valueYear,listMaestrosA,ListDataMargenJson)
