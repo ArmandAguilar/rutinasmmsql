@@ -154,8 +154,8 @@ sql = 'SELECT [NumMaestro],[Dias de produccion] As DiasDeProduccion ,[Trabajo po
 con = pyodbc.connect(constr)
 cur = con.cursor()
 cur.execute(sql)
-ListDataJsonClient = ''
-ListDataJsonClient = '{"Companys":['
+ListDataJsonCompanys = ''
+ListDataJsonCompanys = '{"Companys":['
 DNI = 0
 for value in cur:
     if value[0] > 0:
