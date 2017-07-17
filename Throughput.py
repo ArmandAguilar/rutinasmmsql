@@ -167,8 +167,9 @@ temp = len(ListDataJsonCompanys)
 ListDataJsonCompanys = ListDataJsonCompanys[:temp - 2]
 ListDataJsonCompanys += ']}'
 
+print str(ListDataJsonCompanys)
 
-dataCompanys = json.loads(ListDataJsonCompanys)
+#dataCompanys = json.loads(ListDataJsonCompanys)
 datamargen = json.loads(ListDataMargenJson)
 MargenXMaestroEmpresa = 0
 #for value in dataCompanys['Companys']:
