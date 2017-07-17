@@ -169,7 +169,7 @@ ListDataJsonCompanys += ']}'
 dataCompanys = json.loads(ListDataJsonCompanys)
 datamargen = json.loads(ListDataMargenJson)
 MargenXMaestroEmpresa = 0
-for value in data['Companys']:
+for value in dataCompanys['Companys']:
     if value == 'Quaker State':
         #
         for valuemargen in datamargen['fields']:
