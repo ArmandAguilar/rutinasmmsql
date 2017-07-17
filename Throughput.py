@@ -159,25 +159,25 @@ ListDataJsonCompanys = '{"Companys":['
 DNI = 0
 for value in cur:
     if value[0] > 0:
-        ListDataJsonCompanys += '{NumMaestro":"' + str(value[0]) + '","DiasDeProduccion": ' + str(value[1]) + ',"TrabajoPorProgramar":' + str(value[2]) + ',"MargenActual" : ' + str(value[3]) + ',"PeriodoComparativo":' + str(value[4]) + '},' + '\n'
+        ListDataJsonCompanys += '{"NumMaestro":"' + str(value[0]) + '","DiasDeProduccion": ' + str(value[1]) + ',"TrabajoPorProgramar":' + str(value[2]) + ',"MargenActual" : ' + str(value[3]) + ',"PeriodoComparativo":' + str(value[4]) + '},' + '\n'
 
 con.commit()
 con.close()
 temp = len(ListDataJsonCompanys)
 ListDataJsonCompanys = ListDataJsonCompanys[:temp - 2]
 ListDataJsonCompanys += ']}'
-print (str(ListDataJsonCompanys))
 
-#dataCompanys = json.loads(ListDataJsonCompanys)
-#datamargen = json.loads(ListDataMargenJson)
-#MargenXMaestroEmpresa = 0
-#for value in dataCompanys['Companys']:
-#    if value == 'Quaker State':
+
+dataCompanys = json.loads(ListDataJsonCompanys)
+datamargen = json.loads(ListDataMargenJson)
+MargenXMaestroEmpresa = 0
+for value in dataCompanys['Companys']:
+    if value == 'Quaker State':
         #
-#        for valuemargen in datamargen['fields']:
-#            if  'Quaker State' == valuemargen['Empresa']:
-#                MargenXMaestroEmpresa += valuemargen['MargenActual']
-#        print('Margen Clientes: ' + str(MargenXMaestroEmpresa))
+        for valuemargen in datamargen['fields']:
+            if  'Quaker State' == valuemargen['Empresa']:
+                MargenXMaestroEmpresa += valuemargen['MargenActual']
+        print('Margen Clientes: ' + str(MargenXMaestroEmpresa))
 
 
 #### Don`t touch this code
