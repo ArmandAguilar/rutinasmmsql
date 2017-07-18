@@ -179,8 +179,8 @@ for value in dataCompanys['Companys']:
             if value['NumMaestro'] == 963:
                 print( "NumMaestro : " + str(value['NumMaestro']) + "Empresa :" + str(value['Empresa']) + 'Margen Actual:$' +  str(value['MargenActual']) + 'Periodo Comparativo :' + str(value['PeriodoComparativo']))
                 MargenXMaestroEmpresa += value['MargenActual']
-                DiasDeProduccion += valueJson['DiasDeProduccion']
-                TrabajoPorProgramar += valueJson['TrabajoPorProgramar']
+                DiasDeProduccion += value['DiasDeProduccion']
+                TrabajoPorProgramar += value['TrabajoPorProgramar']
                 if MargenXMaestroEmpresa > 0:
                     x = DiasDeProduccion + TrabajoPorProgramar
                     TrhoughputRC = MargenXMaestroEmpresa/x
