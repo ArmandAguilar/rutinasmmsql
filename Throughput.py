@@ -189,7 +189,7 @@ for value in dataCompanys['Companys']:
                 else:
                     TrhoughputRC = 0
 
-print('TC: ' + str(TrhoughputRC))
+print( str(MargenXMaestroEmpresa) + '/' + str(x) + '=TC: ' + str(TrhoughputRC))
 #### Don`t touch this code
 #Here we create the json of table RV-ESTADOPROYECTOS-AA-Throughput this json we use for read all the projects
 print('')
