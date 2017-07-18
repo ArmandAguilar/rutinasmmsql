@@ -176,7 +176,7 @@ for value in dataCompanys['Companys']:
     if value['Empresa'] == 'Quaker State':
         if value['PeriodoComparativo'] == 2017:
             if value['NumMaestro'] == 963:
-                print("Empresa :" + str(value['Empresa']) + 'Margen Actual:$' +  str(value['MargenActual']) + 'Periodo Comparativo :' + str(value['PeriodoComparativo']))
+                print( "NumMaestro : " + str(value['NumMaestro']) + "Empresa :" + str(value['Empresa']) + 'Margen Actual:$' +  str(value['MargenActual']) + 'Periodo Comparativo :' + str(value['PeriodoComparativo']))
                 MargenXMaestroEmpresa += value['MargenActual']
 
 print('Margen Clientes: ' + str(MargenXMaestroEmpresa))
