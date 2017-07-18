@@ -173,6 +173,8 @@ dataCompanys = json.loads(ListDataJsonCompanys)
 datamargen = json.loads(ListDataMargenJson)
 MargenXMaestroEmpresa = 0
 TrhoughputRC = 0
+DiasDeProduccion = 0
+TrabajoPorProgramar  = 0
 for value in dataCompanys['Companys']:
     if value['Empresa'] == 'Quaker State':
         if value['PeriodoComparativo'] == 2017:
