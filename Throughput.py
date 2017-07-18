@@ -150,7 +150,7 @@ listCompanysA = list(set(listCompanys))
 
 
 #Here we create us a new Json with all data of  (RV-ESTADOPROYECTOS-AA-Throughput)  with this data we go a new json for slice and comparte companys
-sql = 'SELECT [NumMaestro],[Dias de produccion] As DiasDeProduccion ,[Trabajo por programar] As TrabajoPorProgramar,[Margen Actual] As MargenActual,[PeriodoComparativo] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] order by NumMaestro'
+sql = 'SELECT [NumMaestro],[Dias de produccion] As DiasDeProduccion ,[Trabajo por programar] As TrabajoPorProgramar,[Margen Actual] As MargenActual, ISNULL([PeriodoComparativo],1999) As PeriodoComparativo,[Empresa]  FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] order by NumMaestro'
 con = pyodbc.connect(constr)
 cur = con.cursor()
 cur.execute(sql)
@@ -159,7 +159,7 @@ ListDataJsonCompanys = '{"Companys":['
 DNI = 0
 for value in cur:
     if value[0] > 0:
-        ListDataJsonCompanys += '{"NumMaestro":' + str(value[0]) + ',"DiasDeProduccion": ' + str(value[1]) + ',"TrabajoPorProgramar":' + str(value[2]) + ',"MargenActual" : ' + str(value[3]) + ',"PeriodoComparativo":' + str(value[4]) + '},' + '\n'
+        ListDataJsonCompanys += '{"NumMaestro":' + str(value[0]) + ',"DiasDeProduccion": ' + str(value[1]) + ',"TrabajoPorProgramar":' + str(value[2]) + ',"MargenActual" : ' + str(value[3]) + ',"PeriodoComparativo":' + str(value[4]) + ',"Empresa":' + '"},' + '\n'
 
 con.commit()
 con.close()
@@ -169,7 +169,7 @@ ListDataJsonCompanys += ']}'
 
 print str(ListDataJsonCompanys)
 
-#dataCompanys = json.loads(ListDataJsonCompanys)
+dataCompanys = json.loads(ListDataJsonCompanys)
 datamargen = json.loads(ListDataMargenJson)
 MargenXMaestroEmpresa = 0
 #for value in dataCompanys['Companys']:
