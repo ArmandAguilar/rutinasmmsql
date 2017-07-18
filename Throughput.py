@@ -212,4 +212,4 @@ for valueYear in listYears:
     listMaestrosA = list(set(listMaestrosActivos))
     #tDataJason(ListDataJson,valueYear,listMaestrosA,ListDataMargenJson)
 
-print('##################################### End Calculando Throughput ####################################')
+print('##################################### End Calculando Throughput #####################################')
