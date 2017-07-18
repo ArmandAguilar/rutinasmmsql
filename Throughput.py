@@ -174,7 +174,7 @@ datamargen = json.loads(ListDataMargenJson)
 MargenXMaestroEmpresa = 0
 for value in dataCompanys['Companys']:
     if value['Empresa'] == 'Quaker State':
-        MargenXMaestroEmpresa += valuemargen['MargenActual']
+        MargenXMaestroEmpresa += value['MargenActual']
 
 print('Margen Clientes: ' + str(MargenXMaestroEmpresa))
 #### Don`t touch this code
