@@ -172,14 +172,22 @@ print str(ListDataJsonCompanys)
 dataCompanys = json.loads(ListDataJsonCompanys)
 datamargen = json.loads(ListDataMargenJson)
 MargenXMaestroEmpresa = 0
+TrhoughputRC = 0
 for value in dataCompanys['Companys']:
     if value['Empresa'] == 'Quaker State':
         if value['PeriodoComparativo'] == 2017:
             if value['NumMaestro'] == 963:
                 print( "NumMaestro : " + str(value['NumMaestro']) + "Empresa :" + str(value['Empresa']) + 'Margen Actual:$' +  str(value['MargenActual']) + 'Periodo Comparativo :' + str(value['PeriodoComparativo']))
                 MargenXMaestroEmpresa += value['MargenActual']
+                DiasDeProduccion += valueJson['DiasDeProduccion']
+                TrabajoPorProgramar += valueJson['TrabajoPorProgramar']
+                if MargenXMaestroEmpresa > 0:
+                    x = DiasDeProduccion + TrabajoPorProgramar
+                    TrhoughputRC = MargenXMaestroEmpresa/x
+                else:
+                    TrhoughputRC = 0
 
-print('Margen Clientes: ' + str(MargenXMaestroEmpresa))
+print('TC: ' + str(TrhoughputRC))
 #### Don`t touch this code
 #Here we create the json of table RV-ESTADOPROYECTOS-AA-Throughput this json we use for read all the projects
 print('')
