@@ -172,15 +172,11 @@ print str(ListDataJsonCompanys)
 dataCompanys = json.loads(ListDataJsonCompanys)
 datamargen = json.loads(ListDataMargenJson)
 MargenXMaestroEmpresa = 0
-#for value in dataCompanys['Companys']:
-#    if value == 'Quaker State':
-        #
-#        for valuemargen in datamargen['fields']:
-#            if  'Quaker State' == valuemargen['Empresa']:
-#                MargenXMaestroEmpresa += valuemargen['MargenActual']
-#        print('Margen Clientes: ' + str(MargenXMaestroEmpresa))
+for value in dataCompanys['Companys']:
+    if value['Empresa'] == 'Quaker State':
+        MargenXMaestroEmpresa += valuemargen['MargenActual']
 
-
+print('Margen Clientes: ' + str(MargenXMaestroEmpresa))
 #### Don`t touch this code
 #Here we create the json of table RV-ESTADOPROYECTOS-AA-Throughput this json we use for read all the projects
 print('')
