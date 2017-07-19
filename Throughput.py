@@ -159,7 +159,7 @@ ListDataJsonCompanys = '{"Companys":['
 DNI = 0
 for value in cur:
     if value[0] > 0:
-        ListDataJsonCompanys += '{"NumProyecto : "' +  str(value[5])  + ',"NumMaestro":' + str(value[0]) + ',"DiasDeProduccion": ' + str(value[1]) + ',"TrabajoPorProgramar":' + str(value[2]) + ',"MargenActual" : ' + str(value[3]) + ',"PeriodoComparativo":' + str(value[4]) + ',"Empresa":"' + str(value[5]) + '"},' + '\n'
+        ListDataJsonCompanys += '{"NumProyecto : "' +  str(value[6])  + ',"NumMaestro":' + str(value[0]) + ',"DiasDeProduccion": ' + str(value[1]) + ',"TrabajoPorProgramar":' + str(value[2]) + ',"MargenActual" : ' + str(value[3]) + ',"PeriodoComparativo":' + str(value[4]) + ',"Empresa":"' + str(value[5]) + '"},' + '\n'
 
 con.commit()
 con.close()
