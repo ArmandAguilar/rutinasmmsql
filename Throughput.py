@@ -37,7 +37,28 @@ def upadteTroughtPut(sql):
     conn.commit()
     conn.close()
 
-def tDataJason(ListDataJson,periodo,listMaestrosA,ListMargenJson):
+def ThroughputClients(Empresa,Periodo,NumMaestro,ListDataJsonCompanys):
+    dataCompanys = json.loads(ListDataJsonCompanys)
+    MargenXMaestroEmpresa = 0
+    TrhoughputRC = 0
+    DiasDeProduccion = 0
+    TrabajoPorProgramar  = 0
+    for value in dataCompanys['Companys']:
+        if value['Empresa'] == Empresa:
+            if value['PeriodoComparativo'] == Periodo:
+                if value['NumMaestro'] == NumMaestro:
+                    #print( ' NumProyecto' + str(value['NumProyecto']) + 'NumMaestro : ' + str(value['NumMaestro']) + 'Empresa :' + str(value['Empresa']) + 'Margen Actual:$' +  str(value['MargenActual']) + 'Periodo Comparativo :' + str(value['PeriodoComparativo']))
+                    MargenXMaestroEmpresa += value['MargenActual']
+                    DiasDeProduccion += value['DiasDeProduccion']
+                    TrabajoPorProgramar += value['TrabajoPorProgramar']
+                    if MargenXMaestroEmpresa > 0:
+                        x = DiasDeProduccion + TrabajoPorProgramar
+                        TrhoughputRC = MargenXMaestroEmpresa/x
+                    else:
+                        TrhoughputRC = 0
+    return TrhoughputRC
+
+def tDataJason(ListDataJson,periodo,listMaestrosA,ListMargenJson,ListDataJsonCompanys):
     print ('####################' +  str(periodo))
     temp = len(ListDataJson)
     ListDataJson = ListDataJson[:temp - 2]
@@ -64,6 +85,7 @@ def tDataJason(ListDataJson,periodo,listMaestrosA,ListMargenJson):
                 MargenXMaestro = valuemargen['MargenActual'] + MargenXMaestro
 
         #print ('NumProyecto:' + str(valueListMaestros) + 'Margen :$' + str(MargenXMaestro))
+
         if MargenXMaestro > 0:
             x = DiasDeProduccion + TrabajoPorProgramar
             TrhoughputR = MargenXMaestro/x
@@ -167,29 +189,7 @@ temp = len(ListDataJsonCompanys)
 ListDataJsonCompanys = ListDataJsonCompanys[:temp - 2]
 ListDataJsonCompanys += ']}'
 
-print str(ListDataJsonCompanys)
 
-dataCompanys = json.loads(ListDataJsonCompanys)
-datamargen = json.loads(ListDataMargenJson)
-MargenXMaestroEmpresa = 0
-TrhoughputRC = 0
-DiasDeProduccion = 0
-TrabajoPorProgramar  = 0
-for value in dataCompanys['Companys']:
-    if value['Empresa'] == 'Quaker State':
-        if value['PeriodoComparativo'] == 2017:
-            if value['NumMaestro'] == 963:
-                print( ' NumProyecto' + str(value['NumProyecto']) + 'NumMaestro : ' + str(value['NumMaestro']) + 'Empresa :' + str(value['Empresa']) + 'Margen Actual:$' +  str(value['MargenActual']) + 'Periodo Comparativo :' + str(value['PeriodoComparativo']))
-                MargenXMaestroEmpresa += value['MargenActual']
-                DiasDeProduccion += value['DiasDeProduccion']
-                TrabajoPorProgramar += value['TrabajoPorProgramar']
-                if MargenXMaestroEmpresa > 0:
-                    x = DiasDeProduccion + TrabajoPorProgramar
-                    TrhoughputRC = MargenXMaestroEmpresa/x
-                else:
-                    TrhoughputRC = 0
-
-print( str(MargenXMaestroEmpresa) + '/' + str(x) + '=TC: ' + str(TrhoughputRC))
 #### Don`t touch this code
 #Here we create the json of table RV-ESTADOPROYECTOS-AA-Throughput this json we use for read all the projects
 print('')
@@ -212,6 +212,6 @@ for valueYear in listYears:
     con.close()
     #here procesing all json in the function tDatJson()
     listMaestrosA = list(set(listMaestrosActivos))
-    #tDataJason(ListDataJson,valueYear,listMaestrosA,ListDataMargenJson)
+    tDataJason(ListDataJson,valueYear,listMaestrosA,ListDataMargenJson,ListDataJsonCompanys)
 
 print('##################################### End Calculando Throughput ######################################')
