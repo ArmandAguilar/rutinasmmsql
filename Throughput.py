@@ -39,25 +39,26 @@ def upadteTroughtPut(sql):
 
 def ThroughputClients(Empresa,Periodo,NumMaestro,ListDataJsonCompanys):
     dataCompanys = json.loads(ListDataJsonCompanys)
-    MargenXMaestroEmpresa = 0
-    TrhoughputRC = 0
-    DiasDeProduccion = 0
-    TrabajoPorProgramar  = 0
-    for value in dataCompanys['Companys']:
-        if value['Empresa'] == str(Empresa):
-            if value['PeriodoComparativo'] == Periodo:
-                print 'entre en el peridod y el maestros es ' + str(NumMaestro)
-                if value['NumMaestro'] == NumMaestro:
-                    print('##########NumProyecto' + str(value['NumProyecto']) + 'NumMaestro : ' + str(value['NumMaestro']) + 'Empresa :' + str(value['Empresa']) + 'Margen Actual:$' +  str(value['MargenActual']) + 'Periodo Comparativo :' + str(value['PeriodoComparativo']))
-                    MargenXMaestroEmpresa += value['MargenActual']
-                    DiasDeProduccion += value['DiasDeProduccion']
-                    TrabajoPorProgramar += value['TrabajoPorProgramar']
-                    if MargenXMaestroEmpresa > 0:
-                        x = DiasDeProduccion + TrabajoPorProgramar
-                        TrhoughputRC = MargenXMaestroEmpresa/x
-                    else:
-                        TrhoughputRC = 0
-    return TrhoughputRC
+    print str(dataCompanys)
+    #MargenXMaestroEmpresa = 0
+    #TrhoughputRC = 0
+    #DiasDeProduccion = 0
+    #TrabajoPorProgramar  = 0
+    #for value in dataCompanys['Companys']:
+    #    if value['Empresa'] == str(Empresa):
+    #        if value['PeriodoComparativo'] == Periodo:
+    #            print 'entre en el peridod y el maestros es ' + str(NumMaestro)
+    #            if value['NumMaestro'] == NumMaestro:
+    #                print('##########NumProyecto' + str(value['NumProyecto']) + 'NumMaestro : ' + str(value['NumMaestro']) + 'Empresa :' + str(value['Empresa']) + 'Margen Actual:$' +  str(value['MargenActual']) + 'Periodo Comparativo :' + str(value['PeriodoComparativo']))
+    #                MargenXMaestroEmpresa += value['MargenActual']
+    #                DiasDeProduccion += value['DiasDeProduccion']
+    #                TrabajoPorProgramar += value['TrabajoPorProgramar']
+    #                if MargenXMaestroEmpresa > 0:
+    #                    x = DiasDeProduccion + TrabajoPorProgramar
+    #                    TrhoughputRC = MargenXMaestroEmpresa/x
+    #                else:
+    #                    TrhoughputRC = 0
+    #return TrhoughputRC
 
 def tDataJason(ListDataJson,periodo,listMaestrosA,ListMargenJson,ListDataJsonCompanys):
     print ('####################' +  str(periodo))
