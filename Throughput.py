@@ -46,11 +46,12 @@ def ThroughputClients(Empresa,Periodo,NumMaestro,ListDataJsonCompanys):
     TrabajoPorProgramar  = 0
     for value in dataCompanys['Companys']:
         if value['Empresa'] == str(Empresa):
-            print 'go Empresa'
+            print 'Go Empresa'
             if value['PeriodoComparativo'] == Periodo:
                 print 'Go periodo'
                 if value['NumMaestro'] == NumMaestro:
-                    print('##########NumProyecto' + str(value['NumProyecto']) + 'NumMaestro : ' + str(value['NumMaestro']) + 'Empresa :' + str(value['Empresa']) + 'Margen Actual:$' +  str(value['MargenActual']) + 'Periodo Comparativo :' + str(value['PeriodoComparativo']))
+                    print 'Go NumMaestro'
+                    #print('##########NumProyecto' + str(value['NumProyecto']) + 'NumMaestro : ' + str(value['NumMaestro']) + 'Empresa :' + str(value['Empresa']) + 'Margen Actual:$' +  str(value['MargenActual']) + 'Periodo Comparativo :' + str(value['PeriodoComparativo']))
                     MargenXMaestroEmpresa += value['MargenActual']
                     DiasDeProduccion += value['DiasDeProduccion']
                     TrabajoPorProgramar += value['TrabajoPorProgramar']
@@ -98,6 +99,7 @@ def tDataJason(ListDataJson,periodo,listMaestrosA,ListMargenJson,ListDataJsonCom
         else:
             TrhoughputR = 0
         #print ('DiasDeProduccion :' +  str(DiasDeProduccion) + ' TrabajoPorProgramar : ' + str(TrabajoPorProgramar) + ' MargenActual :' + str(MargenActual) + ' NoMaestro :' + str(valueListMaestros) + ' Thoriughput Maestro : $' + str(TrhoughputR) + ' MargenXMaestro : $' + str(MargenXMaestro))
+        print('Empresa:' + str(valueJson['Empresa']) + ' NumMaestro: ' + valueJson['NumMaestro'] + ' Periodo:' + periodo)
         ThroughputC = ThroughputClients(valueJson['Empresa'],periodo,valueJson['NumMaestro'],ListDataJsonCompanys)
         print ('NoMaestro :' + str(valueListMaestros)  + ' Throughput Maestro : $' + str(TrhoughputR) + ' Throughput Client : $' + str(ThroughputC))
     #print ListDataJson
