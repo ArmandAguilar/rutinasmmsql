@@ -47,7 +47,7 @@ def ThroughputClients(Empresa,Periodo,NumMaestro,ListDataJsonCompanys):
         if value['Empresa'] == Empresa:
             if value['PeriodoComparativo'] == Periodo:
                 if value['NumMaestro'] == NumMaestro:
-                    #print( ' NumProyecto' + str(value['NumProyecto']) + 'NumMaestro : ' + str(value['NumMaestro']) + 'Empresa :' + str(value['Empresa']) + 'Margen Actual:$' +  str(value['MargenActual']) + 'Periodo Comparativo :' + str(value['PeriodoComparativo']))
+                    print( ' NumProyecto' + str(value['NumProyecto']) + 'NumMaestro : ' + str(value['NumMaestro']) + 'Empresa :' + str(value['Empresa']) + 'Margen Actual:$' +  str(value['MargenActual']) + 'Periodo Comparativo :' + str(value['PeriodoComparativo']))
                     MargenXMaestroEmpresa += value['MargenActual']
                     DiasDeProduccion += value['DiasDeProduccion']
                     TrabajoPorProgramar += value['TrabajoPorProgramar']
