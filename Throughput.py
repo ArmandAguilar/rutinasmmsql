@@ -66,7 +66,8 @@ def tDataJason(ListDataJson,periodo,listMaestrosA,ListMargenJson,ListDataJsonCom
     data = json.loads(ListDataJson)
     datamargen = json.loads(ListMargenJson)
     #Here slide the array
-    for valueListMaestros in listMaestrosA.sort():
+    listMaestrosAOrder = listMaestrosA.sort()
+    for valueListMaestros in listMaestrosAOrder:
         #pass
         DiasDeProduccion = 0
         TrabajoPorProgramar = 0
