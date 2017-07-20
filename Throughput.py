@@ -38,6 +38,7 @@ def upadteTroughtPut(sql):
     conn.close()
 
 def ThroughputClients(Empresa,Periodo,NumMaestro,ListDataJsonCompanys):
+    print (str(Empresa) + str(Periodo) + str(NumMaestro))
     dataCompanys = json.loads(ListDataJsonCompanys)
     MargenXMaestroEmpresa = 0
     TrhoughputRC = 0
