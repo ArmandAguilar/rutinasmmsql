@@ -66,8 +66,7 @@ def tDataJason(ListDataJson,periodo,listMaestrosA,ListMargenJson,ListDataJsonCom
     data = json.loads(ListDataJson)
     datamargen = json.loads(ListMargenJson)
     #Here slide the array
-    listMaestrosAOrder = listMaestrosA.sort()
-    for valueListMaestros in listMaestrosAOrder:
+    for valueListMaestros in listMaestrosA:
         #pass
         DiasDeProduccion = 0
         TrabajoPorProgramar = 0
@@ -108,7 +107,7 @@ def tDataJason(ListDataJson,periodo,listMaestrosA,ListMargenJson,ListDataJsonCom
 # 1.1 .- get NumMeatros
 listMaestros = []
 k = 0
-sql = 'SELECT DISTINCT([NumMaestro]) FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput]'
+sql = 'SELECT DISTINCT([NumMaestro]) FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] order by [NumMaestro] desc'
 con = pyodbc.connect(constr)
 cur = con.cursor()
 cur.execute(sql)
