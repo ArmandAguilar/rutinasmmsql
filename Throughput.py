@@ -47,7 +47,7 @@ def ThroughputClients(Empresa,Periodo,NumMaestro,ListDataJsonCompanys):
         if value['Empresa'] == str(Empresa):
             if value['PeriodoComparativo'] == Periodo:
                 if int(value['NumMaestro']) == int(NumMaestro):
-                    print('#####Armando#####NumProyecto' + str(value['NumProyecto']) + 'NumMaestro : ' + str(value['NumMaestro']) + 'Empresa :' + str(value['Empresa']) + 'Margen Actual:$' +  str(value['MargenActual']) + 'Periodo Comparativo :' + str(value['PeriodoComparativo']))
+                    #print('#####Armando#####NumProyecto' + str(value['NumProyecto']) + 'NumMaestro : ' + str(value['NumMaestro']) + 'Empresa :' + str(value['Empresa']) + 'Margen Actual:$' +  str(value['MargenActual']) + 'Periodo Comparativo :' + str(value['PeriodoComparativo']))
                     MargenXMaestroEmpresa += value['MargenActual']
                     DiasDeProduccion += value['DiasDeProduccion']
                     TrabajoPorProgramar += value['TrabajoPorProgramar']
@@ -56,7 +56,7 @@ def ThroughputClients(Empresa,Periodo,NumMaestro,ListDataJsonCompanys):
                         TrhoughputRC = MargenXMaestroEmpresa/x
                     else:
                         TrhoughputRC = 0
-    #return TrhoughputRC
+    return TrhoughputRC
 
 def tDataJason(ListDataJson,periodo,listMaestrosA,ListMargenJson,ListDataJsonCompanys):
     print ('####################' +  str(periodo))
@@ -96,8 +96,8 @@ def tDataJason(ListDataJson,periodo,listMaestrosA,ListMargenJson,ListDataJsonCom
             TrhoughputR = 0
 
 
-        ThroughputClients(valueJson['Empresa'],periodo,valueJson['NumMaestro'],ListDataJsonCompanys)
-        #print ('NoMaestro :' + str(valueListMaestros)  + ' Throughput Maestro : $' + str(TrhoughputR) + ' Throughput Client : $' + str(ThroughputC))
+        ThroughputC = ThroughputClients(valueJson['Empresa'],periodo,valueJson['NumMaestro'],ListDataJsonCompanys)
+        print ('NoMaestro :' + str(valueListMaestros)  + ' Throughput Maestro : $' + str(TrhoughputR) + ' Throughput Client : $' + str(ThroughputC))
         #print('############Empresa:' + str(valueJson['Empresa']) + ' NumMaestro: ' + valueJson['NumMaestro'] + ' Periodo:' + str(periodo))
     #print ListDataJson
     #print listMaestrosA
