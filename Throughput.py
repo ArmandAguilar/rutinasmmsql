@@ -79,6 +79,9 @@ def tDataJason(ListDataJson,periodo,listMaestrosA,ListMargenJson,ListDataJsonCom
                 DiasDeProduccion += valueJson['DiasDeProduccion']
                 TrabajoPorProgramar += valueJson['TrabajoPorProgramar']
                 MargenActual += valueJson['MargenActual']
+                #Here
+                ThroughputC = ThroughputClients(valueJson['Empresa'],periodo,valueJson['NumMaestro'],ListDataJsonCompanys)
+
         for valuemargen in datamargen['fields']:
             if  valueListMaestros == valuemargen['NumMaestro']:
                 #print('Sume estos: ' + str(valuemargen['MargenActual']))
@@ -92,7 +95,7 @@ def tDataJason(ListDataJson,periodo,listMaestrosA,ListMargenJson,ListDataJsonCom
         else:
             TrhoughputR = 0
         #print ('DiasDeProduccion :' +  str(DiasDeProduccion) + ' TrabajoPorProgramar : ' + str(TrabajoPorProgramar) + ' MargenActual :' + str(MargenActual) + ' NoMaestro :' + str(valueListMaestros) + ' Thoriughput Maestro : $' + str(TrhoughputR) + ' MargenXMaestro : $' + str(MargenXMaestro))
-        print ('NoMaestro :' + str(valueListMaestros)  + ' Throughput Maestro : $' + str(TrhoughputR) + ' Throughput Client : $ 0.0')
+        print ('NoMaestro :' + str(valueListMaestros)  + ' Throughput Maestro : $' + str(TrhoughputR) + ' Throughput Client : $' + ThroughputC)
     #print ListDataJson
     #print listMaestrosA
 
