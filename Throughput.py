@@ -46,7 +46,9 @@ def ThroughputClients(Empresa,Periodo,NumMaestro,ListDataJsonCompanys):
     TrabajoPorProgramar  = 0
     for value in dataCompanys['Companys']:
         if value['Empresa'] == str(Empresa):
+            print 'go Empresa'
             if value['PeriodoComparativo'] == Periodo:
+                print 'Go periodo'
                 if value['NumMaestro'] == NumMaestro:
                     print('##########NumProyecto' + str(value['NumProyecto']) + 'NumMaestro : ' + str(value['NumMaestro']) + 'Empresa :' + str(value['Empresa']) + 'Margen Actual:$' +  str(value['MargenActual']) + 'Periodo Comparativo :' + str(value['PeriodoComparativo']))
                     MargenXMaestroEmpresa += value['MargenActual']
