@@ -38,7 +38,6 @@ def upadteTroughtPut(sql):
     conn.close()
 
 def ThroughputClients(Empresa,Periodo,NumMaestro,ListDataJsonCompanys):
-    print (str(Empresa) + str(Periodo) + str(NumMaestro))
     dataCompanys = json.loads(ListDataJsonCompanys)
     MargenXMaestroEmpresa = 0
     TrhoughputRC = 0
@@ -96,9 +95,10 @@ def tDataJason(ListDataJson,periodo,listMaestrosA,ListMargenJson,ListDataJsonCom
         else:
             TrhoughputR = 0
 
-        print('Empresa:' + str(valueJson['Empresa']) + ' NumMaestro: ' + valueJson['NumMaestro'] + ' Periodo:' + str(periodo))
+
         ThroughputC = ThroughputClients(valueJson['Empresa'],periodo,valueJson['NumMaestro'],ListDataJsonCompanys)
         print ('NoMaestro :' + str(valueListMaestros)  + ' Throughput Maestro : $' + str(TrhoughputR) + ' Throughput Client : $' + str(ThroughputC))
+        print('############Empresa:' + str(valueJson['Empresa']) + ' NumMaestro: ' + valueJson['NumMaestro'] + ' Periodo:' + str(periodo))
     #print ListDataJson
     #print listMaestrosA
 
