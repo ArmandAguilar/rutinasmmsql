@@ -198,7 +198,7 @@ ListDataJsonCompanys += ']}'
 print('')
 print('####Send Data for calculate Throughtput')
 for valueYear in listYears:
-    sql = 'SELECT [NumProyecto],[NumMaestro],[Dias de produccion] As DiasDeProduccion ,[Trabajo por programar] As TrabajoPorProgramar,[Margen Actual] As MargenActual,[PeriodoComparativo] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] where [PeriodoComparativo] =\'' + str(valueYear) + '\' order by NumMaestro'
+    sql = 'SELECT [NumProyecto],[NumMaestro],[Dias de produccion] As DiasDeProduccion ,[Trabajo por programar] As TrabajoPorProgramar,[Margen Actual] As MargenActual,[PeriodoComparativo],[Empresa] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] where [PeriodoComparativo] =\'' + str(valueYear) + '\' order by NumMaestro'
     con = pyodbc.connect(constr)
     cur = con.cursor()
     cur.execute(sql)
@@ -209,7 +209,7 @@ for valueYear in listYears:
     for value in cur:
         if value[1] > 0:
             listMaestrosActivos.insert(i,value[1])
-            ListDataJson += '{"Id":"' + str(DNI) + '","NumProyecto":"' + str(value[0]) + '","NumMaestro":"' + str(value[1]) + '","DiasDeProduccion": ' + str(value[2]) + ',"TrabajoPorProgramar":' + str(value[3]) + ',"MargenActual" : ' + str(value[4]) + ',"PeriodoComparativo":' + str(value[5]) + '},' + '\n'
+            ListDataJson += '{"Id":"' + str(DNI) + '","NumProyecto":"' + str(value[0]) + '","NumMaestro":"' + str(value[1]) + '","DiasDeProduccion":' + str(value[2]) + ',"TrabajoPorProgramar":' + str(value[3]) + ',"MargenActual":' + str(value[4]) + ',"PeriodoComparativo":' + str(value[5]) + ',"Empresa":"' + str(value[6]) + '"},' + '\n'
             DNI += 1
     con.commit()
     con.close()
