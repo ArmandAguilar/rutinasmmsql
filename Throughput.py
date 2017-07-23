@@ -211,9 +211,10 @@ for valueYear in listYears:
     DNI = 0
     for value in cur:
         if value[1] > 0:
-            listMaestrosActivos.insert(i,value[1])
-            ListDataJson += '{"Id":"' + str(DNI) + '","NumProyecto":"' + str(value[0]) + '","NumMaestro":"' + str(value[1]) + '","DiasDeProduccion":' + str(value[2]) + ',"TrabajoPorProgramar":' + str(value[3]) + ',"MargenActual":' + str(value[4]) + ',"PeriodoComparativo":' + str(value[5]) + ',"Empresa":"' + str(value[6]) + '"},' + '\n'
-            DNI += 1
+            if value[5] == 2017:
+                listMaestrosActivos.insert(i,value[1])
+                ListDataJson += '{"Id":"' + str(DNI) + '","NumProyecto":"' + str(value[0]) + '","NumMaestro":"' + str(value[1]) + '","DiasDeProduccion":' + str(value[2]) + ',"TrabajoPorProgramar":' + str(value[3]) + ',"MargenActual":' + str(value[4]) + ',"PeriodoComparativo":' + str(value[5]) + ',"Empresa":"' + str(value[6]) + '"},' + '\n'
+                DNI += 1
     con.commit()
     con.close()
     #here procesing all json in the function tDatJson()
