@@ -92,7 +92,7 @@ def tDataJason(ListDataJson,periodo,listMaestrosA,ListMargenJson,ListDataJsonCom
             TrhoughputR = MargenXMaestro/x
         else:
             TrhoughputR = 0
-        print('## Margen Actual : $' + MargenXMaestro + '/ (DiasDeProduccion : ' + DiasDeProduccion + ' + TrabajoPorProgramar :' + TrabajoPorProgramar + ')')
+        print('## Margen Actual : $' + str(MargenXMaestro) + '/ (DiasDeProduccion : ' + str(DiasDeProduccion) + ' + TrabajoPorProgramar :' + str(TrabajoPorProgramar) + ')')
         #ThroughputRClients = ThroughputClients(valueJson['Empresa'],periodo,valueListMaestros,ListDataJsonCompanys)
         print ('NoMaestro :' + str(valueListMaestros)  + ' Throughput Maestro : $' + str(TrhoughputR))
         #print('############Empresa:' + str(valueJson['Empresa']) + ' NumMaestro: ' + valueJson['NumMaestro'] + ' Periodo:' + str(periodo))
