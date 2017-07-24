@@ -80,16 +80,11 @@ def tDataJason(ListDataJson,periodo,listMaestrosA,ListMargenJson,ListDataJsonCom
                 TrabajoPorProgramar += valueJson['TrabajoPorProgramar']
                 MargenXMaestro += valueJson['MargenActual']
 
-        #for valuemargen in datamargen['fields']:
-        #    if  valueListMaestros == valuemargen['NumMaestro']:
-                #print('Sume estos: ' + str(valuemargen['MargenActual']))
-        #        MargenXMaestro = valuemargen['MargenActual'] + MargenXMaestro
-
-        #print ('NumProyecto:' + str(valueListMaestros) + 'Margen :$' + str(MargenXMaestro))
-
-        x = DiasDeProduccion + TrabajoPorProgramar
-        TrhoughputR = MargenXMaestro/x
-
+        if x > 0:
+            x = DiasDeProduccion + TrabajoPorProgramar
+            TrhoughputR = MargenXMaestro/x
+        else:
+            TrhoughputR = 0
         print('## Margen Actual : $' + str(MargenXMaestro) + '/ (DiasDeProduccion : ' + str(DiasDeProduccion) + ' + TrabajoPorProgramar :' + str(TrabajoPorProgramar) + ')')
         #ThroughputRClients = ThroughputClients(valueJson['Empresa'],periodo,valueListMaestros,ListDataJsonCompanys)
         print ('NoMaestro :' + str(valueListMaestros)  + ' Throughput Maestro : $' + str(TrhoughputR))
