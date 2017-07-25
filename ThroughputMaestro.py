@@ -45,7 +45,7 @@ def tDataJason(ListDataJson,periodo,listMaestrosA):
         else:
             TrhoughputR = 0
 
-    insertJSON += '{"NumMaestro":' + str(valueListMaestros) + ',"MargenMaestro":' + str(MargenXMaestro) + ',"TrhoughputMaestro":' + str(TrhoughputR)  + '},' + '\n'
+        insertJSON += '{"NumMaestro":' + str(valueListMaestros) + ',"MargenMaestro":' + str(MargenXMaestro) + ',"TrhoughputMaestro":' + str(TrhoughputR)  + '},' + '\n'
     temp = len(insertJSON)
     insertJSON = insertJSON[:temp - 2]
     insertJSON += ']}'
