@@ -23,7 +23,6 @@ def tDataJason(ListDataJson,periodo,listMaestrosA):
     ListDataJson = ListDataJson[:temp - 2]
     ListDataJson += ']}'
     data = json.loads(ListDataJson)
-    datamargen = json.loads(ListMargenJson)
     #Here slide the array
     insertJSON = '{"insertData":['
     for valueListMaestros in listMaestrosA:
