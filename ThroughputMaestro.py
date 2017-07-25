@@ -44,20 +44,17 @@ def tDataJason(ListDataJson,periodo,listMaestrosA):
         else:
             TrhoughputR = 0
             insertJSON += '{"NumMaestro":' + str(valueListMaestros) + ',"MargenMaestro":' + str(MargenXMaestro) + ',"TrhoughputMaestro":' + str(TrhoughputR)  + '},' + '\n'
-            #print('## Margen Actual : $' + str(MargenXMaestro) + '/ (DiasDeProduccion : ' + str(DiasDeProduccion) + ' + TrabajoPorProgramar :' + str(TrabajoPorProgramar) + ')')
-            #ThroughputRClients = ThroughputClients(valueJson['Empresa'],periodo,valueListMaestros,ListDataJsonCompanys)
-            #print ('NoMaestro :' + str(valueListMaestros)  + ' Throughput Maestro : $' + str(TrhoughputR))
-            #print('############Empresa:' + str(valueJson['Empresa']) + ' NumMaestro: ' + valueJson['NumMaestro'] + ' Periodo:' + str(periodo))
+            print insertJSON
         #print ListDataJson
         #print listMaestrosA
-        temp = len(insertJSON)
-        insertJSON = insertJSON[:temp - 2]
-        insertJSON += ']}'
-        dataTrhoughputMaestro = json.loads(insertJSON)
-        for valueTM in dataTrhoughputMaestro['insertData']:
+        #temp = len(insertJSON)
+        #insertJSON = insertJSON[:temp - 2]
+        #insertJSON += ']}'
+        #dataTrhoughputMaestro = json.loads(insertJSON)
+        #for valueTM in dataTrhoughputMaestro['insertData']:
             #pass
-            Sql = 'INSERT INTO [SAP].[dbo].[AA_ThroughtputMatestro] VALUES (\'' + str(valueTM['NumMaestro']) + '\',\'' + str(valueTM['TrhoughputMaestro']) + '\',\'' + str(periodo) + '\',\'' + str(valueTM['MargenMaestro']) + '\')'
-            print Sql
+        #    Sql = 'INSERT INTO [SAP].[dbo].[AA_ThroughtputMatestro] VALUES (\'' + str(valueTM['NumMaestro']) + '\',\'' + str(valueTM['TrhoughputMaestro']) + '\',\'' + str(periodo) + '\',\'' + str(valueTM['MargenMaestro']) + '\')'
+        #    print Sql
 # 1 .- We create a two list NumMaestro and Peridos
 
 # 1.1 .- get NumMeatros
