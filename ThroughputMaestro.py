@@ -48,10 +48,10 @@ def tDataJason(ListDataJson,periodo,listMaestrosA):
         insertJSON += '{"NumMaestro":' + str(valueListMaestros) + ',"MargenMaestro":' + str(MargenXMaestro) + ',"TrhoughputMaestro":' + str(TrhoughputR)  + '},' + '\n'
         #print insertJSON
 
-        temp = len(insertJSON)
-        insertJSON = insertJSON[:temp - 2]
-        insertJSON += ']}'
-        print insertJSON
+    temp = len(insertJSON)
+    insertJSON = insertJSON[:temp - 2]
+    insertJSON += ']}'
+    print insertJSON
         #dataTrhoughputMaestro = json.loads(insertJSON)
         #print dataTrhoughputMaestro
         #for valueTM in dataTrhoughputMaestro['insertData']:
