@@ -111,41 +111,7 @@ temp = len(ListDataMargenJson)
 ListDataMargenJson = ListDataMargenJson[:temp - 2]
 ListDataMargenJson += ']}'
 
-#2.3 Here calculate the Though put for companny
-print('')
-print ('#Meking Json for Margen Clients')
-#2.3.1.- We create a  list of only compannys
-listCompanys = []
-i = 0
-sql = 'SELECT [Empresa] FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] order by [Empresa] asc'
-con = pyodbc.connect(constr)
-cur = con.cursor()
-cur.execute(sql)
-for value in cur:
-    listCompanys.insert(i,value[0])
-con.commit()
-con.close()
-#Here delete duplicate elements
-listCompanysA = list(set(listCompanys))
-
-#Here we create us a new Json with all data of  (RV-ESTADOPROYECTOS-AA-Throughput)  with this data we go a new json for slice and comparte companys
-sql = 'SELECT [NumMaestro],[Dias de produccion] As DiasDeProduccion ,[Trabajo por programar] As TrabajoPorProgramar,[Margen Actual] As MargenActual, ISNULL([PeriodoComparativo],1999) As PeriodoComparativo,[Empresa],[NumProyecto]  FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] order by NumMaestro'
-con = pyodbc.connect(constr)
-cur = con.cursor()
-cur.execute(sql)
-ListDataJsonCompanys = ''
-ListDataJsonCompanys = '{"Companys":['
-DNI = 0
-for value in cur:
-    if value[0] > 0:
-        ListDataJsonCompanys += '{"NumProyecto":' +  str(value[6])  + ',"NumMaestro":' + str(value[0]) + ',"DiasDeProduccion": ' + str(value[1]) + ',"TrabajoPorProgramar":' + str(value[2]) + ',"MargenActual": ' + str(value[3]) + ',"PeriodoComparativo":' + str(value[4]) + ',"Empresa":"' + str(value[5]) + '"},' + '\n'
-
-con.commit()
-con.close()
-temp = len(ListDataJsonCompanys)
-ListDataJsonCompanys = ListDataJsonCompanys[:temp - 2]
-ListDataJsonCompanys += ']}'
-
+#2.2 Here calculate the Though put for companny
 #### Don`t touch this code
 #Here we create the json of table RV-ESTADOPROYECTOS-AA-Throughput this json we use for read all the projects
 print('')
