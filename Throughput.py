@@ -80,8 +80,8 @@ def tDataJason(ListDataJson,periodo,listMaestrosA,ListMargenJson,ListDataJsonCom
                 TrabajoPorProgramar += valueJson['TrabajoPorProgramar']
                 MargenXMaestro += valueJson['MargenActual']
 
+        x = DiasDeProduccion + TrabajoPorProgramar
         if x > 0:
-            x = DiasDeProduccion + TrabajoPorProgramar
             TrhoughputR = MargenXMaestro/x
         else:
             TrhoughputR = 0
