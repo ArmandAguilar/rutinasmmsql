@@ -10,55 +10,14 @@ import simplejson as json
 #   2.1 if Proyecto exist update data
 #   2.2 if proyect dont exist insert data
 
-def fieldExist(NumProyect,NumMaster):
-    Accion = 'No'
-    sql_buscar = 'SELECT [Id] FROM [SAP].[dbo].[AAAThroughput] Where [NumProyecto] = \'' + str(NumProyect) + '\' and [NumMatestro] = \'' + str(NumMaster) + '\''
-    conn = pymssql.connect(host=hostMSSQL,user=userMSSQL,password=passMSSQL,database=dbMSSQL)
-    cur = conn.cursor()
-    cur.execute(sql_buscar)
-    for value in cur:
-         Accion = 'Si'
-    conn.commit()
-    conn.close()
-
-    return Accion
-
-def insertTroughtPut(sql):
+def SqlTroughtPut(sql):
     conn = pymssql.connect(host=hostMSSQL,user=userMSSQL,password=passMSSQL,database=dbMSSQL)
     cur = conn.cursor()
     cur.execute(sql)
     conn.commit()
     conn.close()
 
-def upadteTroughtPut(sql):
-    conn = pymssql.connect(host=hostMSSQL,user=userMSSQL,password=passMSSQL,database=dbMSSQL)
-    cur = conn.cursor()
-    cur.execute(sql)
-    conn.commit()
-    conn.close()
-
-def ThroughputClients(Empresa,Periodo,NumMaestro,ListDataJsonCompanys):
-    dataCompanys = json.loads(ListDataJsonCompanys)
-    MargenXMaestroEmpresa = 0
-    TrhoughputRC = 0
-    DiasDeProduccion = 0
-    TrabajoPorProgramar  = 0
-    for value in dataCompanys['Companys']:
-        if value['Empresa'] == str(Empresa):
-            if value['PeriodoComparativo'] == Periodo:
-                if int(value['NumMaestro']) == int(NumMaestro):
-                    print('#####Armando#####NumProyecto' + str(value['NumProyecto']) + 'NumMaestro : ' + str(value['NumMaestro']) + 'Empresa :' + str(value['Empresa']) + 'Margen Actual:$' +  str(value['MargenActual']) + 'Periodo Comparativo :' + str(value['PeriodoComparativo']))
-                    MargenXMaestroEmpresa += value['MargenActual']
-                    DiasDeProduccion += value['DiasDeProduccion']
-                    TrabajoPorProgramar += value['TrabajoPorProgramar']
-                    if MargenXMaestroEmpresa > 0:
-                        x = DiasDeProduccion + TrabajoPorProgramar
-                        TrhoughputRC = MargenXMaestroEmpresa/x
-                    else:
-                        TrhoughputRC = 0
-    return TrhoughputRC
-
-def tDataJason(ListDataJson,periodo,listMaestrosA,ListMargenJson,ListDataJsonCompanys):
+def tDataJason(ListDataJson,periodo,listMaestrosA):
     print ('####################' +  str(periodo))
     temp = len(ListDataJson)
     ListDataJson = ListDataJson[:temp - 2]
@@ -115,7 +74,6 @@ for value in cur:
 con.commit()
 con.close()
 
-
 #1.2 .-  get years
 listYears = []
 i = 0
@@ -130,8 +88,6 @@ for value in cur:
         listYears.insert(i,value[0])
 con.commit()
 con.close()
-
-
 
 print('######################################### Begin Calculando Throughput ########################################')
 # 2 .- We create the data for the json files
@@ -173,7 +129,6 @@ con.close()
 #Here delete duplicate elements
 listCompanysA = list(set(listCompanys))
 
-
 #Here we create us a new Json with all data of  (RV-ESTADOPROYECTOS-AA-Throughput)  with this data we go a new json for slice and comparte companys
 sql = 'SELECT [NumMaestro],[Dias de produccion] As DiasDeProduccion ,[Trabajo por programar] As TrabajoPorProgramar,[Margen Actual] As MargenActual, ISNULL([PeriodoComparativo],1999) As PeriodoComparativo,[Empresa],[NumProyecto]  FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] order by NumMaestro'
 con = pyodbc.connect(constr)
@@ -191,7 +146,6 @@ con.close()
 temp = len(ListDataJsonCompanys)
 ListDataJsonCompanys = ListDataJsonCompanys[:temp - 2]
 ListDataJsonCompanys += ']}'
-
 
 #### Don`t touch this code
 #Here we create the json of table RV-ESTADOPROYECTOS-AA-Throughput this json we use for read all the projects
@@ -216,6 +170,6 @@ for valueYear in listYears:
     con.close()
     #here procesing all json in the function tDatJson()
     listMaestrosA = list(set(listMaestrosActivos))
-    tDataJason(ListDataJson,valueYear,listMaestrosA,ListDataMargenJson,ListDataJsonCompanys)
+    tDataJason(ListDataJson,valueYear,listMaestrosA)
 
 print('##################################### End Calculando Throughput ######################################')
