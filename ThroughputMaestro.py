@@ -26,26 +26,23 @@ def tDataJason(ListDataJson,periodo,listMaestrosA):
     #Here slide the array
     insertJSON = '{"insertData":['
     for valueListMaestros in listMaestrosA:
-        #pass
-        if valueListMaestros == 2017:
-            #pass
-            DiasDeProduccion = 0
-            TrabajoPorProgramar = 0
-            MargenActual = 0
-            TrhoughputR = 0
-            MargenXMaestro = 0
-            ThroughputC = 0
-            for valueJson in data['fields']:
-                if str(valueListMaestros) == (valueJson['NumMaestro']):
-                    DiasDeProduccion += valueJson['DiasDeProduccion']
-                    TrabajoPorProgramar += valueJson['TrabajoPorProgramar']
-                    MargenXMaestro += valueJson['MargenActual']
 
-            x = DiasDeProduccion + TrabajoPorProgramar
-            if x > 0:
-                TrhoughputR = MargenXMaestro/x
-            else:
-                TrhoughputR = 0
+        DiasDeProduccion = 0
+        TrabajoPorProgramar = 0
+        MargenActual = 0
+        TrhoughputR = 0
+        MargenXMaestro = 0
+        for valueJson in data['fields']:
+            if str(valueListMaestros) == (valueJson['NumMaestro']):
+                DiasDeProduccion += valueJson['DiasDeProduccion']
+                TrabajoPorProgramar += valueJson['TrabajoPorProgramar']
+                MargenXMaestro += valueJson['MargenActual']
+
+        x = DiasDeProduccion + TrabajoPorProgramar
+        if x > 0:
+            TrhoughputR = MargenXMaestro/x
+        else:
+            TrhoughputR = 0
             insertJSON += '{"NumMaestro":' + str(valueListMaestros) + ',"MargenMaestro":' + str(MargenXMaestro) + ',"TrhoughputMaestro":' + str(TrhoughputR)  + '},' + '\n'
             #print('## Margen Actual : $' + str(MargenXMaestro) + '/ (DiasDeProduccion : ' + str(DiasDeProduccion) + ' + TrabajoPorProgramar :' + str(TrabajoPorProgramar) + ')')
             #ThroughputRClients = ThroughputClients(valueJson['Empresa'],periodo,valueListMaestros,ListDataJsonCompanys)
@@ -53,14 +50,14 @@ def tDataJason(ListDataJson,periodo,listMaestrosA):
             #print('############Empresa:' + str(valueJson['Empresa']) + ' NumMaestro: ' + valueJson['NumMaestro'] + ' Periodo:' + str(periodo))
         #print ListDataJson
         #print listMaestrosA
-            temp = len(insertJSON)
-            insertJSON = insertJSON[:temp - 2]
-            insertJSON += ']}'
-            dataTrhoughputMaestro = json.loads(insertJSON)
-            for valueTM in dataTrhoughputMaestro['insertData']:
-                #pass
-                Sql = 'INSERT INTO [SAP].[dbo].[AA_ThroughtputMatestro] VALUES (\'' + str(valueTM['NumMaestro']) + '\',\'' + str(valueTM['TrhoughputMaestro']) + '\',\'' + str(periodo) + '\',\'' + str(valueTM['MargenMaestro']) + '\')'
-                print Sql
+        temp = len(insertJSON)
+        insertJSON = insertJSON[:temp - 2]
+        insertJSON += ']}'
+        dataTrhoughputMaestro = json.loads(insertJSON)
+        for valueTM in dataTrhoughputMaestro['insertData']:
+            #pass
+            Sql = 'INSERT INTO [SAP].[dbo].[AA_ThroughtputMatestro] VALUES (\'' + str(valueTM['NumMaestro']) + '\',\'' + str(valueTM['TrhoughputMaestro']) + '\',\'' + str(periodo) + '\',\'' + str(valueTM['MargenMaestro']) + '\')'
+            print Sql
 # 1 .- We create a two list NumMaestro and Peridos
 
 # 1.1 .- get NumMeatros
