@@ -66,6 +66,7 @@ def tDataJason(ListDataJson,periodo,listMaestrosA,ListMargenJson,ListDataJsonCom
     data = json.loads(ListDataJson)
     datamargen = json.loads(ListMargenJson)
     #Here slide the array
+    insertJSON = '{"insert":['
     for valueListMaestros in listMaestrosA:
         #pass
         DiasDeProduccion = 0
@@ -85,12 +86,17 @@ def tDataJason(ListDataJson,periodo,listMaestrosA,ListMargenJson,ListDataJsonCom
             TrhoughputR = MargenXMaestro/x
         else:
             TrhoughputR = 0
-        print('## Margen Actual : $' + str(MargenXMaestro) + '/ (DiasDeProduccion : ' + str(DiasDeProduccion) + ' + TrabajoPorProgramar :' + str(TrabajoPorProgramar) + ')')
+        insertJSON += '{"NumMaestro":' + str(valueListMaestros) + ',"MargenMaestro":' + str(MargenXMaestro) + ',"TrhoughputMaestro":' + str(TrhoughputR)  + '},' + '\n'
+        #print('## Margen Actual : $' + str(MargenXMaestro) + '/ (DiasDeProduccion : ' + str(DiasDeProduccion) + ' + TrabajoPorProgramar :' + str(TrabajoPorProgramar) + ')')
         #ThroughputRClients = ThroughputClients(valueJson['Empresa'],periodo,valueListMaestros,ListDataJsonCompanys)
-        print ('NoMaestro :' + str(valueListMaestros)  + ' Throughput Maestro : $' + str(TrhoughputR))
+        #print ('NoMaestro :' + str(valueListMaestros)  + ' Throughput Maestro : $' + str(TrhoughputR))
         #print('############Empresa:' + str(valueJson['Empresa']) + ' NumMaestro: ' + valueJson['NumMaestro'] + ' Periodo:' + str(periodo))
     #print ListDataJson
     #print listMaestrosA
+    temp = len(insertJSON)
+    insertJSON = insertJSON[:temp - 2]
+    insertJSON += ']}'
+    print insertJSON
 
 
 # 1 .- We create a two list NumMaestro and Peridos
