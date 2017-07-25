@@ -51,8 +51,9 @@ def tDataJason(ListDataJson,periodo,listMaestrosA):
         temp = len(insertJSON)
         insertJSON = insertJSON[:temp - 2]
         insertJSON += ']}'
-        dataTrhoughputMaestro = json.loads(insertJSON)
-        print dataTrhoughputMaestro
+        print insertJSON
+        #dataTrhoughputMaestro = json.loads(insertJSON)
+        #print dataTrhoughputMaestro
         #for valueTM in dataTrhoughputMaestro['insertData']:
             #pass
         #    Sql = 'INSERT INTO [SAP].[dbo].[AA_ThroughtputMatestro] VALUES (\'' + str(valueTM['NumMaestro']) + '\',\'' + str(valueTM['TrhoughputMaestro']) + '\',\'' + str(periodo) + '\',\'' + str(valueTM['MargenMaestro']) + '\')'
