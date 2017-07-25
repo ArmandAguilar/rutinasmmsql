@@ -66,7 +66,7 @@ def tDataJason(ListDataJson,periodo,listMaestrosA,ListMargenJson,ListDataJsonCom
     data = json.loads(ListDataJson)
     datamargen = json.loads(ListMargenJson)
     #Here slide the array
-    insertJSON = '{"insert":['
+    insertJSON = '{"insertData":['
     for valueListMaestros in listMaestrosA:
         #pass
         DiasDeProduccion = 0
@@ -96,9 +96,11 @@ def tDataJason(ListDataJson,periodo,listMaestrosA,ListMargenJson,ListDataJsonCom
     temp = len(insertJSON)
     insertJSON = insertJSON[:temp - 2]
     insertJSON += ']}'
-    print insertJSON
-
-
+    dataTrhoughputMaestro = json.loads(insertJSON)
+    for valueTM in dataTrhoughputMaestro['insertData']:
+        #pass
+        Sql = 'INSERT INTO [SAP].[dbo].[AA_ThroughtputMatestro] VALUES (\'' + str(valueTM['NumMaestro']) + '\',\'' + str(TrhoughputMaestro) + '\',' + str(periodo) + '\',\'' + str(MargenXMaestro) + '\')'
+        print Sql
 # 1 .- We create a two list NumMaestro and Peridos
 
 # 1.1 .- get NumMeatros
@@ -145,7 +147,6 @@ ListDataMargenJson = ''
 ListDataMargenJson = '{"fields":['
 DNIM = 0
 for value in cur:
-
     if value[0] > 0:
         ListDataMargenJson += '{"NoProyecto":"' + str(value[3]) + '","NumMaestro" : ' + str(value[0]) + ',"MargenActual" : ' + str(value[1]) + ',"Empresa" : "' + str(value[2]) + '"},' + '\n'
         DNIM += 1
