@@ -87,7 +87,8 @@ print listYears
 for valuePeridos in listYears:
     print ('######## '  + str(valuePeridos))
     for valueIdEmpresa in listCompanysA:
-        print ('Periodo : ' + str(valuePeridos) + ' Empresa: ' + str(valueIdEmpresa))
+        if valuePeridos == 2017:
+            print ('Periodo : ' + str(valuePeridos) + ' Empresa: ' + str(valueIdEmpresa))
 
 
 print('##################################### End Calculando Throughput ######################################')
