@@ -43,7 +43,7 @@ con = pyodbc.connect(constr)
 cur = con.cursor()
 cur.execute(sql)
 for value in cur:
-    if value == 1999:
+    if value[0] == 1999:
         valuesyears = 0
     else:
         listYears.insert(i,value[0])
