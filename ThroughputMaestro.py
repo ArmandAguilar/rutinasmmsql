@@ -137,4 +137,4 @@ for valueYear in listYears:
     if valueYear > 1999 :
         tDataJason(ListDataJson,valueYear,listMaestrosA)
 
-print('##################################### End Calculando Throughput ######################################')
+print('##################################### -End Calculando Throughput- ######################################')
