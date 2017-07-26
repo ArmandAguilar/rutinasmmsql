@@ -82,7 +82,6 @@ ListDataJsonCompanys = ListDataJsonCompanys[:temp - 2]
 ListDataJsonCompanys += ']}'
 dataCompanys = json.loads(ListDataJsonCompanys)
 print('######################################### Begin Calculando Throughput ########################################')
-
 print listYears
 for valuePeridos in listYears:
     print ('######## '  + str(valuePeridos))
@@ -92,10 +91,9 @@ for valuePeridos in listYears:
             DiasDeProduccion = 0
             TrabajoPorProgramar = 0
             for valueCom in dataCompanys['Companys']:
-                MargenXMaestroEmpresa += valueCom['MargenActual']
-                DiasDeProduccion += valueCom['DiasDeProduccion']
-                TrabajoPorProgramar += valueCom['TrabajoPorProgramar']
+                if valueIdEmpresa == valueCom['IdEmpresa']:
+                    MargenXMaestroEmpresa += valueCom['MargenActual']
+                    DiasDeProduccion += valueCom['DiasDeProduccion']
+                    TrabajoPorProgramar += valueCom['TrabajoPorProgramar']
             print ('Periodo : ' + str(valuePeridos) + ' Empresa: ' + str(valueIdEmpresa) + 'Dias De Produccion: ' + str(DiasDeProduccion) + ' Trabajo Por Programar :' + str(TrabajoPorProgramar) + ' Margen Actual: $' + str(MargenXMaestroEmpresa))
-
-
 print('##################################### End Calculando Throughput ######################################')
