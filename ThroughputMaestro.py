@@ -85,7 +85,7 @@ for value in cur:
 con.commit()
 con.close()
 
-print('######################################### Begin Calculando Throughput ########################################')
+print('######################################### -Begin Calculando Throughput- ########################################')
 #1.3 Delete all conetc of table
 sqlDelete = 'DELETE FROM [SAP].[dbo].[AA_ThroughtputMatestro]'
 SqlTroughtPut(sqlDelete):
