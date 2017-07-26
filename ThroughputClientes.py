@@ -43,7 +43,7 @@ con = pyodbc.connect(constr)
 cur = con.cursor()
 cur.execute(sql)
 for value in cur:
-    if value == '1999':
+    if value == 1999:
         valuesyears = 0
     else:
         listYears.insert(i,value[0])
@@ -85,7 +85,7 @@ print('######################################### Begin Calculando Throughput ###
 
 print listYears
 for valuePeridos in listYears:
-    print ('######## (' + str(valuePeridos) + ')')
+    print ('######## '  + str(valuePeridos))
     for valueIdEmpresa in listCompanysA:
         print ('Periodo : ' + str(valuePeridos) + ' Empresa: ' + str(valueIdEmpresa))
 
