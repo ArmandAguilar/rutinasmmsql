@@ -65,7 +65,7 @@ con.close()
 listCompanysA = list(set(listCompanys))
 
 #3 .- We create a json for the calculates
-sql = 'SELECT [NumMaestro],[IdEmpresa],[Dias de produccion] As DiasDeProduccion ,[Trabajo por programar] As TrabajoPorProgramar,[Margen Actual] As MargenActual, ISNULL([PeriodoComparativo],1999) As PeriodoComparativo  FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] order by NumMaestro'
+sql = 'SELECT [NumMaestro],[IdEmpresa],[Dias de produccion] As DiasDeProduccion ,[Trabajo por programar] As TrabajoPorProgramar,[Margen Actual] As MargenActual, ISNULL([PeriodoComparativo],1999) As PeriodoComparativo,[Empresa]  FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] order by NumMaestro'
 con = pyodbc.connect(constr)
 cur = con.cursor()
 cur.execute(sql)
@@ -74,7 +74,7 @@ ListDataJsonCompanys = '{"Companys":['
 DNI = 0
 for value in cur:
     if value[0] > 0:
-        ListDataJsonCompanys += '{"NumMaestro":' +  str(value[0])  + ',"IdEmpresa":' + str(value[1]) + ',"DiasDeProduccion": ' + str(value[2]) + ',"TrabajoPorProgramar":' + str(value[3]) + ',"MargenActual": ' + str(value[4]) + ',"PeriodoComparativo":' + str(value[5]) + '},' + '\n'
+        ListDataJsonCompanys += '{"NumMaestro":' +  str(value[0])  + ',"IdEmpresa":' + str(value[1]) + ',"DiasDeProduccion": ' + str(value[2]) + ',"TrabajoPorProgramar":' + str(value[3]) + ',"MargenActual": ' + str(value[4]) + ',"PeriodoComparativo":' + str(value[5]) + ',"Empresa":\'' + str(value[6]) +  '\'},' + '\n'
 con.commit()
 con.close()
 temp = len(ListDataJsonCompanys)
@@ -95,5 +95,10 @@ for valuePeridos in listYears:
                     MargenXMaestroEmpresa += valueCom['MargenActual']
                     DiasDeProduccion += valueCom['DiasDeProduccion']
                     TrabajoPorProgramar += valueCom['TrabajoPorProgramar']
-            print ('Periodo : ' + str(valuePeridos) + ' Empresa: ' + str(valueIdEmpresa) + 'Dias De Produccion: ' + str(DiasDeProduccion) + ' Trabajo Por Programar :' + str(TrabajoPorProgramar) + ' Margen Actual: $' + str(MargenXMaestroEmpresa))
+            x = DiasDeProduccion + TrabajoPorProgramar
+            if x > 0:
+                TrhoughputRC = MargenXMaestroEmpresa/x
+            else:
+                TrhoughputRC = 0
+            print ('Periodo : ' + str(valuePeridos) + ' Empresa: ' + str(valueIdEmpresa) + 'Dias De Produccion: ' + str(DiasDeProduccion) + ' Trabajo Por Programar :' + str(TrabajoPorProgramar) + ' Margen Actual: $' + str(MargenXMaestroEmpresa) + 'TrhoughputCliente' + str(TrhoughputRC))
 print('##################################### End Calculando Throughput ######################################')
