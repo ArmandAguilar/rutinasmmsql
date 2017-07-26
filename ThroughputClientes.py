@@ -13,26 +13,27 @@ def SqlTroughtPut(sql):
     conn.commit()
     conn.close()
 
-def ThroughputClients(Empresa,Periodo,NumMaestro,ListDataJsonCompanys):
-    dataCompanys = json.loads(ListDataJsonCompanys)
+def ThroughputClients(Periodo,Empresa,ListDataJsonCompanys):
+
     MargenXMaestroEmpresa = 0
     TrhoughputRC = 0
     DiasDeProduccion = 0
     TrabajoPorProgramar  = 0
-    for value in dataCompanys['Companys']:
-        if value['Empresa'] == str(Empresa):
-            if value['PeriodoComparativo'] == Periodo:
-                if int(value['NumMaestro']) == int(NumMaestro):
-                    print('#####Armando#####NumProyecto' + str(value['NumProyecto']) + 'NumMaestro : ' + str(value['NumMaestro']) + 'Empresa :' + str(value['Empresa']) + 'Margen Actual:$' +  str(value['MargenActual']) + 'Periodo Comparativo :' + str(value['PeriodoComparativo']))
-                    MargenXMaestroEmpresa += value['MargenActual']
-                    DiasDeProduccion += value['DiasDeProduccion']
-                    TrabajoPorProgramar += value['TrabajoPorProgramar']
-                    if MargenXMaestroEmpresa > 0:
-                        x = DiasDeProduccion + TrabajoPorProgramar
-                        TrhoughputRC = MargenXMaestroEmpresa/x
-                    else:
-                        TrhoughputRC = 0
-    return TrhoughputRC
+
+    #for value in dataCompanys['Companys']:
+    #    if value['IdEmpresa'] == Empresa:
+    #        if value['PeriodoComparativo'] == Periodo:
+    #            if int(value['NumMaestro']) == int(NumMaestro):
+    #                print('#####Armando#####NumProyecto' + str(value['NumProyecto']) + 'NumMaestro : ' + str(value['NumMaestro']) + 'Empresa :' + str(value['Empresa']) + 'Margen Actual:$' +  str(value['MargenActual']) + 'Periodo Comparativo :' + str(value['PeriodoComparativo']))
+    #                MargenXMaestroEmpresa += value['MargenActual']
+    #                DiasDeProduccion += value['DiasDeProduccion']
+    #                TrabajoPorProgramar += value['TrabajoPorProgramar']
+    #                if MargenXMaestroEmpresa > 0:
+    #                    x = DiasDeProduccion + TrabajoPorProgramar
+    #                    TrhoughputRC = MargenXMaestroEmpresa/x
+    #                else:
+    #                    TrhoughputRC = 0
+    #return TrhoughputRC
 #1 .- Get a list of years
 
 listYears = []
@@ -79,12 +80,13 @@ con.close()
 temp = len(ListDataJsonCompanys)
 ListDataJsonCompanys = ListDataJsonCompanys[:temp - 2]
 ListDataJsonCompanys += ']}'
-
+dataCompanys = json.loads(ListDataJsonCompanys)
 print('######################################### Begin Calculando Throughput ########################################')
 
-print ListDataJsonCompanys
-
-
+for valuePeridos in listYears:
+    print ('######## (' + valuePeridos + ')')
+    for valueIdEmpresa in listCompanysA:
+        print ('Periodo : ' + str(valuePeridos) + ' Empresa: ' + str(valueIdEmpresa))
 
 
 print('##################################### End Calculando Throughput ######################################')
