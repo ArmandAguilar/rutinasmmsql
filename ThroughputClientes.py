@@ -86,8 +86,8 @@ print('######################################### Begin Calculando Throughput ###
 print listYears
 for valuePeridos in listYears:
     print ('######## '  + str(valuePeridos))
-    #for valueIdEmpresa in listCompanysA:
-    #    print ('Periodo : ' + str(valuePeridos) + ' Empresa: ' + str(valueIdEmpresa))
+    for valueIdEmpresa in listCompanysA:
+        print ('Periodo : ' + str(valuePeridos) + ' Empresa: ' + str(valueIdEmpresa))
 
 
 print('##################################### End Calculando Throughput ######################################')
