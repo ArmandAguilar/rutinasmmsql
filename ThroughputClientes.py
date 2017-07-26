@@ -92,9 +92,9 @@ for valuePeridos in listYears:
             DiasDeProduccion = 0
             TrabajoPorProgramar = 0
             for valueCom in dataCompanys['Companys']:
-                MargenXMaestroEmpresa += value['MargenActual']
-                DiasDeProduccion += value['DiasDeProduccion']
-                TrabajoPorProgramar += value['TrabajoPorProgramar']
+                MargenXMaestroEmpresa += valueCom['MargenActual']
+                DiasDeProduccion += valueCom['DiasDeProduccion']
+                TrabajoPorProgramar += valueCom['TrabajoPorProgramar']
             print ('Periodo : ' + str(valuePeridos) + ' Empresa: ' + str(valueIdEmpresa) + 'Dias De Produccion: ' + str(DiasDeProduccion) + ' Trabajo Por Programar :' + str(TrabajoPorProgramar) + ' Margen Actual: $' + str(MargenXMaestroEmpresa))
 
 
