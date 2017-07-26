@@ -88,6 +88,9 @@ for valuePeridos in listYears:
     print ('######## '  + str(valuePeridos))
     for valueIdEmpresa in listCompanysA:
         if valuePeridos == 2017:
+            MargenXMaestroEmpresa = 0
+            DiasDeProduccion = 0
+            TrabajoPorProgramar = 0
             for valueCom in dataCompanys['Companys']:
                 MargenXMaestroEmpresa += value['MargenActual']
                 DiasDeProduccion += value['DiasDeProduccion']
