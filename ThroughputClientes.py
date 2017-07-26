@@ -74,31 +74,31 @@ ListDataJsonCompanys = '{"Companys":['
 DNI = 0
 for value in cur:
     if value[0] > 0:
-        ListDataJsonCompanys += '{"NumMaestro":' +  str(value[0])  + ',"IdEmpresa":' + str(value[1]) + ',"DiasDeProduccion": ' + str(value[2]) + ',"TrabajoPorProgramar":' + str(value[3]) + ',"MargenActual": ' + str(value[4]) + ',"PeriodoComparativo":' + str(value[5]) + ',"Empresa":\'' + str(value[6]) +  '\'},' + '\n'
+        ListDataJsonCompanys += '{"NumMaestro":' +  str(value[0])  + ',"IdEmpresa":' + str(value[1]) + ',"DiasDeProduccion": ' + str(value[2]) + ',"TrabajoPorProgramar":' + str(value[3]) + ',"MargenActual": ' + str(value[4]) + ',"PeriodoComparativo":' + str(value[5]) + ',"Empresa":\'' + str(value[6]) + '\'},' + '\n'
 con.commit()
 con.close()
 temp = len(ListDataJsonCompanys)
 ListDataJsonCompanys = ListDataJsonCompanys[:temp - 2]
 ListDataJsonCompanys += ']}'
-dataCompanys = json.loads(ListDataJsonCompanys)
+print ListDataJsonCompanys
+#dataCompanys = json.loads(ListDataJsonCompanys)
 print('######################################### Begin Calculando Throughput ########################################')
-print listYears
-for valuePeridos in listYears:
-    print ('######## '  + str(valuePeridos))
-    for valueIdEmpresa in listCompanysA:
-        if valuePeridos == 2017:
-            MargenXMaestroEmpresa = 0
-            DiasDeProduccion = 0
-            TrabajoPorProgramar = 0
-            for valueCom in dataCompanys['Companys']:
-                if valueIdEmpresa == valueCom['IdEmpresa']:
-                    MargenXMaestroEmpresa += valueCom['MargenActual']
-                    DiasDeProduccion += valueCom['DiasDeProduccion']
-                    TrabajoPorProgramar += valueCom['TrabajoPorProgramar']
-            x = DiasDeProduccion + TrabajoPorProgramar
-            if x > 0:
-                TrhoughputRC = MargenXMaestroEmpresa/x
-            else:
-                TrhoughputRC = 0
-            print ('Periodo : ' + str(valuePeridos) + ' Empresa: ' + str(valueIdEmpresa) + 'Dias De Produccion: ' + str(DiasDeProduccion) + ' Trabajo Por Programar :' + str(TrabajoPorProgramar) + ' Margen Actual: $' + str(MargenXMaestroEmpresa) + 'TrhoughputCliente' + str(TrhoughputRC))
+#for valuePeridos in listYears:
+#    print ('######## '  + str(valuePeridos))
+#    for valueIdEmpresa in listCompanysA:
+#        if valuePeridos == 2017:
+#            MargenXMaestroEmpresa = 0
+#            DiasDeProduccion = 0
+#            TrabajoPorProgramar = 0
+#            for valueCom in dataCompanys['Companys']:
+#                if valueIdEmpresa == valueCom['IdEmpresa']:
+#                    MargenXMaestroEmpresa += valueCom['MargenActual']
+#                    DiasDeProduccion += valueCom['DiasDeProduccion']
+#                    TrabajoPorProgramar += valueCom['TrabajoPorProgramar']
+#            x = DiasDeProduccion + TrabajoPorProgramar
+#            if x > 0:
+#                TrhoughputRC = MargenXMaestroEmpresa/x
+#            else:
+#                TrhoughputRC = 0
+#            print ('Periodo : ' + str(valuePeridos) + ' Empresa: ' + str(valueIdEmpresa) + 'Dias De Produccion: ' + str(DiasDeProduccion) + ' Trabajo Por Programar :' + str(TrabajoPorProgramar) + ' Margen Actual: $' + str(MargenXMaestroEmpresa) + 'TrhoughputCliente' + str(TrhoughputRC))
 print('##################################### End Calculando Throughput ######################################')
