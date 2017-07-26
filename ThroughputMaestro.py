@@ -54,6 +54,7 @@ def tDataJason(ListDataJson,periodo,listMaestrosA):
     for valueTM in dataTrhoughputMaestro['insertData']:
         #pass
         Sql = 'INSERT INTO [SAP].[dbo].[AA_ThroughtputMatestro] VALUES (\'' + str(valueTM['NumMaestro']) + '\',\'' + str(valueTM['TrhoughputMaestro']) + '\',\'' + str(periodo) + '\',\'' + str(valueTM['MargenMaestro']) + '\')'
+        SqlTroughtPut(Sql)
         print Sql
 # 1 .- We create a two list NumMaestro and Peridos
 
@@ -85,6 +86,9 @@ con.commit()
 con.close()
 
 print('######################################### Begin Calculando Throughput ########################################')
+#1.3 Delete all conetc of table
+sqlDelete = 'DELETE FROM [SAP].[dbo].[AA_ThroughtputMatestro]'
+SqlTroughtPut(sqlDelete):
 # 2 .- We create the data for the json files
 # 2.1 .- Here we create the json for sum the (MargeActual) od mssql of  vista RV-ESTADOPROYECTOS-AA-Throughput
 print('')
