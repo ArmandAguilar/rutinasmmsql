@@ -84,7 +84,7 @@ dataCompanys = json.loads(ListDataJsonCompanys)
 print('######################################### Begin Calculando Throughput ########################################')
 
 for valuePeridos in listYears:
-    print ('######## (' + valuePeridos + ')')
+    print ('######## (' + str(valuePeridos) + ')')
     for valueIdEmpresa in listCompanysA:
         print ('Periodo : ' + str(valuePeridos) + ' Empresa: ' + str(valueIdEmpresa))
 
