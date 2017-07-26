@@ -88,7 +88,7 @@ con.close()
 print('######################################### -Begin Calculando Throughput- ########################################')
 #1.3 Delete all conetc of table
 sqlDelete = 'DELETE FROM [SAP].[dbo].[AA_ThroughtputMatestro]'
-SqlTroughtPut(sqlDelete):
+SqlTroughtPut(sqlDelete)
 # 2 .- We create the data for the json files
 # 2.1 .- Here we create the json for sum the (MargeActual) od mssql of  vista RV-ESTADOPROYECTOS-AA-Throughput
 print('')
