@@ -88,7 +88,11 @@ for valuePeridos in listYears:
     print ('######## '  + str(valuePeridos))
     for valueIdEmpresa in listCompanysA:
         if valuePeridos == 2017:
-            print ('Periodo : ' + str(valuePeridos) + ' Empresa: ' + str(valueIdEmpresa))
+            for valueCom in dataCompanys['Companys']:
+                MargenXMaestroEmpresa += value['MargenActual']
+                DiasDeProduccion += value['DiasDeProduccion']
+                TrabajoPorProgramar += value['TrabajoPorProgramar']
+            print ('Periodo : ' + str(valuePeridos) + ' Empresa: ' + str(valueIdEmpresa) + 'Dias De Produccion: ' + str(DiasDeProduccion) + ' Trabajo Por Programar :' + str(TrabajoPorProgramar) + ' Margen Actual: $' + str(MargenXMaestroEmpresa))
 
 
 print('##################################### End Calculando Throughput ######################################')
