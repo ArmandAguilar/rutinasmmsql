@@ -66,7 +66,7 @@ listCompanysA = list(set(listCompanys))
 
 #3 .- We create a json for the calculates
 def DtaJsonCom(perido):
-    sql = 'SELECT [NumMaestro],[IdEmpresa],[Dias de produccion] As DiasDeProduccion ,[Trabajo por programar] As TrabajoPorProgramar,[Margen Actual] As MargenActual, ISNULL([PeriodoComparativo],1999) As PeriodoComparativo,[Empresa]  FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] where [PeriodoComparativo] = '' order by NumMaestro'
+    sql = 'SELECT [NumMaestro],[IdEmpresa],[Dias de produccion] As DiasDeProduccion ,[Trabajo por programar] As TrabajoPorProgramar,[Margen Actual] As MargenActual, ISNULL([PeriodoComparativo],1999) As PeriodoComparativo,[Empresa]  FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] where [PeriodoComparativo] = \'' + str(perido) + '\' order by NumMaestro'
     con = pyodbc.connect(constr)
     cur = con.cursor()
     cur.execute(sql)
