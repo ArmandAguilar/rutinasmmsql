@@ -98,10 +98,11 @@ for valuePeridos in listYears:
                     MargenXMaestroEmpresa += valueCom['MargenActual']
                     DiasDeProduccion += valueCom['DiasDeProduccion']
                     TrabajoPorProgramar += valueCom['TrabajoPorProgramar']
+                    Emp = valueCom['Empresa']
             x = DiasDeProduccion + TrabajoPorProgramar
             if x > 0:
                 TrhoughputRC = MargenXMaestroEmpresa/x
             else:
                 TrhoughputRC = 0
-            print ('Periodo : ' + str(valuePeridos) + ' Empresa: ' + str(valueIdEmpresa) + '-' + str(valueCom['Empresa']) + 'Dias De Produccion: ' + str(DiasDeProduccion) + ' Trabajo Por Programar :' + str(TrabajoPorProgramar) + ' Margen Actual: $' + str(MargenXMaestroEmpresa) + 'TrhoughputCliente' + str(TrhoughputRC))
+            print ('Periodo : ' + str(valuePeridos) + ' Empresa: ' + str(valueIdEmpresa) + '-' + str(Emp) + 'Dias De Produccion: ' + str(DiasDeProduccion) + ' Trabajo Por Programar :' + str(TrabajoPorProgramar) + ' Margen Actual: $' + str(MargenXMaestroEmpresa) + 'TrhoughputCliente' + str(TrhoughputRC))
 print('##################################### End Calculando Throughput ######################################')
