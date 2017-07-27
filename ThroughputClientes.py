@@ -65,8 +65,8 @@ con.close()
 listCompanysA = list(set(listCompanys))
 
 #3 .- We create a json for the calculates
-def DtaJsonCom(perido):
-    sql = 'SELECT [NumMaestro],[IdEmpresa],[Dias de produccion] As DiasDeProduccion ,[Trabajo por programar] As TrabajoPorProgramar,[Margen Actual] As MargenActual, ISNULL([PeriodoComparativo],1999) As PeriodoComparativo,[Empresa]  FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] where [PeriodoComparativo] = \'' + str(perido) + '\' order by NumMaestro'
+def DtaJsonCom(periodo):
+    sql = 'SELECT [NumMaestro],[IdEmpresa],[Dias de produccion] As DiasDeProduccion ,[Trabajo por programar] As TrabajoPorProgramar,[Margen Actual] As MargenActual, ISNULL([PeriodoComparativo],1999) As PeriodoComparativo,[Empresa]  FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] where [PeriodoComparativo] = \'' + str(periodo) + '\''
     con = pyodbc.connect(constr)
     cur = con.cursor()
     cur.execute(sql)
@@ -87,7 +87,7 @@ def DtaJsonCom(perido):
 print('######################################### Begin Calculando Throughput ########################################')
 for valuePeridos in listYears:
     print ('######## '  + str(valuePeridos))
-    dataCompanys0 = DtaJsonCom(valuePeridos)
+    dataCompanys0 = DtaJsonCom(str(valuePeridos))
     print dataCompanys0
     for valueIdEmpresa in listCompanysA:
         if valuePeridos == 2017:
