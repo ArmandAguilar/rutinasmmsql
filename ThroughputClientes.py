@@ -93,6 +93,7 @@ for valuePeridos in listYears:
             MargenXMaestroEmpresa = 0
             DiasDeProduccion = 0
             TrabajoPorProgramar = 0
+            Emp = ''
             for valueCom in dataCompanys0['Companys']:
                 if valueIdEmpresa == valueCom['IdEmpresa']:
                     MargenXMaestroEmpresa += valueCom['MargenActual']
