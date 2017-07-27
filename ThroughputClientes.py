@@ -87,8 +87,8 @@ def DtaJsonCom(periodo):
 print('######################################### Begin Calculando Throughput ########################################')
 for valuePeridos in listYears:
     print ('######## '  + str(valuePeridos))
-    dataCompanys0 = DtaJsonCom(str(valuePeridos))
-    print dataCompanys0
+    dataCompanys0 = json.loads(DtaJsonCom(str(valuePeridos)))
+    print dataCompanys
     for valueIdEmpresa in listCompanysA:
         if valuePeridos == 2017:
             MargenXMaestroEmpresa = 0
