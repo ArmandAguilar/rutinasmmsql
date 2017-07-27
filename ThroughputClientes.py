@@ -75,7 +75,7 @@ def DtaJsonCom(periodo):
     DNI = 0
     for value in cur:
         if value[0] > 0:
-            ListDataJsonCompanys += '{"NumMaestro":' +  str(value[0])  + ',"IdEmpresa":' + str(value[1]) + ',"DiasDeProduccion": ' + str(value[2]) + ',"TrabajoPorProgramar":' + str(value[3]) + ',"MargenActual": ' + str(value[4]) + ',"PeriodoComparativo":' + str(value[5]) + ',"Empresa":\'' + str(value[6]) + '\'},' + '\n'
+            ListDataJsonCompanys += '{"NumMaestro":' +  str(value[0])  + ',"IdEmpresa":' + str(value[1]) + ',"DiasDeProduccion": ' + str(value[2]) + ',"TrabajoPorProgramar":' + str(value[3]) + ',"MargenActual": ' + str(value[4]) + ',"PeriodoComparativo":' + str(value[5]) + ',"Empresa":"' + str(value[6]) + '"},' + '\n'
     con.commit()
     con.close()
     temp = len(ListDataJsonCompanys)
