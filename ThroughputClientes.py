@@ -104,9 +104,9 @@ for valuePeridos in listYears:
             x = DiasDeProduccion + TrabajoPorProgramar
             if x > 0:
                 TrhoughputRC = MargenXMaestroEmpresa/x
-                print ('Periodo : ' + str(valuePeridos) + ' Empresa: ' + str(Emp) + 'Dias De Produccion: ' + str(DiasDeProduccion) + ' Trabajo Por Programar :' + str(TrabajoPorProgramar) + ' Margen Actual: $' + str(MargenXMaestroEmpresa) + ' TrhoughputCliente $ ' + str(TrhoughputRC))
             else:
                 TrhoughputRC = 0
+            print ('Periodo : ' + str(valuePeridos) + ' Empresa: ' + str(Emp) + 'Dias De Produccion: ' + str(DiasDeProduccion) + ' Trabajo Por Programar :' + str(TrabajoPorProgramar) + ' Margen Actual: $' + str(MargenXMaestroEmpresa) + ' TrhoughputCliente $ ' + str(TrhoughputRC))
                 #print ('Periodo : ' + str(valuePeridos) + ' Empresa: ' + str(Emp) + 'Dias De Produccion: ' + str(DiasDeProduccion) + ' Trabajo Por Programar :' + str(TrabajoPorProgramar) + ' Margen Actual: $' + str(MargenXMaestroEmpresa) + ' TrhoughputCliente $ ' + str(TrhoughputRC))
 
 print('##################################### End Calculando Throughput ######################################')
