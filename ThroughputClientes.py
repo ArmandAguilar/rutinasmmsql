@@ -102,14 +102,14 @@ for valuePeridos in listYears:
                 DiasDeProduccion += valueCom['DiasDeProduccion']
                 TrabajoPorProgramar += valueCom['TrabajoPorProgramar']
                 Emp = valueCom['Empresa']
-        x = DiasDeProduccion + TrabajoPorProgramar
-        if x > 0:
-            TrhoughputRC = MargenXMaestroEmpresa/x
-        else:
-            TrhoughputRC = 0
-        #print ('Periodo : ' + str(valuePeridos) + ' Empresa: ' + str(Emp) + 'Dias De Produccion: ' + str(DiasDeProduccion) + ' Trabajo Por Programar :' + str(TrabajoPorProgramar) + ' Margen Actual: $' + str(MargenXMaestroEmpresa) + ' TrhoughputCliente $ ' + str(TrhoughputRC))
-        sql = 'INSERT INTO [SAP].[dbo].[ThrougputCliente] VALUES (\'' + str(valueCom['IdEmpresa']) + '\',\'' + str(MargenXMaestroEmpresa) + '\',\'' + str(TrhoughputRC) + '\',\'' + str(valuePeridos) + '\')'
-        print(sql)
+    x = DiasDeProduccion + TrabajoPorProgramar
+    if x > 0:
+        TrhoughputRC = MargenXMaestroEmpresa/x
+    else:
+        TrhoughputRC = 0
+    #print ('Periodo : ' + str(valuePeridos) + ' Empresa: ' + str(Emp) + 'Dias De Produccion: ' + str(DiasDeProduccion) + ' Trabajo Por Programar :' + str(TrabajoPorProgramar) + ' Margen Actual: $' + str(MargenXMaestroEmpresa) + ' TrhoughputCliente $ ' + str(TrhoughputRC))
+    sql = 'INSERT INTO [SAP].[dbo].[ThrougputCliente] VALUES (\'' + str(valueCom['IdEmpresa']) + '\',\'' + str(MargenXMaestroEmpresa) + '\',\'' + str(TrhoughputRC) + '\',\'' + str(valuePeridos) + '\')'
+    print(sql)
         #print ('Periodo : ' + str(valuePeridos) + ' Empresa: ' + str(Emp) + 'Dias De Produccion: ' + str(DiasDeProduccion) + ' Trabajo Por Programar :' + str(TrabajoPorProgramar) + ' Margen Actual: $' + str(MargenXMaestroEmpresa) + ' TrhoughputCliente $ ' + str(TrhoughputRC))
 
 print('##################################### End Calculando Throughput ######################################')
