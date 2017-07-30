@@ -98,7 +98,7 @@ for valuePeridos in listYears:
         for valueCom in dataCompanys0['Companys']:
             if valueIdEmpresa == valueCom['IdEmpresa']:
                 if valuePeridos == valueCom['PeriodoComparativo']:
-                    pass
+                    #pass
                     #print ('Empresa in JSNO : ' + str(valueIdEmpresa) + ' == ' + 'Empresa in List : ' + str(valueIdEmpresa))
                     MargenXMaestroEmpresa += valueCom['MargenActual']
                     DiasDeProduccion += valueCom['DiasDeProduccion']
