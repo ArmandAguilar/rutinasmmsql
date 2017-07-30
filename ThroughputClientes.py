@@ -97,11 +97,12 @@ for valuePeridos in listYears:
         Emp = ''
         for valueCom in dataCompanys0['Companys']:
             if valueIdEmpresa == valueCom['IdEmpresa']:
-                #print ('Empresa in JSNO : ' + str(valueIdEmpresa) + ' == ' + 'Empresa in List : ' + str(valueIdEmpresa))
-                MargenXMaestroEmpresa += valueCom['MargenActual']
-                DiasDeProduccion += valueCom['DiasDeProduccion']
-                TrabajoPorProgramar += valueCom['TrabajoPorProgramar']
-                Emp = valueCom['Empresa']
+                if valuePeridos == valueCom['PeriodoComparativo']:
+                    pass
+                    #print ('Empresa in JSNO : ' + str(valueIdEmpresa) + ' == ' + 'Empresa in List : ' + str(valueIdEmpresa))
+                    MargenXMaestroEmpresa += valueCom['MargenActual']
+                    DiasDeProduccion += valueCom['DiasDeProduccion']
+                    TrabajoPorProgramar += valueCom['TrabajoPorProgramar']
     x = DiasDeProduccion + TrabajoPorProgramar
     if x > 0:
         TrhoughputRC = MargenXMaestroEmpresa/x
