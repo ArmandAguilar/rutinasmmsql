@@ -93,7 +93,7 @@ for valuePeridos in listYears:
     i = 0
     dataCompanys0 = json.loads(DtaJsonCom(str(valuePeridos)))
     for valueIdEmpresa in listCompanysA:
-        for valueCompanys in dataCompanys0:
+        for valueCompanys in dataCompanys0['Companys']:
             if 2017  ==  int(valueCompanys['PeriodoComparativo']):
                 print ('====> '  + str(valueCompanys['IdEmpresa']) + ' =====> ' + str(valueCompanys['NumProyecto']))
                 i += 1
