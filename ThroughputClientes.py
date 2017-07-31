@@ -98,7 +98,7 @@ for valuePeridos in listYears:
                 print ('====> '  + str(valueIdEmpresa))
                 i += 1
     print ('---------')
-    print (i)
+    print (str(i))
 #for valuePeridos in listYears:
 #    print ('######## '  + str(valuePeridos))
 #    dataCompanys0 = json.loads(DtaJsonCom(str(valuePeridos)))
