@@ -66,7 +66,7 @@ listCompanysA = list(set(listCompanys))
 
 #3 .- We create a json for the calculates
 def DtaJsonCom(periodo):
-    sql = 'SELECT [NumMaestro],[IdEmpresa],[Dias de produccion] As DiasDeProduccion ,[Trabajo por programar] As TrabajoPorProgramar,[Margen Actual] As MargenActual, ISNULL([PeriodoComparativo],1999) As PeriodoComparativo,[Empresa]  FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] where [PeriodoComparativo] = \'' + str(periodo) + '\''
+    sql = 'SELECT [NumMaestro],[IdEmpresa],[Dias de produccion] As DiasDeProduccion ,[Trabajo por programar] As TrabajoPorProgramar,[Margen Actual] As MargenActual, ISNULL([PeriodoComparativo],1999) As PeriodoComparativo,[NumProyecto]  FROM [SAP].[dbo].[RV-ESTADOPROYECTOS-AA-Throughput] where [PeriodoComparativo] = \'' + str(periodo) + '\''
     con = pyodbc.connect(constr)
     cur = con.cursor()
     cur.execute(sql)
@@ -75,7 +75,7 @@ def DtaJsonCom(periodo):
     DNI = 0
     for value in cur:
         if value[0] > 0:
-            ListDataJsonCompanys += '{"NumMaestro":' +  str(value[0])  + ',"IdEmpresa":' + str(value[1]) + ',"DiasDeProduccion": ' + str(value[2]) + ',"TrabajoPorProgramar":' + str(value[3]) + ',"MargenActual": ' + str(value[4]) + ',"PeriodoComparativo":' + str(value[5]) + ',"Empresa":"' + str(value[6]) + '"},' + '\n'
+            ListDataJsonCompanys += '{"NumMaestro":' +  str(value[0])  + ',"IdEmpresa":' + str(value[1]) + ',"DiasDeProduccion": ' + str(value[2]) + ',"TrabajoPorProgramar":' + str(value[3]) + ',"MargenActual": ' + str(value[4]) + ',"PeriodoComparativo":' + str(value[5]) + ',"NumProyecto":' + str(value[6]) + '},' + '\n'
     con.commit()
     con.close()
     temp = len(ListDataJsonCompanys)
@@ -94,8 +94,8 @@ for valuePeridos in listYears:
     dataCompanys0 = json.loads(DtaJsonCom(str(valuePeridos)))
     for valueIdEmpresa in listCompanysA:
         for valueCompanys in dataCompanys0:
-            if valuePeridos == 2017:
-                print ('====> '  + str(valueIdEmpresa))
+            if dataCompanys0[PeriodoComparativo] == 2017:
+                print ('====> '  + str(dataCompanys0[IdEmpresa]) + ' =====> ' + str(dataCompanys0[]))
                 i += 1
     print ('---------')
     print (str(i))
