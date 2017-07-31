@@ -89,8 +89,12 @@ sql = 'Delete FROM [SAP].[dbo].[ThrougputCliente]'
 SqlTroughtPut(sql)
 
 print (listCompanysA)
-
-
+i = 0
+for value in listCompanysA:
+    print value
+    i += 1
+print ('---------------')
+print(str(i))
 #for valuePeridos in listYears:
 #    print ('######## '  + str(valuePeridos))
 #    dataCompanys0 = json.loads(DtaJsonCom(str(valuePeridos)))
