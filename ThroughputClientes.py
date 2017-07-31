@@ -87,30 +87,34 @@ def DtaJsonCom(periodo):
 print('########################################## Begin Calculando Throughput #########################################')
 sql = 'Delete FROM [SAP].[dbo].[ThrougputCliente]'
 SqlTroughtPut(sql)
-for valuePeridos in listYears:
-    print ('######## '  + str(valuePeridos))
-    dataCompanys0 = json.loads(DtaJsonCom(str(valuePeridos)))
-    for valueIdEmpresa in listCompanysA:
-        MargenXMaestroEmpresa = 0
-        DiasDeProduccion = 0
-        TrabajoPorProgramar = 0
-        Emp = ''
-        for valueCom in dataCompanys0['Companys']:
-            if valueIdEmpresa == valueCom['IdEmpresa']:
-                if valuePeridos == valueCom['PeriodoComparativo']:
+
+print (listCompanysA)
+
+
+#for valuePeridos in listYears:
+#    print ('######## '  + str(valuePeridos))
+#    dataCompanys0 = json.loads(DtaJsonCom(str(valuePeridos)))
+#    for valueIdEmpresa in listCompanysA:
+#        MargenXMaestroEmpresa = 0
+#        DiasDeProduccion = 0
+#        TrabajoPorProgramar = 0
+#        Emp = ''
+#        for valueCom in dataCompanys0['Companys']:
+#            if valueIdEmpresa == valueCom['IdEmpresa']:
+#                if valuePeridos == valueCom['PeriodoComparativo']:
                     #pass
                     #print ('Empresa in JSNO : ' + str(valueIdEmpresa) + ' == ' + 'Empresa in List : ' + str(valueIdEmpresa))
-                    MargenXMaestroEmpresa += valueCom['MargenActual']
-                    DiasDeProduccion += valueCom['DiasDeProduccion']
-                    TrabajoPorProgramar += valueCom['TrabajoPorProgramar']
-    x = DiasDeProduccion + TrabajoPorProgramar
-    if x > 0:
-        TrhoughputRC = MargenXMaestroEmpresa/x
-    else:
-        TrhoughputRC = 0
+#                    MargenXMaestroEmpresa += valueCom['MargenActual']
+#                    DiasDeProduccion += valueCom['DiasDeProduccion']
+#                    TrabajoPorProgramar += valueCom['TrabajoPorProgramar']
+#    x = DiasDeProduccion + TrabajoPorProgramar
+#    if x > 0:
+#        TrhoughputRC = MargenXMaestroEmpresa/x
+#    else:
+#        TrhoughputRC = 0
     #print ('Periodo : ' + str(valuePeridos) + ' Empresa: ' + str(Emp) + 'Dias De Produccion: ' + str(DiasDeProduccion) + ' Trabajo Por Programar :' + str(TrabajoPorProgramar) + ' Margen Actual: $' + str(MargenXMaestroEmpresa) + ' TrhoughputCliente $ ' + str(TrhoughputRC))
-    sql = 'INSERT INTO [SAP].[dbo].[ThrougputCliente] VALUES (\'' + str(valueCom['IdEmpresa']) + '\',\'' + str(MargenXMaestroEmpresa) + '\',\'' + str(TrhoughputRC) + '\',\'' + str(valuePeridos) + '\')'
-    print(sql)
+#    sql = 'INSERT INTO [SAP].[dbo].[ThrougputCliente] VALUES (\'' + str(valueCom['IdEmpresa']) + '\',\'' + str(MargenXMaestroEmpresa) + '\',\'' + str(TrhoughputRC) + '\',\'' + str(valuePeridos) + '\')'
+#    print(sql)
         #print ('Periodo : ' + str(valuePeridos) + ' Empresa: ' + str(Emp) + 'Dias De Produccion: ' + str(DiasDeProduccion) + ' Trabajo Por Programar :' + str(TrabajoPorProgramar) + ' Margen Actual: $' + str(MargenXMaestroEmpresa) + ' TrhoughputCliente $ ' + str(TrhoughputRC))
 
 print('##################################### End Calculando Throughput ######################################')
