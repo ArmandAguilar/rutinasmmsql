@@ -95,10 +95,7 @@ for valuePeridos in listYears:
     for valueIdEmpresa in listCompanysA:
         for valueCompanys in dataCompanys0['Companys']:
             if 2017  ==  int(valueCompanys['PeriodoComparativo']):
-                print ('====> '  + str(valueCompanys['IdEmpresa']) + ' =====> ' + str(valueCompanys['NumProyecto']))
-                i += 1
-    print ('---------')
-    print (str(i))
+                print ('Empresa ====> '  + str(valueCompanys['IdEmpresa']) + ' =====> Periodo' + str(valueCompanys['PeriodoComparativo']))
 #for valuePeridos in listYears:
 #    print ('######## '  + str(valuePeridos))
 #    dataCompanys0 = json.loads(DtaJsonCom(str(valuePeridos)))
