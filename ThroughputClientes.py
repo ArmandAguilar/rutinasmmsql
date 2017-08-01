@@ -84,7 +84,7 @@ def DtaJsonCom(periodo):
     return ListDataJsonCompanys
 
 #dataCompanys = json.loads(ListDataJsonCompanys)
-print('########################################## Begin Calculando Throughput #########################################')
+print('########################################## - Begin Calculando Throughput - #########################################')
 #sql = 'Delete FROM [SAP].[dbo].[ThrougputCliente]'
 #SqlTroughtPut(sql)
 
@@ -99,7 +99,7 @@ for valuePeridos in listYears:
         for valueCompanys in dataCompanys0['Companys']:
             if 2017  ==  int(valueCompanys['PeriodoComparativo']):
                 if valueIdEmpresa == int(valueCompanys['IdEmpresa']):
-                    MargenXMaestroEmpresa += valueCom['MargenActual']
+                    MargenXMaestroEmpresa += valueCompanys['MargenActual']
         print ('Empresa : '  + str(valueCompanys['IdEmpresa']) + ' Periodo : ' + str(valueCompanys['PeriodoComparativo']) + 'Margen Actual: $' + str(MargenXMaestroEmpresa))
 #for valuePeridos in listYears:
 #    print ('######## '  + str(valuePeridos))
@@ -127,4 +127,4 @@ for valuePeridos in listYears:
 #    print(sql)
         #print ('Periodo : ' + str(valuePeridos) + ' Empresa: ' + str(Emp) + 'Dias De Produccion: ' + str(DiasDeProduccion) + ' Trabajo Por Programar :' + str(TrabajoPorProgramar) + ' Margen Actual: $' + str(MargenXMaestroEmpresa) + ' TrhoughputCliente $ ' + str(TrhoughputRC))
 
-print('##################################### End Calculando Throughput ######################################')
+print('##################################### - End Calculando Throughput - ######################################')
