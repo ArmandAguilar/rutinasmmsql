@@ -102,7 +102,7 @@ for valuePeridos in listYears:
                     MargenXMaestroEmpresa += valueCompanys['MargenActual']
                     DiasDeProduccion += valueCompanys['DiasDeProduccion']
                     TrabajoPorProgramar += valueCompanys['TrabajoPorProgramar']
-        print ('Empresa : '  + str(valueCompanys['IdEmpresa']) + 'Margen Actual: $' + str(MargenXMaestroEmpresa))
+        print ('-Empresa : '  + str(valueCompanys['IdEmpresa']) + 'Margen Actual: $' + str(MargenXMaestroEmpresa))
 #for valuePeridos in listYears:
 #    print ('######## '  + str(valuePeridos))
 #    dataCompanys0 = json.loads(DtaJsonCom(str(valuePeridos)))
