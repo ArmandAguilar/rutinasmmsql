@@ -97,10 +97,12 @@ for valuePeridos in listYears:
         DiasDeProduccion = 0
         TrabajoPorProgramar = 0
         for valueCompanys in dataCompanys0['Companys']:
-            if 2017  ==  int(valueCompanys['PeriodoComparativo']):
+            if valuePeridos  ==  int(valueCompanys['PeriodoComparativo']):
                 if valueIdEmpresa == int(valueCompanys['IdEmpresa']):
                     MargenXMaestroEmpresa += valueCompanys['MargenActual']
-            print ('Empresa : '  + str(valueCompanys['IdEmpresa']) + ' Periodo : ' + str(valueCompanys['PeriodoComparativo']) + 'Margen Actual: $' + str(MargenXMaestroEmpresa))
+                    DiasDeProduccion += valueCompanys['DiasDeProduccion']
+                    TrabajoPorProgramar += valueCompanys['TrabajoPorProgramar']
+        print ('Empresa : '  + str(valueCompanys['IdEmpresa']) + 'Margen Actual: $' + str(MargenXMaestroEmpresa))
 #for valuePeridos in listYears:
 #    print ('######## '  + str(valuePeridos))
 #    dataCompanys0 = json.loads(DtaJsonCom(str(valuePeridos)))
