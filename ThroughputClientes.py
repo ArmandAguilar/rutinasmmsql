@@ -102,7 +102,15 @@ for valuePeridos in listYears:
                     MargenXMaestroEmpresa += valueCompanys['MargenActual']
                     DiasDeProduccion += valueCompanys['DiasDeProduccion']
                     TrabajoPorProgramar += valueCompanys['TrabajoPorProgramar']
-        print ('-Empresa : '  + str(valueIdEmpresa) + 'Margen Actual: $' + str(MargenXMaestroEmpresa))
+        x = DiasDeProduccion + TrabajoPorProgramar
+        if x > 0:
+            TrhoughputRC = MargenXMaestroEmpresa/x
+        else:
+            TrhoughputRC = 0
+
+        print ('Periodo : ' + str(valuePeridos) + ' Empresa: ' + str(valueIdEmpresa) + 'Dias De Produccion: ' + str(DiasDeProduccion) + ' Trabajo Por Programar :' + str(TrabajoPorProgramar) + ' Margen Actual: $' + str(MargenXMaestroEmpresa) + ' TrhoughputCliente $ ' + str(TrhoughputRC))
+        #sql = 'INSERT INTO [SAP].[dbo].[ThrougputCliente] VALUES (\'' + str(valueCom['IdEmpresa']) + '\',\'' + str(MargenXMaestroEmpresa) + '\',\'' + str(TrhoughputRC) + '\',\'' + str(valuePeridos) + '\')'
+
 #for valuePeridos in listYears:
 #    print ('######## '  + str(valuePeridos))
 #    dataCompanys0 = json.loads(DtaJsonCom(str(valuePeridos)))
