@@ -85,8 +85,8 @@ def DtaJsonCom(periodo):
 
 #dataCompanys = json.loads(ListDataJsonCompanys)
 print('########################################## + Begin Calculando Throughput + #########################################')
-#sql = 'Delete FROM [SAP].[dbo].[ThrougputCliente]'
-#SqlTroughtPut(sql)
+sql = 'Delete FROM [SAP].[dbo].[ThrougputCliente]'
+SqlTroughtPut(sql)
 
 for valuePeridos in listYears:
     print ('######## '  + str(valuePeridos))
@@ -109,8 +109,8 @@ for valuePeridos in listYears:
             TrhoughputRC = 0
 
         print ('Periodo : ' + str(valuePeridos) + ' Empresa: ' + str(valueIdEmpresa) + 'Dias De Produccion: ' + str(DiasDeProduccion) + ' Trabajo Por Programar :' + str(TrabajoPorProgramar) + ' Margen Actual: $' + str(MargenXMaestroEmpresa) + ' TrhoughputCliente $ ' + str(TrhoughputRC))
-        #sql = 'INSERT INTO [SAP].[dbo].[ThrougputCliente] VALUES (\'' + str(valueCom['IdEmpresa']) + '\',\'' + str(MargenXMaestroEmpresa) + '\',\'' + str(TrhoughputRC) + '\',\'' + str(valuePeridos) + '\')'
-
+        sqlIn = 'INSERT INTO [SAP].[dbo].[ThrougputCliente] VALUES (\'' + str(valueCom['IdEmpresa']) + '\',\'' + str(MargenXMaestroEmpresa) + '\',\'' + str(TrhoughputRC) + '\',\'' + str(valuePeridos) + '\')'
+        SqlTroughtPut(sqlIn)
 #for valuePeridos in listYears:
 #    print ('######## '  + str(valuePeridos))
 #    dataCompanys0 = json.loads(DtaJsonCom(str(valuePeridos)))
