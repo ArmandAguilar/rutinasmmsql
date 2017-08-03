@@ -109,7 +109,7 @@ for valuePeridos in listYears:
             TrhoughputRC = 0
 
         print ('Periodo : ' + str(valuePeridos) + ' Empresa: ' + str(valueIdEmpresa) + 'Dias De Produccion: ' + str(DiasDeProduccion) + ' Trabajo Por Programar :' + str(TrabajoPorProgramar) + ' Margen Actual: $' + str(MargenXMaestroEmpresa) + ' TrhoughputCliente $ ' + str(TrhoughputRC))
-        sqlIn = 'INSERT INTO [SAP].[dbo].[ThrougputCliente] VALUES (\'' + str(valueCom['IdEmpresa']) + '\',\'' + str(MargenXMaestroEmpresa) + '\',\'' + str(TrhoughputRC) + '\',\'' + str(valuePeridos) + '\')'
+        sqlIn = 'INSERT INTO [SAP].[dbo].[ThrougputCliente] VALUES (\'' + str(valueIdEmpresa) + '\',\'' + str(MargenXMaestroEmpresa) + '\',\'' + str(TrhoughputRC) + '\',\'' + str(valuePeridos) + '\')'
         SqlTroughtPut(sqlIn)
 #for valuePeridos in listYears:
 #    print ('######## '  + str(valuePeridos))
