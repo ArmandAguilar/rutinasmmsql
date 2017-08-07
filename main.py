@@ -6,5 +6,5 @@ import pypyodbc as pyodbc
 import simplejson as json
 
 
-import ThroughputCliente
+import ThroughputClientes
 import ThroughputMaestro
