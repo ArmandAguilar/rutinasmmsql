@@ -1,4 +1,4 @@
-# Sync - Google - Sheets To MMSQL
+# rutinasmmsql
 
 > This script was make to help  MSSQL to process and calculate  two views call ThrougputClient and ThroughtCompanies this views was converted  in tables.
 
@@ -17,7 +17,7 @@
 **ThroughtputClientes**: This script  make the calculate of clients for generate the
 table ThroughputClientes.
 
-**ThroughtputEmpresas**: This script  make the calculate of clients for generate the 
+**ThroughtputEmpresas**: This script  make the calculate of clients for generate the
 table ThroughtputEmpresas.
 
-![How is works](https://github.com/ArmandAguilar/syncgooglesheetmmsql/blob/master/graffle/How%20is%20work.png)
+![How is works](https://github.com/ArmandAguilar/rutinasmmsql/blob/master/Driagram/Diagram.png)
